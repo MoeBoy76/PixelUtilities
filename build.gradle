@@ -1,0 +1,72 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+        maven {
+            name = "sonatype"
+            url = "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
+    }
+    //noinspection GroovyAssignabilityCheck
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+    }
+}
+
+apply plugin: 'forge'
+
+version = "3.3.0"
+group = "pixelutilities"
+archivesBaseName = "PixelUtilities"
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+minecraft {
+    version = "1.7.10-10.13.0.1187"
+    runDir = "eclipse"
+}
+
+task deobfJar(type: Jar) {
+    from sourceSets.main.output
+    appendix = 'deobf'
+}
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allSource
+    appendix = 'src'
+}
+
+tasks.build.dependsOn('sourceJar', 'deobfJar')
+
+//noinspection GroovyAssignabilityCheck
+processResources {
+    from(sourceSets.main.resources.srcDirs)
+}
+
+//noinspection GroovyAssignabilityCheck
+configurations {
+    runtimeOnly
+}
+
+//noinspection GroovyAssignabilityCheck
+dependencies {
+    //compile files('libs/compile/Pixelmon-1.7.2-3.1-universal-deob.jar')
+    compile files('libs/runtime/vlcj-3.0.1.jar')
+    runtimeOnly files('libs/runtime/jna-3.5.2.jar')
+    runtimeOnly files('libs/runtime/platform-3.5.2.jar')
+    runtimeOnly files('libs/runtime/vlcj-3.0.1.jar')
+}
+
+//noinspection GroovyAssignabilityCheck
+jar {
+    from configurations.runtimeOnly.collect { it.isDirectory() ? it : zipTree(it) }
+
+    manifest {
+        attributes('FMLCorePluginContainsFMLMod': 'true')
+        attributes('FMLCorePlugin': 'coloredlightscore.src.asm.ColoredLightsCoreLoadingPlugin')
+    }
+}
