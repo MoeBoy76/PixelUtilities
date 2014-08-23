@@ -39,28 +39,28 @@ public class PixelUtilitiesTools
 
 	//EvoTools
 	//Firestone tools
-	public Item FirestonePickaxe;// new com.PixelUtilities.tools.FirestonePickaxe(6083, 6.5F, FIRESTONE, "pixelutilities:FirestonePickaxe").setTextureName("PixelUtilities:FirestonePickaxe").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("FirestonePickaxe");
-	public Item FirestoneHammer;// new com.PixelUtilities.tools.FirestoneHammer(6084, FIRESTONE, "FirestoneHammer", "Firestone Hammer").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setTextureName("PixelUtilities:FirestoneHammer").setUnlocalizedName("FirestoneHammer");
-	public Item FirestoneAxe;// new com.PixelUtilities.tools.FirestoneAxe(6085, FIRESTONE, "pixelutilities:FirestoneAxe").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("FirestoneAxe").setTextureName("PixelUtilities:FirestoneAxe");
-	public Item FirestoneShovel;// new com.PixelUtilities.tools.FirestoneShovel(6086, FIRESTONE, "pixelutilities:FirestoneShovel").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("FirestoneShovel").setTextureName("PixelUtilities:FirestoneShovel");
-	public Item FirestoneHoe;// new com.PixelUtilities.tools.FirestoneHoe(6087, FIRESTONE, "pixelutilities:FirestoneHoe").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("FirestoneHoe").setTextureName("pixelutilities:FirestoneHoe");
-	public Item FirestoneSword;// new com.PixelUtilities.tools.FirestoneSword(6088, FIRESTONE, "pixelutilities:FirestoneSword").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("FirestoneSword").setTextureName("PixelUtilities:FirestoneSword");
+	public Item FirestonePickaxe;// new com.PixelUtilities.tools.FirestonePickaxe(6083, 6.5F, ELEMENTSTONE, "pixelutilities:FirestonePickaxe").setTextureName("PixelUtilities:FirestonePickaxe").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("FirestonePickaxe");
+	public Item FirestoneHammer;// new com.PixelUtilities.tools.FirestoneHammer(6084, ELEMENTSTONE, "FirestoneHammer", "Firestone Hammer").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setTextureName("PixelUtilities:FirestoneHammer").setUnlocalizedName("FirestoneHammer");
+	public Item FirestoneAxe;// new com.PixelUtilities.tools.FirestoneAxe(6085, ELEMENTSTONE, "pixelutilities:FirestoneAxe").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("FirestoneAxe").setTextureName("PixelUtilities:FirestoneAxe");
+	public Item FirestoneShovel;// new com.PixelUtilities.tools.FirestoneShovel(6086, ELEMENTSTONE, "pixelutilities:FirestoneShovel").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("FirestoneShovel").setTextureName("PixelUtilities:FirestoneShovel");
+	public Item FirestoneHoe;// new com.PixelUtilities.tools.FirestoneHoe(6087, ELEMENTSTONE, "pixelutilities:FirestoneHoe").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("FirestoneHoe").setTextureName("pixelutilities:FirestoneHoe");
+	public Item FirestoneSword;// new com.PixelUtilities.tools.FirestoneSword(6088, ELEMENTSTONE, "pixelutilities:FirestoneSword").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("FirestoneSword").setTextureName("PixelUtilities:FirestoneSword");
 
 	//Waterstone tools
-	public Item WaterstonePickaxe;// new com.PixelUtilities.tools.WaterstonePickaxe(6089, 6.5F, Basemod.instance.WATERSTONE, "pixelutilities:WaterstonePickaxe").setTextureName("PixelUtilities:WaterstonePickaxe").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("WaterstonePickaxe");
-	public Item WaterstoneHammer;// new com.PixelUtilities.tools.WaterstoneHammer(6090, Basemod.instance.WATERSTONE, "WaterstoneHammer", "Waterstone Hammer").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setTextureName("PixelUtilities:WaterstoneHammer").setUnlocalizedName("WaterstoneHammer");
-	public Item WaterstoneAxe;// new com.PixelUtilities.tools.WaterstoneAxe(6091, Basemod.instance.WATERSTONE, "pixelutilities:WaterstoneAxe").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("WaterstoneAxe").setTextureName("PixelUtilities:WaterstoneAxe");
-	public Item WaterstoneShovel;// new com.PixelUtilities.tools.WaterstoneShovel(6092, Basemod.instance.WATERSTONE, "pixelutilities:WaterstoneShovel").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("WaterstoneShovel").setTextureName("PixelUtilities:WaterstoneShovel");
-	public Item WaterstoneHoe;// new com.PixelUtilities.tools.WaterstoneHoe(6093, Basemod.instance.WATERSTONE, "pixelutilities:WaterstoneHoe").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("WaterstoneHoe").setTextureName("pixelutilities:WaterstoneHoe");
-	public Item WaterstoneSword;// new com.PixelUtilities.tools.WaterstoneSword(6094, Basemod.instance.WATERSTONE, "pixelutilities:WaterstoneSword").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("WaterstoneSword").setTextureName("PixelUtilities:WaterstoneSword");
+	public Item WaterstonePickaxe;// new com.PixelUtilities.tools.WaterstonePickaxe(6089, 6.5F, Basemod.instance.ELEMENTSTONE, "pixelutilities:WaterstonePickaxe").setTextureName("PixelUtilities:WaterstonePickaxe").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("WaterstonePickaxe");
+	public Item WaterstoneHammer;// new com.PixelUtilities.tools.WaterstoneHammer(6090, Basemod.instance.ELEMENTSTONE, "WaterstoneHammer", "Waterstone Hammer").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setTextureName("PixelUtilities:WaterstoneHammer").setUnlocalizedName("WaterstoneHammer");
+	public Item WaterstoneAxe;// new com.PixelUtilities.tools.WaterstoneAxe(6091, Basemod.instance.ELEMENTSTONE, "pixelutilities:WaterstoneAxe").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("WaterstoneAxe").setTextureName("PixelUtilities:WaterstoneAxe");
+	public Item WaterstoneShovel;// new com.PixelUtilities.tools.WaterstoneShovel(6092, Basemod.instance.ELEMENTSTONE, "pixelutilities:WaterstoneShovel").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("WaterstoneShovel").setTextureName("PixelUtilities:WaterstoneShovel");
+	public Item WaterstoneHoe;// new com.PixelUtilities.tools.WaterstoneHoe(6093, Basemod.instance.ELEMENTSTONE, "pixelutilities:WaterstoneHoe").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("WaterstoneHoe").setTextureName("pixelutilities:WaterstoneHoe");
+	public Item WaterstoneSword;// new com.PixelUtilities.tools.WaterstoneSword(6094, Basemod.instance.ELEMENTSTONE, "pixelutilities:WaterstoneSword").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("WaterstoneSword").setTextureName("PixelUtilities:WaterstoneSword");
 
 	//Leafstone tools
-	public Item LeafstonePickaxe;// new com.PixelUtilities.tools.LeafstonePickaxe(6095, 6.5F, Basemod.instance.LEAFSTONE, "pixelutilities:LeafstonePickaxe").setTextureName("PixelUtilities:LeafstonePickaxe").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("LeafstonePickaxe");
-	public Item LeafstoneHammer;// new com.PixelUtilities.tools.LeafstoneHammer(6096, Basemod.instance.LEAFSTONE, "rubyHammer", "Leafstone Hammer").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setTextureName("PixelUtilities:LeafstoneHammer").setUnlocalizedName("LeafstoneHammer");
-	public Item LeafstoneAxe;// new com.PixelUtilities.tools.LeafstoneAxe(6097, Basemod.instance.LEAFSTONE, "pixelutilities:LeafstoneAxe").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("LeafstoneAxe").setTextureName("PixelUtilities:LeafstoneAxe");
-	public Item LeafstoneShovel;// new com.PixelUtilities.tools.LeafstoneShovel(6098, Basemod.instance.LEAFSTONE, "pixelutilities:LeafstoneShovel").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("LeafstoneShovel").setTextureName("PixelUtilities:LeafstoneShovel");
-	public Item LeafstoneHoe;// new com.PixelUtilities.tools.LeafstoneHoe(6099, Basemod.instance.LEAFSTONE, "pixelutilities:LeafstoneHoe").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("LeafstoneHoe").setTextureName("pixelutilities:LeafstoneHoe");
-	public Item LeafstoneSword;// new com.PixelUtilities.tools.LeafstoneSword(6100, Basemod.instance.LEAFSTONE, "pixelutilities:LeafstoneSword").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("LeafstoneSword").setTextureName("PixelUtilities:LeafstoneSword");
+	public Item LeafstonePickaxe;// new com.PixelUtilities.tools.LeafstonePickaxe(6095, 6.5F, Basemod.instance.ELEMENTSTONE, "pixelutilities:LeafstonePickaxe").setTextureName("PixelUtilities:LeafstonePickaxe").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("LeafstonePickaxe");
+	public Item LeafstoneHammer;// new com.PixelUtilities.tools.LeafstoneHammer(6096, Basemod.instance.ELEMENTSTONE, "rubyHammer", "Leafstone Hammer").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setTextureName("PixelUtilities:LeafstoneHammer").setUnlocalizedName("LeafstoneHammer");
+	public Item LeafstoneAxe;// new com.PixelUtilities.tools.LeafstoneAxe(6097, Basemod.instance.ELEMENTSTONE, "pixelutilities:LeafstoneAxe").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("LeafstoneAxe").setTextureName("PixelUtilities:LeafstoneAxe");
+	public Item LeafstoneShovel;// new com.PixelUtilities.tools.LeafstoneShovel(6098, Basemod.instance.ELEMENTSTONE, "pixelutilities:LeafstoneShovel").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("LeafstoneShovel").setTextureName("PixelUtilities:LeafstoneShovel");
+	public Item LeafstoneHoe;// new com.PixelUtilities.tools.LeafstoneHoe(6099, Basemod.instance.ELEMENTSTONE, "pixelutilities:LeafstoneHoe").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("LeafstoneHoe").setTextureName("pixelutilities:LeafstoneHoe");
+	public Item LeafstoneSword;// new com.PixelUtilities.tools.LeafstoneSword(6100, Basemod.instance.ELEMENTSTONE, "pixelutilities:LeafstoneSword").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("LeafstoneSword").setTextureName("PixelUtilities:LeafstoneSword");
 
 	//Ruby Tools
 	public Item CrystalPickaxe;
@@ -130,28 +130,49 @@ public class PixelUtilitiesTools
 
 		//EvoTools
 		//Firestone tools
-		Basemod.instance.firestonePickaxe = new PixelPickaxeTool(Basemod.instance.FIRESTONE, "pixelutilities:FirestonePickaxe", "firestonePickaxe");
-		Basemod.instance.firestoneHammer = registerHammer(Basemod.instance.FIRESTONE, "pixelutilities:FirestoneHammer", "firestoneHammer");
-		Basemod.instance.firestoneAxe = new PixelAxeTool(Basemod.instance.FIRESTONE, "pixelutilities:FirestoneAxe", "firestoneAxe");
-		Basemod.instance.firestoneShovel = new PixelShovelTool(Basemod.instance.FIRESTONE, "pixelutilities:FirestoneShovel", "firestoneShovel");
-		Basemod.instance.firestoneHoe = new PixelHoeTool(Basemod.instance.FIRESTONE, "pixelutilities:FirestoneHoe", "firestoneHoe");
-		Basemod.instance.firestoneSword = new PixelSwordTool(Basemod.instance.FIRESTONE, "pixelutilities:FirestoneSword", "firestoneSword");
+		Basemod.instance.firestonePickaxe = new PixelPickaxeTool(Basemod.instance.ELEMENTSTONE, "pixelutilities:FirestonePickaxe", "firestonePickaxe");
+		Basemod.instance.firestoneHammer = registerHammer(Basemod.instance.ELEMENTSTONE, "pixelutilities:FirestoneHammer", "firestoneHammer");
+		Basemod.instance.firestoneAxe = new PixelAxeTool(Basemod.instance.ELEMENTSTONE, "pixelutilities:FirestoneAxe", "firestoneAxe");
+		Basemod.instance.firestoneShovel = new PixelShovelTool(Basemod.instance.ELEMENTSTONE, "pixelutilities:FirestoneShovel", "firestoneShovel");
+		Basemod.instance.firestoneHoe = new PixelHoeTool(Basemod.instance.ELEMENTSTONE, "pixelutilities:FirestoneHoe", "firestoneHoe");
+		Basemod.instance.firestoneSword = new PixelSwordTool(Basemod.instance.ELEMENTSTONE, "pixelutilities:FirestoneSword", "firestoneSword");
 
 		//Waterstone tools
-		Basemod.instance.waterstonePickaxe = new PixelPickaxeTool(Basemod.instance.WATERSTONE, "pixelutilities:WaterstonePickaxe", "waterstonePickaxe");
-		Basemod.instance.waterstoneHammer = registerHammer(Basemod.instance.WATERSTONE, "pixelutilities:WaterstoneHammer", "waterstoneHammer");
-		Basemod.instance.waterstoneAxe = new PixelAxeTool(Basemod.instance.WATERSTONE, "pixelutilities:WaterstoneAxe", "waterstoneAxe");
-		Basemod.instance.waterstoneShovel = new PixelShovelTool(Basemod.instance.WATERSTONE, "pixelutilities:WaterstoneShovel", "waterstoneShovel");
-		Basemod.instance.waterstoneHoe = new PixelHoeTool(Basemod.instance.WATERSTONE, "pixelutilities:WaterstoneHoe", "waterstoneHoe");
-		Basemod.instance.waterstoneSword = new PixelSwordTool(Basemod.instance.WATERSTONE, "pixelutilities:WaterstoneSword", "waterstoneSword");
+		Basemod.instance.waterstonePickaxe = new PixelPickaxeTool(Basemod.instance.ELEMENTSTONE, "pixelutilities:WaterstonePickaxe", "waterstonePickaxe");
+		Basemod.instance.waterstoneHammer = registerHammer(Basemod.instance.ELEMENTSTONE, "pixelutilities:WaterstoneHammer", "waterstoneHammer");
+		Basemod.instance.waterstoneAxe = new PixelAxeTool(Basemod.instance.ELEMENTSTONE, "pixelutilities:WaterstoneAxe", "waterstoneAxe");
+		Basemod.instance.waterstoneShovel = new PixelShovelTool(Basemod.instance.ELEMENTSTONE, "pixelutilities:WaterstoneShovel", "waterstoneShovel");
+		Basemod.instance.waterstoneHoe = new PixelHoeTool(Basemod.instance.ELEMENTSTONE, "pixelutilities:WaterstoneHoe", "waterstoneHoe");
+		Basemod.instance.waterstoneSword = new PixelSwordTool(Basemod.instance.ELEMENTSTONE, "pixelutilities:WaterstoneSword", "waterstoneSword");
 
 		//Leafstone tools
-		Basemod.instance.leafstonePickaxe = new PixelPickaxeTool(Basemod.instance.LEAFSTONE, "pixelutilities:LeafstonePickaxe", "leafstonePickaxe");
-		Basemod.instance.leafstoneHammer = registerHammer(Basemod.instance.LEAFSTONE, "pixelutilities:LeafstoneHammer", "leafstoneHammer");
-		Basemod.instance.leafstoneAxe = new PixelAxeTool(Basemod.instance.LEAFSTONE, "pixelutilities:LeafstoneAxe", "leafstoneAxe");
-		Basemod.instance.leafstoneShovel = new PixelShovelTool(Basemod.instance.LEAFSTONE, "pixelutilities:LeafstoneShovel", "leafstoneShovel");
-		Basemod.instance.leafstoneHoe = new PixelHoeTool(Basemod.instance.LEAFSTONE, "pixelutilities:LeafstoneHoe", "leafstoneHoe");
-		Basemod.instance.leafstoneSword = new PixelSwordTool(Basemod.instance.LEAFSTONE, "pixelutilities:LeafstoneSword", "leafstoneSword");
+		Basemod.instance.leafstonePickaxe = new PixelPickaxeTool(Basemod.instance.ELEMENTSTONE, "pixelutilities:LeafstonePickaxe", "leafstonePickaxe");
+		Basemod.instance.leafstoneHammer = registerHammer(Basemod.instance.ELEMENTSTONE, "pixelutilities:LeafstoneHammer", "leafstoneHammer");
+		Basemod.instance.leafstoneAxe = new PixelAxeTool(Basemod.instance.ELEMENTSTONE, "pixelutilities:LeafstoneAxe", "leafstoneAxe");
+		Basemod.instance.leafstoneShovel = new PixelShovelTool(Basemod.instance.ELEMENTSTONE, "pixelutilities:LeafstoneShovel", "leafstoneShovel");
+		Basemod.instance.leafstoneHoe = new PixelHoeTool(Basemod.instance.ELEMENTSTONE, "pixelutilities:LeafstoneHoe", "leafstoneHoe");
+		Basemod.instance.leafstoneSword = new PixelSwordTool(Basemod.instance.ELEMENTSTONE, "pixelutilities:LeafstoneSword", "leafstoneSword");
+		
+		Basemod.instance.thunderstonePickaxe = new PixelPickaxeTool(Basemod.instance.ELEMENTSTONE, "pixelutilities:ThunderstonePickaxe", "thunderstonePickaxe");
+		Basemod.instance.thunderstoneHammer = registerHammer(Basemod.instance.ELEMENTSTONE, "pixelutilities:ThunderstoneHammer", "thunderstoneHammer");
+		Basemod.instance.thunderstoneAxe = new PixelAxeTool(Basemod.instance.ELEMENTSTONE, "pixelutilities:ThunderstoneAxe", "thunderstoneAxe");
+		Basemod.instance.thunderstoneShovel = new PixelShovelTool(Basemod.instance.ELEMENTSTONE, "pixelutilities:ThunderstoneShovel", "thunderstoneShovel");
+		Basemod.instance.thunderstoneHoe = new PixelHoeTool(Basemod.instance.ELEMENTSTONE, "pixelutilities:ThunderstoneHoe", "thunderstoneHoe");
+		Basemod.instance.thunderstoneSword = new PixelSwordTool(Basemod.instance.ELEMENTSTONE, "pixelutilities:ThunderstoneSword", "thunderstoneSword");
+		
+		Basemod.instance.sunstonePickaxe = new PixelPickaxeTool(Basemod.instance.ELEMENTSTONE, "pixelutilities:SunstonePickaxe", "sunstonePickaxe");
+		Basemod.instance.sunstoneHammer = registerHammer(Basemod.instance.ELEMENTSTONE, "pixelutilities:SunstoneHammer", "sunstoneHammer");
+		Basemod.instance.sunstoneAxe = new PixelAxeTool(Basemod.instance.ELEMENTSTONE, "pixelutilities:SunstoneAxe", "sunstoneAxe");
+		Basemod.instance.sunstoneShovel = new PixelShovelTool(Basemod.instance.ELEMENTSTONE, "pixelutilities:SunstoneShovel", "sunstoneShovel");
+		Basemod.instance.sunstoneHoe = new PixelHoeTool(Basemod.instance.ELEMENTSTONE, "pixelutilities:SunstoneHoe", "sunstoneHoe");
+		Basemod.instance.sunstoneSword = new PixelSwordTool(Basemod.instance.ELEMENTSTONE, "pixelutilities:SunstoneSword", "sunstoneSword");
+		
+		Basemod.instance.moonstonePickaxe = new PixelPickaxeTool(Basemod.instance.ELEMENTSTONE, "pixelutilities:MoonstonePickaxe", "moonstonePickaxe");
+		Basemod.instance.moonstoneHammer = registerHammer(Basemod.instance.ELEMENTSTONE, "pixelutilities:MoonstoneHammer", "moonstoneHammer");
+		Basemod.instance.moonstoneAxe = new PixelAxeTool(Basemod.instance.ELEMENTSTONE, "pixelutilities:MoonstoneAxe", "moonstoneAxe");
+		Basemod.instance.moonstoneShovel = new PixelShovelTool(Basemod.instance.ELEMENTSTONE, "pixelutilities:MoonstoneShovel", "moonstoneShovel");
+		Basemod.instance.moonstoneHoe = new PixelHoeTool(Basemod.instance.ELEMENTSTONE, "pixelutilities:MoonstoneHoe", "moonstoneHoe");
+		Basemod.instance.moonstoneSword = new PixelSwordTool(Basemod.instance.ELEMENTSTONE, "pixelutilities:MoonstoneSword", "moonstoneSword");
 
 		//Crystal tools
 		Basemod.instance.crystalPickaxe = new PixelPickaxeTool(Basemod.instance.CRYSTAL, "pixelutilities:CrystalPickaxe", "crystalPickaxe");
@@ -223,6 +244,27 @@ public class PixelUtilitiesTools
 		GameRegistry.registerItem(Basemod.instance.leafstoneSword, "Leafstone Sword");
 		GameRegistry.registerItem(Basemod.instance.leafstoneShovel, "Leafstone Shovel");
 		GameRegistry.registerItem(Basemod.instance.leafstoneHammer, "Leafstone Hammer");
+		
+		GameRegistry.registerItem(Basemod.instance.thunderstonePickaxe, "Thunderstone Pickaxe");
+		GameRegistry.registerItem(Basemod.instance.thunderstoneAxe, "Thunderstone Axe");
+		GameRegistry.registerItem(Basemod.instance.thunderstoneHoe, "Thunderstone Hoe");
+		GameRegistry.registerItem(Basemod.instance.thunderstoneSword, "Thunderstone Sword");
+		GameRegistry.registerItem(Basemod.instance.thunderstoneShovel, "Thunderstone Shovel");
+		GameRegistry.registerItem(Basemod.instance.thunderstoneHammer, "Thunderstone Hammer");
+		
+		GameRegistry.registerItem(Basemod.instance.sunstonePickaxe, "Sunstone Pickaxe");
+		GameRegistry.registerItem(Basemod.instance.sunstoneAxe, "Sunstone Axe");
+		GameRegistry.registerItem(Basemod.instance.sunstoneHoe, "Sunstone Hoe");
+		GameRegistry.registerItem(Basemod.instance.sunstoneSword, "Sunstone Sword");
+		GameRegistry.registerItem(Basemod.instance.sunstoneShovel, "Sunstone Shovel");
+		GameRegistry.registerItem(Basemod.instance.sunstoneHammer, "Sunstone Hammer");
+		
+		GameRegistry.registerItem(Basemod.instance.moonstonePickaxe, "Moonstone Pickaxe");
+		GameRegistry.registerItem(Basemod.instance.moonstoneAxe, "Moonstone Axe");
+		GameRegistry.registerItem(Basemod.instance.moonstoneHoe, "Moonstone Hoe");
+		GameRegistry.registerItem(Basemod.instance.moonstoneSword, "Moonstone Sword");
+		GameRegistry.registerItem(Basemod.instance.moonstoneShovel, "Moonstone Shovel");
+		GameRegistry.registerItem(Basemod.instance.moonstoneHammer, "Moonstone Hammer");
 
 		GameRegistry.registerItem(Basemod.instance.crystalPickaxe, "Crystal Pickaxe");
 		GameRegistry.registerItem(Basemod.instance.crystalAxe, "Crystal Axe");

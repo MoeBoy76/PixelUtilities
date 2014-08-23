@@ -76,9 +76,6 @@ public class PixelUtilitiesArmor
 		Basemod.instance.rocketPlate = new RocketPlate(Basemod.instance.CRYSTALA, 0, 1);
 		Basemod.instance.rocketLegs = new RocketLegs(Basemod.instance.CRYSTALA, 0, 2);
 		Basemod.instance.rocketBoots = new RocketBoots(Basemod.instance.CRYSTALA, 0, 3);
-
-
-
 		/*
 		Basemod.instance.firestoneHelm = new FireStoneHelmet(firestoneHelmID, Basemod.instance.FIRESTONEA, 0, 0).setCreativeTab(CreativeTabs.tabCombat).setTextureName("pixelUtilities:FireStoneHelmet").setUnlocalizedName("Firestone Helmet");
 		Basemod.instance.firestonePlate = new FireStonePlate(firestonePlateID, Basemod.instance.FIRESTONEA, 0, 1).setCreativeTab(CreativeTabs.tabCombat).setTextureName("pixelUtilities:FireStonePlate").setUnlocalizedName("Firestone Chestlate");

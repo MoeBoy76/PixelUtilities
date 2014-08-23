@@ -82,6 +82,28 @@ public class PixelUtilitiesRecipes
             makeShovelRecipe(Basemod.instance.leafstoneShovel, PixelmonItems.leafStone);
             makeHoeRecipe(Basemod.instance.leafstoneHoe, PixelmonItems.leafStone);
             makeSwordRecipe(Basemod.instance.leafstoneSword, PixelmonItems.leafStone);
+            
+            makePickaxeRecipe(Basemod.instance.thunderstonePickaxe, PixelmonItems.thunderStone);
+            makeHammerRecipe(Basemod.instance.thunderstoneHammer, PixelmonItems.thunderStone);
+            makeAxeRecipe(Basemod.instance.thunderstoneAxe, PixelmonItems.thunderStone);
+            makeShovelRecipe(Basemod.instance.thunderstoneShovel, PixelmonItems.thunderStone);
+            makeHoeRecipe(Basemod.instance.thunderstoneHoe, PixelmonItems.thunderStone);
+            makeSwordRecipe(Basemod.instance.thunderstoneSword, PixelmonItems.thunderStone);
+            
+            makePickaxeRecipe(Basemod.instance.sunstonePickaxe, PixelmonItems.sunStone);
+            makeHammerRecipe(Basemod.instance.sunstoneHammer, PixelmonItems.sunStone);
+            makeAxeRecipe(Basemod.instance.sunstoneAxe, PixelmonItems.sunStone);
+            makeShovelRecipe(Basemod.instance.sunstoneShovel, PixelmonItems.sunStone);
+            makeHoeRecipe(Basemod.instance.sunstoneHoe, PixelmonItems.sunStone);
+            makeSwordRecipe(Basemod.instance.sunstoneSword, PixelmonItems.sunStone);
+            
+            makePickaxeRecipe(Basemod.instance.moonstonePickaxe, PixelmonItems.moonStone);
+            makeHammerRecipe(Basemod.instance.moonstoneHammer, PixelmonItems.moonStone);
+            makeAxeRecipe(Basemod.instance.moonstoneAxe, PixelmonItems.moonStone);
+            makeShovelRecipe(Basemod.instance.moonstoneShovel, PixelmonItems.moonStone);
+            makeHoeRecipe(Basemod.instance.moonstoneHoe, PixelmonItems.moonStone);
+            makeSwordRecipe(Basemod.instance.moonstoneSword, PixelmonItems.moonStone);
+            
         }//TODO alternative recipies!
 
         //Crystal Tools

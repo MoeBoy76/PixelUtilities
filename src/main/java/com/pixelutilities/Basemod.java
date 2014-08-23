@@ -58,9 +58,14 @@ public class Basemod
 	public static final String NAME = "PixelUtilities";
 	public static final String VERSION = "3.3.0";
 
-	public final ToolMaterial FIRESTONE = EnumHelper.addToolMaterial("FIRESTONE", 3, 1561, 8.0F, 3.0F, 10);
+	/*public final ToolMaterial FIRESTONE = EnumHelper.addToolMaterial("FIRESTONE", 3, 1561, 8.0F, 3.0F, 10);
 	public final ToolMaterial WATERSTONE = EnumHelper.addToolMaterial("WATERSTONE", 3, 1561, 8.0F, 3.0F, 10);
 	public final ToolMaterial LEAFSTONE = EnumHelper.addToolMaterial("LEAFSTONE", 2, 250, 6.0F, 2.0F, 14);
+	public final ToolMaterial THUNDERSTONE = EnumHelper.addToolMaterial("THUNDERSTONE", 3, 1561, 8.0F, 3.0F, 10);
+	public final ToolMaterial MOONSTONE = EnumHelper.addToolMaterial("MOONSTONE", 2, 500, 6.0F, 2.0F, 14);
+	public final ToolMaterial SUNSTONE = EnumHelper.addToolMaterial("SUNSTONE", 3, 1561, 8.0F, 3.0F, 10);*/
+	
+	public final ToolMaterial ELEMENTSTONE = EnumHelper.addToolMaterial("ELEMENTSTONE", 3, 1561, 12.0F, 0.0F, 22);
 
 	public final ToolMaterial RUBY = EnumHelper.addToolMaterial("RUBY", 2, 300, 6.5F, 2, 14);
 	public final ToolMaterial SAPHIRE = EnumHelper.addToolMaterial("SAPHIRE", 2, 300, 6.5F, 2, 14);
@@ -157,6 +162,27 @@ public class Basemod
 	public Item leafstoneShovel;
 	public Item leafstoneHoe;
 	public Item leafstoneSword;
+	
+	public Item thunderstonePickaxe;
+	public Item thunderstoneHammer;
+	public Item thunderstoneAxe;
+	public Item thunderstoneShovel;
+	public Item thunderstoneHoe;
+	public Item thunderstoneSword;
+	
+	public Item moonstonePickaxe;
+	public Item moonstoneHammer;
+	public Item moonstoneAxe;
+	public Item moonstoneShovel;
+	public Item moonstoneHoe;
+	public Item moonstoneSword;
+	
+	public Item sunstonePickaxe;
+	public Item sunstoneHammer;
+	public Item sunstoneAxe;
+	public Item sunstoneShovel;
+	public Item sunstoneHoe;
+	public Item sunstoneSword;
 
 	//Ruby Tools
 	public Item crystalPickaxe;
