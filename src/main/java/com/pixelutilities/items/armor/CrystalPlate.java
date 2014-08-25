@@ -2,6 +2,7 @@ package com.pixelutilities.items.armor;
 
 import com.pixelutilities.Basemod;
 import com.pixelutilities.config.PixelUtilitiesArmor;
+import com.pixelutilities.config.PixelUtilitiesCreativeTabs;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -13,11 +14,12 @@ import net.minecraft.item.ItemStack;
 
 public class CrystalPlate extends ItemArmor {
 
-    public CrystalPlate(ArmorMaterial par2EnumArmorMaterial,
-                        int par3, int par4) {
+    public CrystalPlate(ArmorMaterial par2EnumArmorMaterial, int par3, int par4) {
         super(par2EnumArmorMaterial, par3, par4);
-        setCreativeTab(CreativeTabs.tabCombat);
-        setTextureName("pixelUtilities:CrystalPlate");
+        setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesArmours);
+        if (!PixelUtilitiesArmor.getArmourList().contains(this))
+			PixelUtilitiesArmor.getArmourList().add(this);
+        setTextureName("pixelUtilities:armor/CrystalPlate");
         setUnlocalizedName("Crystal ChestPlate");
     }
 
@@ -33,6 +35,6 @@ public class CrystalPlate extends ItemArmor {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister par1IconRegister) {
-        this.itemIcon = par1IconRegister.registerIcon("pixelutilities:CrystalChestplate");
+        this.itemIcon = par1IconRegister.registerIcon("pixelutilities:armor/CrystalChestplate");
     }
 }

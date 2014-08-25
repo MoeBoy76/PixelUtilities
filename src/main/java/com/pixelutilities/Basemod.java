@@ -72,14 +72,18 @@ public class Basemod
 	public final ToolMaterial AMETHYST = EnumHelper.addToolMaterial("AMETHYST", 2, 300, 6.5F, 2, 14);
 	public final ToolMaterial CRYSTAL = EnumHelper.addToolMaterial("CRYSTAL", 2, 300, 6.5F, 2, 14);
 
-	public final ArmorMaterial FIRESTONEA = EnumHelper.addArmorMaterial("FIRESTONEA", 40, new int[]{4, 8, 6, 4}, 10);
-	public final ArmorMaterial WATERSTONEA = EnumHelper.addArmorMaterial("WATERSTONEA", 40, new int[]{4, 8, 6, 4}, 10);
-	public final ArmorMaterial LEAFSTONEA = EnumHelper.addArmorMaterial("LEAFSTONEA", 15, new int[]{2, 6, 5, 2}, 9);
+	/*public final ArmorMaterial FIRESTONEA = EnumHelper.addArmorMaterial("FIRESTONE", 40, new int[]{4, 8, 6, 4}, 10);
+	public final ArmorMaterial WATERSTONEA = EnumHelper.addArmorMaterial("WATERSTONE", 40, new int[]{4, 8, 6, 4}, 10);
+	public final ArmorMaterial LEAFSTONEA = EnumHelper.addArmorMaterial("LEAFSTONE", 15, new int[]{2, 6, 5, 2}, 9);*/
+	
+	public final ArmorMaterial ELEMENTSTONE1 = EnumHelper.addArmorMaterial("ELEMENTSTONE1", 40, new int[]{4, 8, 6, 4}, 0);
+	public final ArmorMaterial ELEMENTSTONE2 = EnumHelper.addArmorMaterial("ELEMENTSTONE2", 15, new int[]{3, 7, 6, 3}, 0);
+	
 
-	public final ArmorMaterial RUBYA = EnumHelper.addArmorMaterial("RUBYA", 200, new int[]{3, 7, 6, 3}, 10);
-	public final ArmorMaterial SAPHIREA = EnumHelper.addArmorMaterial("SAPHIREA", 200, new int[]{3, 7, 6, 3}, 10);
-	public final ArmorMaterial CRYSTALA = EnumHelper.addArmorMaterial("CRYSTALA", 200, new int[]{3, 7, 6, 3}, 10);
-	public final ArmorMaterial SILICONA = EnumHelper.addArmorMaterial("SILICONA", 200, new int[]{3, 7, 6, 3}, 10);
+	public final ArmorMaterial RUBYA = EnumHelper.addArmorMaterial("RUBY", 200, new int[]{3, 7, 6, 3}, 10);
+	public final ArmorMaterial SAPHIREA = EnumHelper.addArmorMaterial("SAPHIRE", 200, new int[]{3, 7, 6, 3}, 10);
+	public final ArmorMaterial CRYSTALA = EnumHelper.addArmorMaterial("CRYSTAL", 200, new int[]{3, 7, 6, 3}, 10);
+	public final ArmorMaterial SILICONA = EnumHelper.addArmorMaterial("SILICON", 200, new int[]{3, 7, 6, 3}, 10);
 
 	//Massive chunk of variables to reduce static
 	//Items
@@ -137,6 +141,13 @@ public class Basemod
 	public Item amethystAxe;
 	public Item amethystHoe;
 	public Item amethystSword;
+	
+	public Item crystalPickaxe;
+	public Item crystalHammer;
+	public Item crystalAxe;
+	public Item crystalShovel;
+	public Item crystalHoe;
+	public Item crystalSword;
 
 	//EvoTools
 	//Firestone tools
@@ -183,14 +194,13 @@ public class Basemod
 	public Item sunstoneShovel;
 	public Item sunstoneHoe;
 	public Item sunstoneSword;
-
-	//Ruby Tools
-	public Item crystalPickaxe;
-	public Item crystalHammer;
-	public Item crystalAxe;
-	public Item crystalShovel;
-	public Item crystalHoe;
-	public Item crystalSword;
+	
+	public Item dawnstonePickaxe;
+	public Item dawnstoneHammer;
+	public Item dawnstoneAxe;
+	public Item dawnstoneShovel;
+	public Item dawnstoneHoe;
+	public Item dawnstoneSword;
 
 	//Armours
 	public Item rubyHelm;
@@ -218,7 +228,7 @@ public class Basemod
     public Item rocketPlate;
     public Item rocketLegs;
 
-    /*
+    
     public Item firestoneHelm;
     public Item firestonePlate;
     public Item firestoneLegs;
@@ -233,7 +243,26 @@ public class Basemod
     public Item leafstonePlate;
     public Item leafstoneLegs;
     public Item leafstoneBoots;
-    */
+    
+    public Item thunderstoneHelm;
+    public Item thunderstonePlate;
+    public Item thunderstoneLegs;
+    public Item thunderstoneBoots;
+    
+    public Item sunstoneHelm;
+    public Item sunstonePlate;
+    public Item sunstoneLegs;
+    public Item sunstoneBoots;
+    
+    public Item moonstoneHelm;
+    public Item moonstonePlate;
+    public Item moonstoneLegs;
+    public Item moonstoneBoots;
+    
+    public Item dawnstoneHelm;
+    public Item dawnstonePlate;
+    public Item dawnstoneLegs;
+    public Item dawnstoneBoots;
 	
 	//Blocks
     public Block newGrassBlock;

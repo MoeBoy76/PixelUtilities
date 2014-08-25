@@ -8,17 +8,19 @@ import net.minecraft.item.ItemStack;
 
 import com.pixelutilities.Basemod;
 import com.pixelutilities.config.PixelUtilitiesArmor;
+import com.pixelutilities.config.PixelUtilitiesCreativeTabs;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class GalacticLegs extends ItemArmor {
 
-    public GalacticLegs(ArmorMaterial par2EnumArmorMaterial,
-                        int par3, int par4) {
+    public GalacticLegs(ArmorMaterial par2EnumArmorMaterial,int par3, int par4) {
         super(par2EnumArmorMaterial, par3, par4);
-        setCreativeTab(CreativeTabs.tabCombat);
-        setTextureName("pixelutilities:GalacticLegs");
+        setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesArmours);
+        if (!PixelUtilitiesArmor.getArmourList().contains(this))
+			PixelUtilitiesArmor.getArmourList().add(this);
+        setTextureName("pixelutilities:armor/GalacticLegs");
         setUnlocalizedName("Galactic Leggings");
     }
 
@@ -34,6 +36,6 @@ public class GalacticLegs extends ItemArmor {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister par1IconRegister) {
-        this.itemIcon = par1IconRegister.registerIcon("pixelutilities:GalacticLeggings");
+        this.itemIcon = par1IconRegister.registerIcon("pixelutilities:armor/GalacticLeggings");
     }
 }

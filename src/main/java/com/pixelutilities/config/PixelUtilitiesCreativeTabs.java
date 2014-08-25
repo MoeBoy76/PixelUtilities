@@ -55,6 +55,24 @@ public class PixelUtilitiesCreativeTabs
 			return Basemod.instance.rubyAxe;
 		}
 	};
+	
+	public static CreativeTabs tabPixelUtilitiesArmours = new CreativeTabs("tabPixelUtilitiesArmours") {
+
+		@Override
+		@SideOnly(Side.CLIENT)
+		public void displayAllReleventItems(List itemList)//Allows us to not deal with vanillas stupid sorting
+		{
+			itemList.clear();
+			for (Item item : PixelUtilitiesArmor.getArmourList())
+				((List<ItemStack>)itemList).add(new ItemStack(item, 1, 0));
+
+		}
+
+		@Override
+		public Item getTabIconItem() {
+			return Basemod.instance.rubyHelm;
+		}
+	};
 
 	public static CreativeTabs tabPixelUtilitiesLights = new CreativeTabs("tabPixelUtilitiesLights") {
 

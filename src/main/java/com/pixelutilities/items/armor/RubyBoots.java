@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 
 import com.pixelutilities.Basemod;
 import com.pixelutilities.config.PixelUtilitiesArmor;
+import com.pixelutilities.config.PixelUtilitiesCreativeTabs;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -16,7 +17,9 @@ public class RubyBoots extends ItemArmor {
 
     public RubyBoots(ArmorMaterial par2EnumArmorMaterial, int par3, int par4) {
         super(par2EnumArmorMaterial, par3, par4);
-        setCreativeTab(CreativeTabs.tabCombat);
+        setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesArmours);
+        if (!PixelUtilitiesArmor.getArmourList().contains(this))
+			PixelUtilitiesArmor.getArmourList().add(this);
         setUnlocalizedName("Ruby Boots");
     }
 
@@ -32,6 +35,6 @@ public class RubyBoots extends ItemArmor {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister par1IconRegister) {
-        this.itemIcon = par1IconRegister.registerIcon("pixelutilities:RubyBoots");
+        this.itemIcon = par1IconRegister.registerIcon("pixelutilities:armor/RubyBoots");
     }
 }

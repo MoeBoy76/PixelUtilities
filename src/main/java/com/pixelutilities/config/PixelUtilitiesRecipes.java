@@ -104,6 +104,36 @@ public class PixelUtilitiesRecipes
             makeHoeRecipe(Basemod.instance.moonstoneHoe, PixelmonItems.moonStone);
             makeSwordRecipe(Basemod.instance.moonstoneSword, PixelmonItems.moonStone);
             
+            makeHelmRecipe(Basemod.instance.firestoneHelm, PixelmonItems.fireStone);
+            makePlateRecipe(Basemod.instance.firestonePlate,PixelmonItems.fireStone);
+            makeLegsRecipe(Basemod.instance.firestoneLegs, PixelmonItems.fireStone);
+            makeBootsRecipe(Basemod.instance.firestoneBoots, PixelmonItems.fireStone);
+            
+            makeHelmRecipe(Basemod.instance.waterstoneHelm, PixelmonItems.waterStone);
+            makePlateRecipe(Basemod.instance.waterstonePlate,PixelmonItems.waterStone);
+            makeLegsRecipe(Basemod.instance.waterstoneLegs, PixelmonItems.waterStone);
+            makeBootsRecipe(Basemod.instance.waterstoneBoots, PixelmonItems.waterStone);
+            
+            makeHelmRecipe(Basemod.instance.leafstoneHelm, PixelmonItems.leafStone);
+            makePlateRecipe(Basemod.instance.leafstonePlate,PixelmonItems.leafStone);
+            makeLegsRecipe(Basemod.instance.leafstoneLegs, PixelmonItems.leafStone);
+            makeBootsRecipe(Basemod.instance.leafstoneBoots, PixelmonItems.leafStone);
+            
+            makeHelmRecipe(Basemod.instance.thunderstoneHelm, PixelmonItems.thunderStone);
+            makePlateRecipe(Basemod.instance.thunderstonePlate,PixelmonItems.thunderStone);
+            makeLegsRecipe(Basemod.instance.thunderstoneLegs, PixelmonItems.thunderStone);
+            makeBootsRecipe(Basemod.instance.thunderstoneBoots, PixelmonItems.thunderStone);
+            
+            makeHelmRecipe(Basemod.instance.sunstoneHelm, PixelmonItems.sunStone);
+            makePlateRecipe(Basemod.instance.sunstonePlate,PixelmonItems.sunStone);
+            makeLegsRecipe(Basemod.instance.sunstoneLegs, PixelmonItems.sunStone);
+            makeBootsRecipe(Basemod.instance.sunstoneBoots, PixelmonItems.sunStone);
+            
+            makeHelmRecipe(Basemod.instance.moonstoneHelm, PixelmonItems.moonStone);
+            makePlateRecipe(Basemod.instance.moonstonePlate,PixelmonItems.moonStone);
+            makeLegsRecipe(Basemod.instance.moonstoneLegs, PixelmonItems.moonStone);
+            makeBootsRecipe(Basemod.instance.moonstoneBoots, PixelmonItems.moonStone);
+            
         }//TODO alternative recipies!
 
         //Crystal Tools
