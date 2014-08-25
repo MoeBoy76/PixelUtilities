@@ -17,6 +17,7 @@ import uk.co.caprica.vlcj.discovery.NativeDiscovery;
 import uk.co.caprica.vlcj.version.LibVlcVersion;
 import uk.co.caprica.vlcj.version.Version;
 
+import com.pixelmonmod.pixelmon.Pixelmon;
 import com.pixelutilities.achievements.PixelUtilitiesAchievements;
 import com.pixelutilities.commands.AddToGrassCommand;
 import com.pixelutilities.commands.PokecheckmeCommand;
@@ -364,6 +365,12 @@ public class Basemod
 		catch (ClassNotFoundException e)
 		{
 			FMLLog.warning("Pixelmon mod not found, pixelmon functions disabled.");
+		}
+		
+		if(pixelmonPresent)
+		{
+			Pixelmon.EVENT_BUS.register(new CustomDrops());
+			Pixelmon.EVENT_BUS.register(new PUTickHandler());
 		}
 
 		AddMeta(event);

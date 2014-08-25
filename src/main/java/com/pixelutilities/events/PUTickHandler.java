@@ -16,16 +16,37 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IChatComponent;
 
 @SideOnly(Side.CLIENT)
-@Optional.Interface(iface = "com.pixelmonmod.pixelmon.api.events.IPixelmonEventHandler", modid = "pixelmon")
-public class PUTickHandler implements IPixelmonEventHandler
+//@Optional.Interface(iface = "com.pixelmonmod.pixelmon.api.events.IPixelmonEventHandler", modid = "pixelmon")
+public class PUTickHandler
 {
 	public static VLCPlayer playerRadio = new VLCPlayer(PixelUtilitiesConfig.getInstance().BattleMusicURL, 50);
 	public boolean inBattle = false;
 
+	@SubscribeEvent
+	public void onBattleStart(PlayerBattleStartedEvent event)
+	{
+		if (!PixelUtilitiesConfig.getInstance().battleMusicEnabled)
+			return;
+		playerRadio.start();
+	}
+	
+	@SubscribeEvent
+	public void onBattleEnd(PlayerBattleEndedEvent event)
+	{
+		playerRadio.stop();
+	}
+	
+	@SubscribeEvent
+	public void onBattleEndAbnormal(PlayerBattleEndedAbnormalEvent event)
+	{
+		playerRadio.stop();
+	}
+	
+	
 	//http://www.youtube.com/watch?v=mTSpMl5jpPw&index=5&list=RDLqqjTHqYmiM
 	//https://www.youtube.com/watch?v=eDfbtYOtNAU&list=RDLqqjTHqYmiM&index=3
 	//https://www.youtube.com/watch?v=JuPx-3_8ssQ&index=4&list=RDLqqjTHqYmiM
-
+/*
 	@Override
 	public void eventFired(EventType eventType, EntityPlayer player, Object... objects)
 	{
@@ -64,7 +85,7 @@ public class PUTickHandler implements IPixelmonEventHandler
 			break;
 		}
 	}
-
+*/
 	@SubscribeEvent
 	public void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event)
 	{
