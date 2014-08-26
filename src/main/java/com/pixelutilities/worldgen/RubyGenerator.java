@@ -35,7 +35,7 @@ public class RubyGenerator implements IWorldGenerator {
             int firstBlockYCoord = rand.nextInt(64);
             int firstBlockZCoord = chunkZ + rand.nextInt(25);
 
-            (new WorldGenMinable(Basemod.instance.rubyOre, 7)).generate(world, rand, firstBlockXCoord, firstBlockYCoord, firstBlockZCoord);
+            (new WorldGenMinable(PixelUtilitiesBlocks.rubyOre, 7)).generate(world, rand, firstBlockXCoord, firstBlockYCoord, firstBlockZCoord);
         }
     }
 

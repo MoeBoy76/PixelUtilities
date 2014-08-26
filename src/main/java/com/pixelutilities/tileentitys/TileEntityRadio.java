@@ -24,7 +24,7 @@ public class TileEntityRadio extends TileEntity {
     public String streamURL = "";
 
     public Block getBlockType() {
-        return Basemod.instance.radioBlock;
+        return PixelUtilitiesBlocks.radioBlock;
     }
 
     @SideOnly(Side.CLIENT)

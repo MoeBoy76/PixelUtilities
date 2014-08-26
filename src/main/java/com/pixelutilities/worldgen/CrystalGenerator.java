@@ -35,7 +35,7 @@ public class CrystalGenerator implements IWorldGenerator {
             int firstBlockYCoord = rand.nextInt(64);
             int firstBlockZCoord = chunkZ + rand.nextInt(25);
 
-            (new WorldGenMinable(Basemod.instance.crystalOre, 6)).generate(world, rand, firstBlockXCoord, firstBlockYCoord, firstBlockZCoord);
+            (new WorldGenMinable(PixelUtilitiesBlocks.crystalOre, 6)).generate(world, rand, firstBlockXCoord, firstBlockYCoord, firstBlockZCoord);
         }
     }
 

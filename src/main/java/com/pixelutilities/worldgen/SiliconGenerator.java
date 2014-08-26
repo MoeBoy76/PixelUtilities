@@ -35,7 +35,7 @@ public class SiliconGenerator implements IWorldGenerator {
             int firstBlockYCoord = rand.nextInt(64);
             int firstBlockZCoord = chunkZ + rand.nextInt(25);
 
-            (new WorldGenMinable(Basemod.instance.siliconOre, 4)).generate(world, rand, firstBlockXCoord, firstBlockYCoord, firstBlockZCoord);
+            (new WorldGenMinable(PixelUtilitiesBlocks.siliconOre, 4)).generate(world, rand, firstBlockXCoord, firstBlockYCoord, firstBlockZCoord);
         }
     }
 

@@ -18,7 +18,7 @@ public class PixelUtilitiesCreativeTabs
 
 		@Override
 		public Item getTabIconItem() {
-			return new ItemStack(Basemod.instance.treeBlock).getItem();
+			return new ItemStack(PixelUtilitiesBlocks.treeBlock).getItem();
 		}
 	};
 
@@ -26,7 +26,7 @@ public class PixelUtilitiesCreativeTabs
 
 		@Override
 		public Item getTabIconItem() {
-			return new ItemStack(Basemod.instance.trashcanBlock).getItem();
+			return new ItemStack(PixelUtilitiesBlocks.trashcanBlock).getItem();
 		}
 	};
 
@@ -55,7 +55,7 @@ public class PixelUtilitiesCreativeTabs
 			return Basemod.instance.rubyAxe;
 		}
 	};
-	
+
 	public static CreativeTabs tabPixelUtilitiesArmours = new CreativeTabs("tabPixelUtilitiesArmours") {
 
 		@Override
@@ -86,11 +86,7 @@ public class PixelUtilitiesCreativeTabs
 
 		@Override
 		public Item getTabIconItem() {
-			if(PixelUtilitiesConfig.getInstance().lightsOn)
-			{
-				return new ItemStack(Basemod.instance.blueLightBlock).getItem();
-			}
-			return new ItemStack(Basemod.instance.blockConveyor).getItem();
+			return new ItemStack(Basemod.instance.blueLightBlock).getItem();
 		}
 	};
 }

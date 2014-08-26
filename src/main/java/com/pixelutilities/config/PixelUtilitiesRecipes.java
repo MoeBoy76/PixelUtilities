@@ -15,24 +15,24 @@ public class PixelUtilitiesRecipes
     public void addRecipes() {
 
         //Ore Smelting
-        GameRegistry.addSmelting(Basemod.instance.amethystOre, new ItemStack(Basemod.instance.amethystItem), 10);
-        GameRegistry.addSmelting(Basemod.instance.crystalOre, new ItemStack(Basemod.instance.crystalItem), 10);
-        GameRegistry.addSmelting(Basemod.instance.rubyOre, new ItemStack(Basemod.instance.rubyItem), 10);
-        GameRegistry.addSmelting(Basemod.instance.saphireOre, new ItemStack(Basemod.instance.saphireItem), 10);
-        GameRegistry.addSmelting(Basemod.instance.siliconOre, new ItemStack(Basemod.instance.siliconItem), 10);
+        GameRegistry.addSmelting(PixelUtilitiesBlocks.amethystOre, new ItemStack(Basemod.instance.amethystItem), 10);
+        GameRegistry.addSmelting(PixelUtilitiesBlocks.crystalOre, new ItemStack(Basemod.instance.crystalItem), 10);
+        GameRegistry.addSmelting(PixelUtilitiesBlocks.rubyOre, new ItemStack(Basemod.instance.rubyItem), 10);
+        GameRegistry.addSmelting(PixelUtilitiesBlocks.saphireOre, new ItemStack(Basemod.instance.saphireItem), 10);
+        GameRegistry.addSmelting(PixelUtilitiesBlocks.siliconOre, new ItemStack(Basemod.instance.siliconItem), 10);
         //We need to add a stupid af smelting method here for a easter egg. What? Not sure.
 
         //Block
-        makeItemToBlockRecipe(Basemod.instance.rubyBlock, Basemod.instance.rubyItem);
-        makeItemToBlockRecipe(Basemod.instance.saphireBlock, Basemod.instance.saphireItem);
-        makeItemToBlockRecipe(Basemod.instance.amethystBlock, Basemod.instance.amethystItem);
-        makeItemToBlockRecipe(Basemod.instance.crystalBlock, Basemod.instance.crystalItem);
+        makeItemToBlockRecipe(PixelUtilitiesBlocks.rubyBlock, Basemod.instance.rubyItem);
+        makeItemToBlockRecipe(PixelUtilitiesBlocks.saphireBlock, Basemod.instance.saphireItem);
+        makeItemToBlockRecipe(PixelUtilitiesBlocks.amethystBlock, Basemod.instance.amethystItem);
+        makeItemToBlockRecipe(PixelUtilitiesBlocks.crystalBlock, Basemod.instance.crystalItem);
 
 
-        makeItemsFromBlock(Basemod.instance.rubyItem, Basemod.instance.rubyBlock);
-        makeItemsFromBlock(Basemod.instance.saphireItem, Basemod.instance.saphireBlock);
-        makeItemsFromBlock(Basemod.instance.amethystItem, Basemod.instance.amethystBlock);
-        makeItemsFromBlock(Basemod.instance.crystalItem, Basemod.instance.crystalBlock);
+        makeItemsFromBlock(Basemod.instance.rubyItem, PixelUtilitiesBlocks.rubyBlock);
+        makeItemsFromBlock(Basemod.instance.saphireItem, PixelUtilitiesBlocks.saphireBlock);
+        makeItemsFromBlock(Basemod.instance.amethystItem, PixelUtilitiesBlocks.amethystBlock);
+        makeItemsFromBlock(Basemod.instance.crystalItem, PixelUtilitiesBlocks.crystalBlock);
 
 
         //Ruby Tools
@@ -161,7 +161,7 @@ public class PixelUtilitiesRecipes
         makeBootsRecipe(Basemod.instance.galacticBoots, Basemod.instance.siliconItem);
 
         //Radio
-        GameRegistry.addRecipe(new ItemStack(Basemod.instance.radioBlock), "  y", "xyx", "xzx", 'x', new ItemStack(Blocks.planks), 'y', new ItemStack(Items.iron_ingot), 'z', new ItemStack(Items.diamond));
+        GameRegistry.addRecipe(new ItemStack(PixelUtilitiesBlocks.radioBlock), "  y", "xyx", "xzx", 'x', new ItemStack(Blocks.planks), 'y', new ItemStack(Items.iron_ingot), 'z', new ItemStack(Items.diamond));
 
         //Lights
         GameRegistry.addRecipe(new ItemStack(Basemod.instance.blueLightBlock, 1), "xxx","xyx","xxx", 'x', new ItemStack(Blocks.stained_glass_pane, 1, 11), 'y', new ItemStack(Blocks.redstone_torch, 1));
@@ -173,6 +173,8 @@ public class PixelUtilitiesRecipes
         GameRegistry.addRecipe(new ItemStack(Basemod.instance.greenLightBlock, 1), "xxx","xyx","xxx", 'x', new ItemStack(Blocks.stained_glass_pane, 1, 5), 'y', new ItemStack(Blocks.redstone_torch, 1));
 
         //GameRegistry.addRecipe(new ItemStack(Basemod.instance.blueLightBlock), new Object[] {"X X", "X X", Character.valueOf('X'), BlockStainedGlass});
+        
+        GameRegistry.addRecipe(new ItemStack(Basemod.instance.pixelBoyItem, 1), new Object[] { "XXX", "XYX", "ZZZ", Character.valueOf('X'), new ItemStack(Basemod.instance.crystalItem), Character.valueOf('Y'), new ItemStack(Blocks.glass_pane), Character.valueOf('Z'), new ItemStack(Basemod.instance.siliconItem)});
     }
 
 }

@@ -17,7 +17,7 @@ public class ConveyorRenderer implements ISimpleBlockRenderingHandler {
     @Override
     public void renderInventoryBlock(Block block, int meta, int modelID, RenderBlocks renderer) {
         Tessellator tessellator = Tessellator.instance;
-        Basemod.instance.blockConveyor.canRenderInPass(0);
+        PixelUtilitiesBlocks.blockConveyor.canRenderInPass(0);
         int color = block.getRenderColor(meta);
         float red = (color >> 16 & 255) / 255.0F;
         float green = (color >> 8 & 255) / 255.0F;
@@ -34,7 +34,7 @@ public class ConveyorRenderer implements ISimpleBlockRenderingHandler {
         IIcon iconBase, iconOverlay;
 
         iconBase = block.getIcon(0, meta);
-        Basemod.instance.blockConveyor.canRenderInPass(1);
+        PixelUtilitiesBlocks.blockConveyor.canRenderInPass(1);
         iconOverlay = block.getIcon(0, 0);
 
         double minXBase = iconBase.getMinU();

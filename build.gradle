@@ -54,7 +54,7 @@ configurations {
 
 //noinspection GroovyAssignabilityCheck
 dependencies {
-    //compile files('libs/compile/Pixelmon-1.7.2-3.1-universal-deob.jar')
+    compile files('libs/compile/Pixelmon-1.7.10-3.2.5-universal-deob.jar')
     compile files('libs/runtime/vlcj-3.0.1.jar')
     runtimeOnly files('libs/runtime/jna-3.5.2.jar')
     runtimeOnly files('libs/runtime/platform-3.5.2.jar')

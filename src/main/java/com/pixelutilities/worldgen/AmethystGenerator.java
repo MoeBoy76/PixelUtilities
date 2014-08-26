@@ -35,7 +35,7 @@ public class AmethystGenerator implements IWorldGenerator {
             int firstBlockYCoord = rand.nextInt(64);
             int firstBlockZCoord = chunkZ + rand.nextInt(25);
 
-            (new WorldGenMinable(Basemod.instance.amethystOre, 6)).generate(world, rand, firstBlockXCoord, firstBlockYCoord, firstBlockZCoord);
+            (new WorldGenMinable(PixelUtilitiesBlocks.amethystOre, 6)).generate(world, rand, firstBlockXCoord, firstBlockYCoord, firstBlockZCoord);
         }
     }
 

@@ -4,12 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.block.Block;
-import net.minecraft.command.ServerCommandManager;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
@@ -19,8 +17,8 @@ import uk.co.caprica.vlcj.version.Version;
 
 import com.pixelmonmod.pixelmon.Pixelmon;
 import com.pixelutilities.achievements.PixelUtilitiesAchievements;
+import com.pixelutilities.commands.AddToDrops;
 import com.pixelutilities.commands.AddToGrassCommand;
-import com.pixelutilities.commands.PokecheckmeCommand;
 import com.pixelutilities.config.PixelUtilitiesBlocks;
 import com.pixelutilities.config.PixelUtilitiesConfig;
 import com.pixelutilities.config.PixelUtilitiesRecipes;
@@ -50,11 +48,10 @@ import cpw.mods.fml.common.registry.GameData;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 
-@Mod(modid = Basemod.MODID, name = Basemod.NAME, version = Basemod.VERSION, dependencies = "after:pixelmon")
+@Mod(modid = Basemod.MODID, name = Basemod.NAME, version = Basemod.VERSION, dependencies = "after:pixelmon", guiFactory="com.pixelutilities.PixelUtilitiesGuiFactory")
 //change to "after" once we are non dependant
 public class Basemod
 {
-
 	public static final String MODID = "pixelutilities";
 	public static final String NAME = "PixelUtilities";
 	public static final String VERSION = "3.3.0";
@@ -265,65 +262,6 @@ public class Basemod
     public Item dawnstoneLegs;
     public Item dawnstoneBoots;
 	
-	//Blocks
-    public Block newGrassBlock;
-	public Block pokeDirtBlock;
-	public Block pokeSandBlock;
-	public Block pokeSandC1Block;
-	public Block pokeSandC2Block;
-	public Block pokeSandC3Block;
-	public Block pokeSandC4Block;
-	public Block insideMoldingBlock;
-	public Block pixelmonGrassBlock;
-	public Block shinglesBlock;
-	public Block shinglesCorner1Block;
-	public Block shinglesCorner2Block;
-	public Block treeTopBlock;
-	public Block treeBottomBlock;
-	public Block pokeSandSide1Block;
-	public Block pokeSandSide2Block;
-	public Block pokeSandSide3Block;
-	public Block pokeSandSide4Block;
-	public Block window1Block;
-	public Block window2Block;
-	public Block woodenFlooringBlock;
-	public Block pokeCenterSignBlock;
-	public Block pokeMartSignBlock;
-	public Block sandyGrassBlock;
-	public Block rockBlock;
-	public Block caveRockBlock;
-	public Block bridgeBlockBlock;
-	public Block treeBlock;
-	public Block bolderBlock;
-	public Block boxBlock;
-	public Block rubyOre;
-	public Block saphireOre;
-	public Block amethystOre;
-	public Block crystalOre;
-	public Block rubyBlock;
-	public Block saphireBlock;
-	public Block amethystBlock;
-	public Block crystalBlock;
-	public Block siliconOre;
-	public Block clothedTableBlock;
-	public Block pokeballBlock;
-	public Block redCusionChairBlock;
-	public Block trashcanBlock;
-	public Block yellowCusionChairBlock;
-	//public Block basicDeskBlock;
-	public Block totodilePokedollBlock;
-	public Block aronPokedollBlock;
-	public Block bisharpPokedollBlock;
-	public Block radioBlock;
-	public Block gymSignBlock;
-	public Block tvBlock;
-	public Block blockConveyor;
-	public Block blueRugBlock;
-	public Block redRugBlock;
-	public Block greenRugBlock;
-	public Block pokeballStatue;
-
-
 	//lights
 	public Block blueLightBlock;
 	public Block redLightBlock;
@@ -369,7 +307,7 @@ public class Basemod
 		
 		if(pixelmonPresent)
 		{
-			Pixelmon.EVENT_BUS.register(new CustomDrops());
+			Pixelmon.EVENT_BUS.register(CustomDrops.getInstance());
 			Pixelmon.EVENT_BUS.register(new PUTickHandler());
 		}
 
@@ -387,8 +325,10 @@ public class Basemod
 
 		if (event.getSide().equals(Side.CLIENT))
 		{
+			FMLCommonHandler.instance().bus().register(config);
+			
 			PUTickHandler tickHandler = new PUTickHandler();
-
+			
 			FMLCommonHandler.instance().bus().register(tickHandler);
 			MinecraftForge.EVENT_BUS.register(tickHandler);
 			initVLC();
@@ -442,23 +382,20 @@ public class Basemod
 		PixelUtilitiesRecipes recipes = new PixelUtilitiesRecipes();
 		recipes.addRecipes();
 
-		rubyOre.setHarvestLevel("pickaxe", 2);
-		saphireOre.setHarvestLevel("pickaxe", 2);
-		amethystOre.setHarvestLevel("pickaxe", 2);
-		siliconOre.setHarvestLevel("pickaxe", 2);
-		crystalOre.setHarvestLevel("pickaxe", 2);
+		PixelUtilitiesBlocks.rubyOre.setHarvestLevel("pickaxe", 2);
+		PixelUtilitiesBlocks.saphireOre.setHarvestLevel("pickaxe", 2);
+		PixelUtilitiesBlocks.amethystOre.setHarvestLevel("pickaxe", 2);
+		PixelUtilitiesBlocks.siliconOre.setHarvestLevel("pickaxe", 2);
+		PixelUtilitiesBlocks.crystalOre.setHarvestLevel("pickaxe", 2);
 
-		MinecraftForge.EVENT_BUS.register(new CustomDrops());
+		//MinecraftForge.EVENT_BUS.register(new CustomDrops());
 	}
 
 	@Mod.EventHandler
 	public void onServerStart(FMLServerStartingEvent event)
 	{
-		if (MinecraftServer.getServer().getCommandManager() instanceof ServerCommandManager)
-		{
-			//((ServerCommandManager) MinecraftServer.getServer().getCommandManager()).registerCommand(new PokecheckmeCommand());
-			((ServerCommandManager) MinecraftServer.getServer().getCommandManager()).registerCommand(new AddToGrassCommand());
-		}
+		event.registerServerCommand(new AddToDrops());
+		event.registerServerCommand(new AddToGrassCommand());
 
 		if (DEBUGMODE)
 		{

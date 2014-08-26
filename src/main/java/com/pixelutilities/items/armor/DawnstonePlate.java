@@ -9,8 +9,10 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 public class DawnstonePlate extends ItemArmor {
 
@@ -35,4 +37,13 @@ public class DawnstonePlate extends ItemArmor {
     public void registerIcons(IIconRegister par1IconRegister) {
         this.itemIcon = par1IconRegister.registerIcon("pixelutilities:armor/DawnstoneChestplate");
     }
+    
+    @Override
+	public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) {
+		super.onArmorTick(world, player, itemStack);
+		if(player.getEquipmentInSlot(3).getItem() instanceof DawnstonePlate)
+		{
+			System.out.println("[PixelUtilities] Chest = Yes");
+		}
+	}
 }

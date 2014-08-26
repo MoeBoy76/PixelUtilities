@@ -9,6 +9,7 @@ import java.util.Random;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -24,223 +25,256 @@ import com.pixelmonmod.pixelmon.entities.pixelmon.EntityPixelmon;
 import com.pixelmonmod.pixelmon.enums.EnumPokemon;
 import com.pixelmonmod.pixelmon.storage.PixelmonStorage;
 import com.pixelmonmod.pixelmon.storage.PlayerNotLoadedException;
+import com.pixelmonmod.pixelmon.storage.PlayerStorage;
 import com.pixelutilities.blocks.PixelmonGrassBlock;
 import com.pixelutilities.config.PixelUtilitiesConfig;
 
-public class GrassSpawner {
+public class GrassSpawner
+{
+	private static GrassSpawner instance;
+	private Configuration spawnerConfig = null;
+	String ssrates = "Special Spawn Rates";
+	String pokeLists = "Encounter Lists";
+	String[] blankArray = {"notConfigured"};
 
-    private static GrassSpawner instance;
-    private Configuration spawnerConfig = null;
-    String ssrates = "Special Spawn Rates";
-    String pokeLists = "Encounter Lists";
-    String[] blankArray = {"notConfigured"};
+	static
+	{
+		if (instance == null)
+			instance = new GrassSpawner();
+	}
 
-    static {
-        if (instance == null) {
-            instance = new GrassSpawner();
-        }
-    }
+	private GrassSpawner()
+	{
+		spawnerConfig = new Configuration(new File("config/" + Basemod.MODID + "-spawner.cfg"));
+		spawnerConfig.load();
 
+		BiomeGenBase[] biomes = BiomeGenBase.getBiomeGenArray();
+		for(BiomeGenBase biome : biomes)
+		{
+			if(biome == null)
+				break;
 
-    private GrassSpawner() {
+			spawnerConfig.get(ssrates, biome.biomeName, 10).getInt();
 
-        spawnerConfig = new Configuration(new File("config/" + Basemod.MODID + "-spawner.cfg"));
-        spawnerConfig.load();
+			switch(biome.biomeName)
+			{
+			case "Plains":
+				spawnerConfig.get(pokeLists, biome.biomeName, defaultEncounterListPlains).getStringList();
+				break;
 
-        BiomeGenBase[] biomes = BiomeGenBase.getBiomeGenArray();
-        for(BiomeGenBase biome : biomes)
-        {
-            if(biome == null)
-                break;
+			case "Jungle":
+				spawnerConfig.get(pokeLists, biome.biomeName, defaultEncounterListJungle).getStringList();
+				break;
 
-            spawnerConfig.get(ssrates, biome.biomeName, 10).getInt();
+			case "Forest":
+				spawnerConfig.get(pokeLists, biome.biomeName, defaultEncounterListForest).getStringList();
+				break;
 
-            switch(biome.biomeName)
-            {
-                case "Plains":
-                    spawnerConfig.get(pokeLists, biome.biomeName, defaultEncounterListPlains).getStringList();
-                    break;
+			case "Extreme Hills":
+				spawnerConfig.get(pokeLists, biome.biomeName, defaultEncounterListExtremeHills).getStringList();
+				break;
 
-                case "Jungle":
-                    spawnerConfig.get(pokeLists, biome.biomeName, defaultEncounterListJungle).getStringList();
-                    break;
+			case "Taiga":
+				spawnerConfig.get(pokeLists, biome.biomeName, defaultEncounterListTaiga).getStringList();
+				break;
 
-                case "Forest":
-                    spawnerConfig.get(pokeLists, biome.biomeName, defaultEncounterListForest).getStringList();
-                    break;
+			case "Ice Plains":
+				spawnerConfig.get(pokeLists, biome.biomeName, defaultEncounterListIcePlains).getStringList();
+				break;
 
-                case "Extreme Hills":
-                    spawnerConfig.get(pokeLists, biome.biomeName, defaultEncounterListExtremeHills).getStringList();
-                    break;
+			case "Beach":
+				spawnerConfig.get(pokeLists, biome.biomeName, defaultEncounterListBeach).getStringList();
+				break;
 
-                case "Taiga":
-                    spawnerConfig.get(pokeLists, biome.biomeName, defaultEncounterListTaiga).getStringList();
-                    break;
+			case "Desert":
+				spawnerConfig.get(pokeLists, biome.biomeName, defaultEncounterListDesert).getStringList();
+				break;
 
-                case "Ice Plains":
-                    spawnerConfig.get(pokeLists, biome.biomeName, defaultEncounterListIcePlains).getStringList();
-                    break;
+			case "Ice Mountains":
+				spawnerConfig.get(pokeLists, biome.biomeName, defaultEncounterListIceMountains).getStringList();
+				break;
 
-                case "Beach":
-                    spawnerConfig.get(pokeLists, biome.biomeName, defaultEncounterListBeach).getStringList();
-                    break;
+			case "Ocean":
+				spawnerConfig.get(pokeLists, biome.biomeName, defaultEncounterListOcean).getStringList();
+				break;
 
-                case "Desert":
-                    spawnerConfig.get(pokeLists, biome.biomeName, defaultEncounterListDesert).getStringList();
-                    break;
+			default:
+				spawnerConfig.get(pokeLists, biome.biomeName, blankArray).getStringList();
+				break;
+			}
+		}
 
-                case "Ice Mountains":
-                    spawnerConfig.get(pokeLists, biome.biomeName, defaultEncounterListIceMountains).getStringList();
-                    break;
+		spawnerConfig.save();
+	}
 
-                case "Ocean":
-                    spawnerConfig.get(pokeLists, biome.biomeName, defaultEncounterListOcean).getStringList();
-                    break;
+	public static GrassSpawner getInstance() {
+		return instance;
+	}
 
-                default:
-                    spawnerConfig.get(pokeLists, biome.biomeName, blankArray).getStringList();
-                    break;
-            }
-        }
+	private String[] defaultEncounterListPlains = {"Pikachu", "Pidgey", "Rattata", "Ponyta"};
+	private String[] defaultEncounterListJungle = {"Oddish", "Paras", "Bellsprout", "Scyther"};
+	private String[] defaultEncounterListForest = {"Pikachu", "Rattata", "Caterpie", "Weedle"};
+	private String[] defaultEncounterListExtremeHills = {"Pidgey", "Pidgeotto", "Nidorino", "Geodude", "Machop"};
+	private String[] defaultEncounterListTaiga = {"Swinub", "Slowpoke", "Magnemite", "Jynx"};
+	private String[] defaultEncounterListIcePlains = {"Swinub", "Slowpoke", "Magnemite", "Jynx"};
+	private String[] defaultEncounterListBeach = {"Slowpoke", "Staryu", "Shellder", "Psyduck"};
+	private String[] defaultEncounterListDesert = {"Trapinch", "Sandshrew", "Sandile", "Geodude"};
+	private String[] defaultEncounterListIceMountains = {"Swinub", "Slowpoke", "Magnemite", "Jynx"};
+	private String[] defaultEncounterListOcean = {"Magikarp", "Staryu", "Goldeen", "Shellder"};
 
-        spawnerConfig.save();
+	private double xCoOrd;
+	private double lastXCoOrd = 0.0;
+	private double zCoOrd;
+	private double lastZCoOrd = 0.0;
+	BattleControllerBase bc;
 
-    }
+	public void spawnInGrass(World world, int x, int y, int z, Entity entity)
+	{
+		if (!PixelUtilitiesConfig.getInstance().grassBattles)
+			return;
 
-    public static GrassSpawner getInstance() {
-        return instance;
-    }
+		if (entity instanceof EntityPlayerMP)
+		{
+			EntityPlayerMP player = (EntityPlayerMP) entity;
+			int availablePokemon = getPlayerAvailablePokemonCount(player);
+			//Is player already in a battle
+			if (BattleRegistry.getBattle(player) != null || availablePokemon == 0)
+				return;
+			Random random = new Random(System.currentTimeMillis());
+			int isGrassBattle = random.nextInt(100);
 
-    private String[] defaultEncounterListPlains = {"Pikachu", "Pidgey", "Rattata", "Ponyta"};
-    private String[] defaultEncounterListJungle = {"Oddish", "Paras", "Bellsprout", "Scyther"};
-    private String[] defaultEncounterListForest = {"Pikachu", "Rattata", "Caterpie", "Weedle"};
-    private String[] defaultEncounterListExtremeHills = {"Pidgey", "Pidgeotto", "Nidorino", "Geodude", "Machop"};
-    private String[] defaultEncounterListTaiga = {"Swinub", "Slowpoke", "Magnemite", "Jynx"};
-    private String[] defaultEncounterListIcePlains = {"Swinub", "Slowpoke", "Magnemite", "Jynx"};
-    private String[] defaultEncounterListBeach = {"Slowpoke", "Staryu", "Shellder", "Psyduck"};
-    private String[] defaultEncounterListDesert = {"Trapinch", "Sandshrew", "Sandile", "Geodude"};
-    private String[] defaultEncounterListIceMountains = {"Swinub", "Slowpoke", "Magnemite", "Jynx"};
-    private String[] defaultEncounterListOcean = {"Magikarp", "Staryu", "Goldeen", "Shellder"};
+			xCoOrd = player.lastTickPosX;
+			zCoOrd = player.lastTickPosZ;
 
-    private double xCoOrd;
-    private double lastXCoOrd = 0;//moe if i catch you naming like this again i will hurt you.
-    private double zCoOrd;
-    private double lastZCoOrd = 0;
-    BattleControllerBase bc;
+			if (xCoOrd == lastXCoOrd && zCoOrd == lastZCoOrd)
+				return;
 
-    public void spawnInGrass(World world, int x, int y, int z, Entity entity) {
-        if (!PixelUtilitiesConfig.getInstance().grassBattles)
-            return;
+			if (isGrassBattle <= PixelUtilitiesConfig.getInstance().grassSpawnRate)
+			{
+				if (PixelmonGrassBlock.isActive)
+					processGrassBattle(world, x, y, z, player);
+			}
+		}
+		lastXCoOrd = xCoOrd;
+		lastZCoOrd = zCoOrd;
+	}
 
+	private void processGrassBattle(World world, int x, int y, int z, EntityPlayerMP player)
+	{
+		BiomeGenBase biome = world.getBiomeGenForCoords(x, z);
+		int specialRate = spawnerConfig.get(ssrates, biome.biomeName, 10).getInt();
+		String[] encounters = spawnerConfig.get(pokeLists, biome.biomeName, blankArray).getStringList();
 
-        if (entity instanceof EntityPlayerMP) {
+		spawnBattle(world, x, y, z, player, specialRate, encounters);
 
-            EntityPlayerMP player = (EntityPlayerMP) entity;
-            int availablePokemon = getPlayerAvailablePokemonCount(player);
-            //Is player already in a battle
-            if (BattleRegistry.getBattle(player) != null || availablePokemon == 0) {
-                return;
-            }
-            Random random = new Random(System.currentTimeMillis());
-            int isGrassBattle = random.nextInt(100);
+	}
 
-            xCoOrd = x;
-            zCoOrd = z;
+	private void spawnBattle(World world, int x, int y, int z, EntityPlayerMP player, int spawnRate, String[] encounterList)
+	{
+		if(encounterList[0].equals("notConfigured"))
+			return;
 
-            if (xCoOrd == lastXCoOrd && zCoOrd == lastZCoOrd)
-                return;
+		int ranPoke = (int) (Math.random() * (encounterList.length - 1));
+		int specRate = (int) (Math.random() * spawnRate);//TODO check this out..
+		if (encounterList[ranPoke] != null)
+		{
+			try {
+				EntityPixelmon pokemon = (EntityPixelmon) PixelmonEntityList.createEntityByName(encounterList[ranPoke], world);
+				spawnAndInitiate(world, x, y, z, player, pokemon);
+			}
+			catch (PlayerNotLoadedException e)
+			{
+				System.out.println("Error loading Player. " + e.toString());
+			}
+			catch (Exception e)
+			{
+				System.out.println("Error in Battling Pixelmon found in grass. " + e.toString());
+			}
+		}
+	}
 
-            if (isGrassBattle <= PixelUtilitiesConfig.getInstance().grassSpawnRate) {
-                if (PixelmonGrassBlock.isActive) {
-                    processGrassBattle(world, x, y, z, player);
-                }
-            }
-        }
-        lastXCoOrd = xCoOrd;
-        lastZCoOrd = zCoOrd;
-    }
+	private int getPlayerAvailablePokemonCount(EntityPlayerMP player)
+	{
+		int availablePokemon = 0;
+		try {
+			availablePokemon = PixelmonStorage.PokeballManager.getPlayerStorage(player).countAblePokemon();
+		}
+		catch (PlayerNotLoadedException e)
+		{
+			e.printStackTrace();
+		}
+		return availablePokemon;
+	}
 
-    private void processGrassBattle(World world, int x, int y, int z, EntityPlayerMP player) {
-        BiomeGenBase biome = world.getBiomeGenForCoords(x, z);
-        int specialRate = spawnerConfig.get(ssrates, biome.biomeName, 10).getInt();
-        String[] encounters = spawnerConfig.get(pokeLists, biome.biomeName, blankArray).getStringList();
+	/**
+	 * Spawns a pokemon in the world and initiates a battle between the player and the pokemon
+	 *
+	 * @param world   The dimension to use
+	 * @param x       The X coordinate
+	 * @param y       The Y coordinate
+	 * @param z       The z coordinate
+	 * @param player  The player
+	 * @param pokemon - the pokemon to spawn
+	 * @throws Exception Bad Move should not throw generic Exception
+	 */
+	private void spawnAndInitiate(final World world, final int x, final int y, final int z, final EntityPlayerMP player, final EntityPixelmon pokemon) throws Exception
+	{
+		pokemon.setPosition(x, y + 1, z);
 
-        spawnBattle(world, x, y, z, player, specialRate, encounters);
+		setLvlBasedOnParty(world, player, pokemon);
 
-  }
+		if (!world.isRemote)
+			world.spawnEntityInWorld(pokemon);
+		EntityPixelmon player1firstPokemon = PixelmonStorage.PokeballManager.getPlayerStorage(player).getFirstAblePokemon(world);
+		WildPixelmonParticipant wildPixelmon = new WildPixelmonParticipant(pokemon);
+		bc = new BattleController2Participant(new PlayerParticipant(player, player1firstPokemon), wildPixelmon);
+	}
 
-    private void spawnBattle(World world, int x, int y, int z, EntityPlayerMP player, int spawnRate, String[] encounterList) {
-        if(encounterList[0].equals("notConfigured"))
-            return;
+	private void setLvlBasedOnParty(final World world, final EntityPlayerMP player, final EntityPixelmon pokemon) throws PlayerNotLoadedException
+	{
+		PlayerStorage storage = PixelmonStorage.PokeballManager.getPlayerStorage(player);
+		int maxLvl = storage.getHighestLevel();
+		int minLvl = 100;
+		for(NBTTagCompound nbt : storage.partyPokemon)
+		{
+			if(nbt != null)
+			{
+				EntityPixelmon p = (EntityPixelmon) PixelmonEntityList.createEntityFromNBT(nbt, world);
+				if(p.getLvl().getLevel() < minLvl)
+				{
+					minLvl = p.getLvl().getLevel();
+				}
+			}
+		}
+		if(minLvl < maxLvl)
+		{
+			int lvl = player.getRNG().nextInt(maxLvl - minLvl) + minLvl;
+			pokemon.getLvl().setLevel(lvl);
+		}
+		else
+		{
+			pokemon.getLvl().setLevel(maxLvl);
+		}
+	}
 
-        int ranPoke = (int) (Math.random() * 10);
-        int specRate = (int) (Math.random() * spawnRate);//TODO check this out..
-        if (encounterList[ranPoke] != null) {
-            try {
-                EntityPixelmon pokemon = (EntityPixelmon) PixelmonEntityList.createEntityByName(encounterList[ranPoke], world);
-                spawnAndInitiate(world, x, y, z, player, pokemon);
-            }
-            catch (PlayerNotLoadedException e)
-            {
-                System.out.println("Error loading Player. " + e.toString());
-            }
-            catch (Exception e)
-            {
-                System.out.println("Error in Battling Pixelmon found in grass. " + e.toString());
-            }
-        }
-    }
+	public void addBiomeEncounter(ICommandSender sender, String pokemonName, String biomeName)
+	{
+		List<String> biomeEncounters = Arrays.asList(spawnerConfig.get(pokeLists, biomeName, blankArray).getStringList());
 
-    private int getPlayerAvailablePokemonCount(EntityPlayerMP player) {
-        int availablePokemon = 0;
-        try {
-            availablePokemon = PixelmonStorage.PokeballManager.getPlayerStorage(player).countAblePokemon();
-        } catch (PlayerNotLoadedException e) {
-            e.printStackTrace();
-        }
-        return availablePokemon;
-    }
-
-    /**
-     * Spawns a pokemon in the world and initiates a battle between the player and the pokemon
-     *
-     * @param world   The dimension to use
-     * @param x       The X coordinate
-     * @param y       The Y coordinate
-     * @param z       The z coordinate
-     * @param player  The player
-     * @param pokemon - the pokemon to spawn
-     * @throws Exception Bad Move should not throw generic Exception
-     */
-    private void spawnAndInitiate(final World world, final int x, final int y, final int z, final EntityPlayerMP player, final EntityPixelmon pokemon) throws Exception {
-        pokemon.setPosition(x, y + 1, z);
-        if (!world.isRemote)
-            world.spawnEntityInWorld(pokemon);
-        EntityPixelmon player1firstPokemon = PixelmonStorage.PokeballManager.getPlayerStorage(player).getFirstAblePokemon(world);
-        WildPixelmonParticipant wildPixelmon = new WildPixelmonParticipant(pokemon);
-        bc = new BattleController2Participant(new PlayerParticipant(player, player1firstPokemon), wildPixelmon);
-    }
-
-    public void addBiomeEncounter(ICommandSender sender, String pokemonName, String biomeName) {
-        List<String> biomeEncounters = Arrays.asList(spawnerConfig.get(pokeLists, biomeName, blankArray).getStringList());
-
-        if(biomeEncounters.contains(blankArray[0]))//not configured
-        {
-            biomeEncounters = new ArrayList<>();
-        }
-        if(EnumPokemon.get(pokemonName) != null)//check pokemon exists
-        {
-            biomeEncounters.add(pokemonName);
-            spawnerConfig.get(pokeLists, biomeName, blankArray).set(biomeEncounters.toArray(new String[biomeEncounters.size()]));
-            spawnerConfig.save();
-            sender.addChatMessage(new ChatComponentText("Successfully added "+pokemonName+" to "+biomeName+" spawn list"));
-        }
-        else
-        {
-            sender.addChatMessage(new ChatComponentText(pokemonName+" is not a valid pokemon name"));
-        }
-
-    }
-
-
+		if(biomeEncounters.contains(blankArray[0]))//not configured
+		{
+			biomeEncounters = new ArrayList<>();
+		}
+		if(EnumPokemon.get(pokemonName) != null)//check pokemon exists
+		{
+			biomeEncounters.add(pokemonName);
+			spawnerConfig.get(pokeLists, biomeName, blankArray).set(biomeEncounters.toArray(new String[biomeEncounters.size()]));
+			spawnerConfig.save();
+			sender.addChatMessage(new ChatComponentText("Successfully added "+pokemonName+" to "+biomeName+" spawn list"));
+		}
+		else
+		{
+			sender.addChatMessage(new ChatComponentText(pokemonName+" is not a valid pokemon name"));
+		}
+	}
 }
