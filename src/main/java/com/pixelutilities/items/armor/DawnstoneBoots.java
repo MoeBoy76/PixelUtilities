@@ -3,33 +3,35 @@ package com.pixelutilities.items.armor;
 import java.util.UUID;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemArmor.ArmorMaterial;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import net.minecraftforge.event.entity.living.LivingFallEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
-import com.pixelmonmod.pixelmon.config.PixelmonItems;
 import com.pixelutilities.Basemod;
 import com.pixelutilities.config.PixelUtilitiesArmor;
 import com.pixelutilities.config.PixelUtilitiesCreativeTabs;
 
+import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class DawnstoneBoots extends ItemArmor
 {
 	private boolean isEquipped = false;
-	private boolean setComplete = false;
 
 	public DawnstoneBoots(ArmorMaterial par2EnumArmorMaterial, int par3, int par4) {
 		super(par2EnumArmorMaterial, par3, par4);
@@ -55,44 +57,8 @@ public class DawnstoneBoots extends ItemArmor
 		this.itemIcon = par1IconRegister.registerIcon("pixelutilities:armor/DawnstoneBoots");
 	}
 
-	@Override
-	public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack)
-	{
-		world = player.worldObj;
-		if (itemStack != null) {
-			if (itemStack.getItem() == Basemod.instance.dawnstoneBoots)
-			{
-				this.isEquipped = true;
-			}
-			else
-			{
-				this.isEquipped = false;
-			}
-		}
-		else
-		{
-			this.isEquipped = false;
-		}
-		if(player.getEquipmentInSlot(1).getItem() instanceof DawnstoneBoots 
-				&& player.getEquipmentInSlot(2).getItem() instanceof DawnstoneLegs 
-				&& player.getEquipmentInSlot(3).getItem() instanceof DawnstonePlate 
-				&& player.getEquipmentInSlot(4).getItem() instanceof DawnstoneHelmet)
-		{
-			NBTTagList nbtList = itemStack.getEnchantmentTagList();
-			for(int i = 0; i < nbtList.tagCount(); i++)
-			{
-				NBTTagCompound nbtComp = nbtList.getCompoundTagAt(i);
-				if(nbtComp.hasKey("Enchantment"))
-				{
-					System.out.println("[PixelUtilities] Enchanted Armour!");
-				}
-			}
-		}
-	}
-
-	private UUID runningShoesUUID = UUID.fromString("B7060ADF-8FAF-4C0F-B816-87CB5721979F");
-	private AttributeModifier oldRunningShoesModifier = new AttributeModifier(runningShoesUUID, SharedMonsterAttributes.movementSpeed.getAttributeUnlocalizedName(), 0.5, 1);
-	//private AttributeModifier dawnstoneModifier = new AttributeModifier(SharedMonsterAttributes.attackDamage, p_i1605_2_, p_i1605_4_)
+	private UUID elementalBootsUUID = UUID.fromString("10ae6bcc-5b15-41b1-ba51-b6101e178401");
+	private AttributeModifier elementalBootsModifier = new AttributeModifier(elementalBootsUUID, SharedMonsterAttributes.movementSpeed.getAttributeUnlocalizedName(), 0.5, 1);
 
 	@Override
 	public Multimap getItemAttributeModifiers()
@@ -100,7 +66,7 @@ public class DawnstoneBoots extends ItemArmor
 		Multimap o = HashMultimap.create();
 		if (this.isEquipped)
 		{
-			o.put(SharedMonsterAttributes.movementSpeed.getAttributeUnlocalizedName(), oldRunningShoesModifier);
+			o.put(SharedMonsterAttributes.movementSpeed.getAttributeUnlocalizedName(), elementalBootsModifier);
 		}
 		else
 		{
@@ -110,9 +76,54 @@ public class DawnstoneBoots extends ItemArmor
 	}
 
 	@Override
-	public void onUpdate(ItemStack stack, World world, Entity player, int p_77663_4_, boolean p_77663_5_) {
-		this.isEquipped = false;
-		setComplete = false;
+	public void onArmorTick(World world, EntityPlayer player, ItemStack stack)
+	{
+		if(player.getEquipmentInSlot(1) != null)
+		{
+			Item boots = player.getEquipmentInSlot(1).getItem();
+			if(player.getEquipmentInSlot(1) != null && player.getEquipmentInSlot(2) != null && player.getEquipmentInSlot(3) != null && player.getEquipmentInSlot(4) != null)
+			{
+				if(dawnstoneArmourChecker(player))
+				{
+					isEquipped = true;
+					PotionEffect lancer = new PotionEffect(Potion.jump.getId(), 20, 32, false);
+					player.addPotionEffect(lancer);
+				}
+				else
+				{
+					isEquipped = false;
+				}
+			}
+			else if(boots instanceof DawnstoneBoots)
+			{
+				isEquipped = true;
+			}
+			else
+			{
+				isEquipped = false;
+			}
+		}
 	}
-
+	
+	@SubscribeEvent
+	public void onPlayerFall(LivingFallEvent e)
+	{
+		if(e.entity instanceof EntityPlayer)
+		{
+			EntityPlayer player = (EntityPlayer) e.entity;
+			if(dawnstoneArmourChecker(player))
+			{
+				e.distance = 0F;
+			}
+		}
+	}
+	
+	public boolean dawnstoneArmourChecker(EntityPlayer player)
+	{
+		if(player.getEquipmentInSlot(1).getItem() instanceof DawnstoneBoots && player.getEquipmentInSlot(2).getItem() instanceof DawnstoneLegs && player.getEquipmentInSlot(3).getItem() instanceof DawnstonePlate && player.getEquipmentInSlot(4).getItem() instanceof DawnstoneHelmet)
+		{
+			return true;
+		}
+		return false;
+	}
 }

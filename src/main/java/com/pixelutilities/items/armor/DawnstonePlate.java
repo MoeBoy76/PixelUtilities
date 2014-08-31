@@ -16,34 +16,25 @@ import net.minecraft.world.World;
 
 public class DawnstonePlate extends ItemArmor {
 
-    public DawnstonePlate(ArmorMaterial par2EnumArmorMaterial, int par3, int par4) {
-        super(par2EnumArmorMaterial, par3, par4);
-        setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesArmours);
-        if (!PixelUtilitiesArmor.getArmourList().contains(this))
+	public DawnstonePlate(ArmorMaterial par2EnumArmorMaterial, int par3, int par4) {
+		super(par2EnumArmorMaterial, par3, par4);
+		setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesArmours);
+		if (!PixelUtilitiesArmor.getArmourList().contains(this))
 			PixelUtilitiesArmor.getArmourList().add(this);
-    }
+	}
 
-    @Override
-    public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
-        if (stack.getItem() == Basemod.instance.dawnstoneLegs) {
-            return "pixelutilities:textures/armor/DawnstoneArmor_2.png";
-        } else {
-            return "pixelutilities:textures/armor/DawnstoneArmor_1.png";
-        }
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister par1IconRegister) {
-        this.itemIcon = par1IconRegister.registerIcon("pixelutilities:armor/DawnstoneChestplate");
-    }
-    
-    @Override
-	public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) {
-		super.onArmorTick(world, player, itemStack);
-		if(player.getEquipmentInSlot(3).getItem() instanceof DawnstonePlate)
-		{
-			System.out.println("[PixelUtilities] Chest = Yes");
+	@Override
+	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
+		if (stack.getItem() == Basemod.instance.dawnstoneLegs) {
+			return "pixelutilities:textures/armor/DawnstoneArmor_2.png";
+		} else {
+			return "pixelutilities:textures/armor/DawnstoneArmor_1.png";
 		}
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IIconRegister par1IconRegister) {
+		this.itemIcon = par1IconRegister.registerIcon("pixelutilities:armor/DawnstoneChestplate");
 	}
 }

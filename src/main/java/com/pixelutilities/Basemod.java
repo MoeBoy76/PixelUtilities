@@ -25,6 +25,7 @@ import com.pixelutilities.config.PixelUtilitiesRecipes;
 import com.pixelutilities.entitys.SeatEntity;
 import com.pixelutilities.events.CustomDrops;
 import com.pixelutilities.events.PUTickHandler;
+import com.pixelutilities.items.armor.DawnstoneBoots;
 import com.pixelutilities.networking.PacketHandler;
 import com.pixelutilities.proxies.CommonProxy;
 import com.pixelutilities.radioplayer.VLCPlayer;
@@ -114,153 +115,153 @@ public class Basemod
 	public Item cdItem;
 	//public Item handHeldRadio;
 	public Item amethystItem;
-	public Item pixelBoyItem;
+	public static Item pixelBoyItem;
 
 	//Ruby Tools
-	public Item rubyPickaxe;
-	public Item rubyHammer;
-	public Item rubyAxe;
-	public Item rubyShovel;
-	public Item rubyHoe;
-	public Item rubySword;
+	public static Item rubyPickaxe;
+	public static Item rubyHammer;
+	public static Item rubyAxe;
+	public static Item rubyShovel;
+	public static Item rubyHoe;
+	public static Item rubySword;
 
 	//Saphire Tools
-	public Item saphirePickaxe;
-	public Item saphireHammer;
-	public Item saphireAxe;
-	public Item saphireShovel;
-	public Item saphireHoe;
-	public Item saphireSword;
+	public static Item saphirePickaxe;
+	public static Item saphireHammer;
+	public static Item saphireAxe;
+	public static Item saphireShovel;
+	public static Item saphireHoe;
+	public static Item saphireSword;
 
 	//Amethyst Tools
-	public Item amethystPickaxe;
-	public Item amethystHammer;
-	public Item amethystShovel;
-	public Item amethystAxe;
-	public Item amethystHoe;
-	public Item amethystSword;
+	public static Item amethystPickaxe;
+	public static Item amethystHammer;
+	public static Item amethystShovel;
+	public static Item amethystAxe;
+	public static Item amethystHoe;
+	public static Item amethystSword;
 	
-	public Item crystalPickaxe;
-	public Item crystalHammer;
-	public Item crystalAxe;
-	public Item crystalShovel;
-	public Item crystalHoe;
-	public Item crystalSword;
+	public static Item crystalPickaxe;
+	public static Item crystalHammer;
+	public static Item crystalAxe;
+	public static Item crystalShovel;
+	public static Item crystalHoe;
+	public static Item crystalSword;
 
 	//EvoTools
 	//Firestone tools
-	public Item firestonePickaxe;
-	public Item firestoneHammer;
-	public Item firestoneAxe;
-	public Item firestoneShovel;
-	public Item firestoneHoe;
-	public Item firestoneSword;
+	public static Item firestonePickaxe;
+	public static Item firestoneHammer;
+	public static Item firestoneAxe;
+	public static Item firestoneShovel;
+	public static Item firestoneHoe;
+	public static Item firestoneSword;
 
 	//Waterstone tools
-	public Item waterstonePickaxe;
-	public Item waterstoneHammer;
-	public Item waterstoneAxe;
-	public Item waterstoneShovel;
-	public Item waterstoneHoe;
-	public Item waterstoneSword;
+	public static Item waterstonePickaxe;
+	public static Item waterstoneHammer;
+	public static Item waterstoneAxe;
+	public static Item waterstoneShovel;
+	public static Item waterstoneHoe;
+	public static Item waterstoneSword;
 
 	//Leafstone tools
-	public Item leafstonePickaxe;
-	public Item leafstoneHammer;
-	public Item leafstoneAxe;
-	public Item leafstoneShovel;
-	public Item leafstoneHoe;
-	public Item leafstoneSword;
+	public static Item leafstonePickaxe;
+	public static Item leafstoneHammer;
+	public static Item leafstoneAxe;
+	public static Item leafstoneShovel;
+	public static Item leafstoneHoe;
+	public static Item leafstoneSword;
 	
-	public Item thunderstonePickaxe;
-	public Item thunderstoneHammer;
-	public Item thunderstoneAxe;
-	public Item thunderstoneShovel;
-	public Item thunderstoneHoe;
-	public Item thunderstoneSword;
+	public static Item thunderstonePickaxe;
+	public static Item thunderstoneHammer;
+	public static Item thunderstoneAxe;
+	public static Item thunderstoneShovel;
+	public static Item thunderstoneHoe;
+	public static Item thunderstoneSword;
 	
-	public Item moonstonePickaxe;
-	public Item moonstoneHammer;
-	public Item moonstoneAxe;
-	public Item moonstoneShovel;
-	public Item moonstoneHoe;
-	public Item moonstoneSword;
+	public static Item moonstonePickaxe;
+	public static Item moonstoneHammer;
+	public static Item moonstoneAxe;
+	public static Item moonstoneShovel;
+	public static Item moonstoneHoe;
+	public static Item moonstoneSword;
 	
-	public Item sunstonePickaxe;
-	public Item sunstoneHammer;
-	public Item sunstoneAxe;
-	public Item sunstoneShovel;
-	public Item sunstoneHoe;
-	public Item sunstoneSword;
+	public static Item sunstonePickaxe;
+	public static Item sunstoneHammer;
+	public static Item sunstoneAxe;
+	public static Item sunstoneShovel;
+	public static Item sunstoneHoe;
+	public static Item sunstoneSword;
 	
-	public Item dawnstonePickaxe;
-	public Item dawnstoneHammer;
-	public Item dawnstoneAxe;
-	public Item dawnstoneShovel;
-	public Item dawnstoneHoe;
-	public Item dawnstoneSword;
+	public static Item dawnstonePickaxe;
+	public static Item dawnstoneHammer;
+	public static Item dawnstoneAxe;
+	public static Item dawnstoneShovel;
+	public static Item dawnstoneHoe;
+	public static Item dawnstoneSword;
 
 	//Armours
-	public Item rubyHelm;
-    public Item rubyPlate;
-    public Item rubyLegs;
-    public Item rubyBoots;
+	public static Item rubyHelm;
+    public static Item rubyPlate;
+    public static Item rubyLegs;
+    public static Item rubyBoots;
 
-    public Item saphireHelm;
-    public Item saphirePlate;
-    public Item saphireLegs;
-    public Item saphireBoots;
+    public static Item saphireHelm;
+    public static Item saphirePlate;
+    public static Item saphireLegs;
+    public static Item saphireBoots;
 
-    public Item galacticHelm;
-    public Item galacticBoots;
-    public Item galacticPlate;
-    public Item galacticLegs;
+    public static Item galacticHelm;
+    public static Item galacticBoots;
+    public static Item galacticPlate;
+    public static Item galacticLegs;
 
-    public Item crystalHelm;
-    public Item crystalBoots;
-    public Item crystalPlate;
-    public Item crystalLegs;
+    public static Item crystalHelm;
+    public static Item crystalBoots;
+    public static Item crystalPlate;
+    public static Item crystalLegs;
 
-    public Item rocketHelm;
-    public Item rocketBoots;
-    public Item rocketPlate;
-    public Item rocketLegs;
+    public static Item rocketHelm;
+    public static Item rocketBoots;
+    public static Item rocketPlate;
+    public static Item rocketLegs;
 
     
-    public Item firestoneHelm;
-    public Item firestonePlate;
-    public Item firestoneLegs;
-    public Item firestoneBoots;
+    public static Item firestoneHelm;
+    public static Item firestonePlate;
+    public static Item firestoneLegs;
+    public static Item firestoneBoots;
 
-    public Item waterstoneHelm;
-    public Item waterstonePlate;
-    public Item waterstoneLegs;
-    public Item waterstoneBoots;
+    public static Item waterstoneHelm;
+    public static Item waterstonePlate;
+    public static Item waterstoneLegs;
+    public static Item waterstoneBoots;
 
-    public Item leafstoneHelm;
-    public Item leafstonePlate;
-    public Item leafstoneLegs;
-    public Item leafstoneBoots;
+    public static Item leafstoneHelm;
+    public static Item leafstonePlate;
+    public static Item leafstoneLegs;
+    public static Item leafstoneBoots;
     
-    public Item thunderstoneHelm;
-    public Item thunderstonePlate;
-    public Item thunderstoneLegs;
-    public Item thunderstoneBoots;
+    public static Item thunderstoneHelm;
+    public static Item thunderstonePlate;
+    public static Item thunderstoneLegs;
+    public static Item thunderstoneBoots;
     
-    public Item sunstoneHelm;
-    public Item sunstonePlate;
-    public Item sunstoneLegs;
-    public Item sunstoneBoots;
+    public static Item sunstoneHelm;
+    public static Item sunstonePlate;
+    public static Item sunstoneLegs;
+    public static Item sunstoneBoots;
     
-    public Item moonstoneHelm;
-    public Item moonstonePlate;
-    public Item moonstoneLegs;
-    public Item moonstoneBoots;
+    public static Item moonstoneHelm;
+    public static Item moonstonePlate;
+    public static Item moonstoneLegs;
+    public static Item moonstoneBoots;
     
-    public Item dawnstoneHelm;
-    public Item dawnstonePlate;
-    public Item dawnstoneLegs;
-    public Item dawnstoneBoots;
+    public static Item dawnstoneHelm;
+    public static Item dawnstonePlate;
+    public static Item dawnstoneLegs;
+    public static Item dawnstoneBoots;
 	
 	//lights
 	public Block blueLightBlock;
@@ -308,7 +309,8 @@ public class Basemod
 		if(pixelmonPresent)
 		{
 			Pixelmon.EVENT_BUS.register(CustomDrops.getInstance());
-			Pixelmon.EVENT_BUS.register(new PUTickHandler());
+			if(event.getSide().equals(Side.CLIENT))
+				Pixelmon.EVENT_BUS.register(new PUTickHandler());
 		}
 
 		AddMeta(event);
@@ -322,7 +324,6 @@ public class Basemod
 	@EventHandler
 	public void init(FMLInitializationEvent event)
 	{
-
 		if (event.getSide().equals(Side.CLIENT))
 		{
 			FMLCommonHandler.instance().bus().register(config);
@@ -333,7 +334,7 @@ public class Basemod
 			MinecraftForge.EVENT_BUS.register(tickHandler);
 			initVLC();
 		}
-
+		MinecraftForge.EVENT_BUS.register(dawnstoneBoots);
 		PacketHandler.init();
 	}
 

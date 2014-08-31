@@ -1,22 +1,23 @@
 package com.pixelutilities.events;
 
-import com.pixelmonmod.pixelmon.api.events.*;
-import com.pixelutilities.Basemod;
-import com.pixelutilities.config.PixelUtilitiesConfig;
-import com.pixelutilities.radioplayer.VLCPlayer;
-import cpw.mods.fml.common.Optional;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.PlayerEvent;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatStyle;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IChatComponent;
 
+import com.pixelmonmod.pixelmon.api.events.PlayerBattleEndedAbnormalEvent;
+import com.pixelmonmod.pixelmon.api.events.PlayerBattleEndedEvent;
+import com.pixelmonmod.pixelmon.api.events.PlayerBattleStartedEvent;
+import com.pixelutilities.Basemod;
+import com.pixelutilities.config.PixelUtilitiesConfig;
+import com.pixelutilities.radioplayer.VLCPlayer;
+
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 @SideOnly(Side.CLIENT)
-//@Optional.Interface(iface = "com.pixelmonmod.pixelmon.api.events.IPixelmonEventHandler", modid = "pixelmon")
 public class PUTickHandler
 {
 	public static VLCPlayer playerRadio = new VLCPlayer(PixelUtilitiesConfig.getInstance().BattleMusicURL, 50);
