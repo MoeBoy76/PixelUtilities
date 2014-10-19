@@ -104,7 +104,8 @@ public class GrassSpawner
 			}
 		}
 
-		spawnerConfig.save();
+		if(spawnerConfig.hasChanged())
+			spawnerConfig.save();
 	}
 
 	public static GrassSpawner getInstance() {
@@ -140,8 +141,8 @@ public class GrassSpawner
 			//Is player already in a battle
 			if (BattleRegistry.getBattle(player) != null || availablePokemon == 0)
 				return;
-			Random random = new Random(System.currentTimeMillis());
-			int isGrassBattle = random.nextInt(100);
+			//Random random = new Random(System.currentTimeMillis());
+			int isGrassBattle = player.getRNG().nextInt(100);
 
 			xCoOrd = player.lastTickPosX;
 			zCoOrd = player.lastTickPosZ;
@@ -221,7 +222,8 @@ public class GrassSpawner
 	{
 		pokemon.setPosition(x, y + 1, z);
 
-		setLvlBasedOnParty(world, player, pokemon);
+		if(PixelUtilitiesConfig.getInstance().scalePokes)
+			setLvlBasedOnParty(world, player, pokemon);
 
 		if (!world.isRemote)
 			world.spawnEntityInWorld(pokemon);
@@ -265,7 +267,7 @@ public class GrassSpawner
 		{
 			biomeEncounters = new ArrayList<>();
 		}
-		if(EnumPokemon.get(pokemonName) != null)//check pokemon exists
+		if(EnumPokemon.getFromName(pokemonName) != null)//check pokemon exists
 		{
 			biomeEncounters.add(pokemonName);
 			spawnerConfig.get(pokeLists, biomeName, blankArray).set(biomeEncounters.toArray(new String[biomeEncounters.size()]));

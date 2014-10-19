@@ -24,6 +24,7 @@ import com.pixelutilities.config.PixelUtilitiesConfig;
 import com.pixelutilities.config.PixelUtilitiesRecipes;
 import com.pixelutilities.entitys.SeatEntity;
 import com.pixelutilities.events.CustomDrops;
+import com.pixelutilities.events.FallEliminator;
 import com.pixelutilities.events.PUTickHandler;
 import com.pixelutilities.items.armor.DawnstoneBoots;
 import com.pixelutilities.networking.PacketHandler;
@@ -39,8 +40,10 @@ import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.ModMetadata;
 import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.FMLEvent;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartedEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.event.FMLServerStoppedEvent;
 import cpw.mods.fml.common.network.FMLEventChannel;
@@ -50,12 +53,11 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 
 @Mod(modid = Basemod.MODID, name = Basemod.NAME, version = Basemod.VERSION, dependencies = "after:pixelmon", guiFactory="com.pixelutilities.PixelUtilitiesGuiFactory")
-//change to "after" once we are non dependant
 public class Basemod
 {
 	public static final String MODID = "pixelutilities";
 	public static final String NAME = "PixelUtilities";
-	public static final String VERSION = "3.3.0";
+	public static final String VERSION = "3.3.2";
 
 	/*public final ToolMaterial FIRESTONE = EnumHelper.addToolMaterial("FIRESTONE", 3, 1561, 8.0F, 3.0F, 10);
 	public final ToolMaterial WATERSTONE = EnumHelper.addToolMaterial("WATERSTONE", 3, 1561, 8.0F, 3.0F, 10);
@@ -281,10 +283,6 @@ public class Basemod
 	public static List<VLCPlayer> battleMusicList = new ArrayList<>();
 	public VLCPlayer localMusicPlayer = null;
 
-	//In development biome //pokebiome
-	//Biomes
-	public static BiomeGenBase PokeBiome;
-
 	@Instance(Basemod.MODID)
 	public static Basemod instance;
 
@@ -334,7 +332,7 @@ public class Basemod
 			MinecraftForge.EVENT_BUS.register(tickHandler);
 			initVLC();
 		}
-		MinecraftForge.EVENT_BUS.register(dawnstoneBoots);
+		MinecraftForge.EVENT_BUS.register(new FallEliminator());
 		PacketHandler.init();
 	}
 
@@ -371,14 +369,16 @@ public class Basemod
 
 		GameRegistry.registerTileEntity(TileEntityRadio.class, "Radio");
 		GameRegistry.registerTileEntity(TileEntityConveyor.class, "Conveyor");
+		
+		GameRegistry.registerTileEntity(PokegiftEntity.class, "Pokegift");
 
 		//Ore generation
 
-		GameRegistry.registerWorldGenerator(new RubyGenerator(), 0);
-		GameRegistry.registerWorldGenerator(new SaphireGenerator(), 0);
-		GameRegistry.registerWorldGenerator(new AmethystGenerator(), 0);
-		GameRegistry.registerWorldGenerator(new SiliconGenerator(), 0);
-		GameRegistry.registerWorldGenerator(new CrystalGenerator(), 0);
+		GameRegistry.registerWorldGenerator(new RubyGenerator(), 2);
+		GameRegistry.registerWorldGenerator(new SaphireGenerator(), 2);
+		GameRegistry.registerWorldGenerator(new AmethystGenerator(), 2);
+		GameRegistry.registerWorldGenerator(new SiliconGenerator(), 2);
+		GameRegistry.registerWorldGenerator(new CrystalGenerator(), 2);
 
 		PixelUtilitiesRecipes recipes = new PixelUtilitiesRecipes();
 		recipes.addRecipes();
@@ -389,12 +389,14 @@ public class Basemod
 		PixelUtilitiesBlocks.siliconOre.setHarvestLevel("pickaxe", 2);
 		PixelUtilitiesBlocks.crystalOre.setHarvestLevel("pickaxe", 2);
 
-		//MinecraftForge.EVENT_BUS.register(new CustomDrops());
 	}
 
 	@Mod.EventHandler
 	public void onServerStart(FMLServerStartingEvent event)
 	{
+		if(config.onlyGrassSpawns && config.grassBattles)
+			config.removePixelmonSpawns(event);
+		
 		event.registerServerCommand(new AddToDrops());
 		event.registerServerCommand(new AddToGrassCommand());
 
@@ -404,6 +406,8 @@ public class Basemod
 			for (Block block : (Iterable<Block>) GameData.getBlockRegistry())
 			{
 				if (GameRegistry.findUniqueIdentifierFor(block).modId.equals("minecraft"))
+					continue;
+				if (GameRegistry.findUniqueIdentifierFor(block).modId.equals("pixelmon"))
 					continue;
 
 				String localName = block.getLocalizedName();
@@ -428,7 +432,7 @@ public class Basemod
 
 				String itemName = item.getItemStackDisplayName(itemStack);
 
-				if (!itemName.getClass().getName().contains(MODID))
+				if (!itemName.getClass().getName().contains(MODID) || !itemName.getClass().getName().contains(Pixelmon.MODID))
 					return;
 
 				if (itemName.contains("item."))
@@ -437,12 +441,17 @@ public class Basemod
 				}
 
 			}
-
+			System.out.println("Debug complete!");
 		}
-
 		//////////////////////////////////////////////////////
 
 
+	}
+	
+	@Mod.EventHandler
+	public void onServerStarted(FMLServerStartedEvent event)
+	{
+		event.getModState();
 	}
 
 	@Mod.EventHandler

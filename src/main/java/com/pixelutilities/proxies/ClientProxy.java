@@ -7,6 +7,7 @@ import com.pixelutilities.Basemod;
 import com.pixelutilities.entitys.SeatEntity;
 import com.pixelutilities.models.renderers.*;
 import com.pixelutilities.tileentitys.*;
+
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 //import PixelUtilitys.entitys.BasicDeskEntity;
@@ -42,6 +43,9 @@ public class ClientProxy extends CommonProxy {
 
         RenderingRegistry.registerEntityRenderingHandler(SeatEntity.class, new InvisibleRenderer());
         RenderingRegistry.registerBlockHandler(500, new ConveyorRenderer());
+        
+        if(Basemod.instance.pixelmonPresent)
+        	ClientRegistry.bindTileEntitySpecialRenderer(PokegiftEntity.class, new PokegiftRenderer());
     }
 
     @Override

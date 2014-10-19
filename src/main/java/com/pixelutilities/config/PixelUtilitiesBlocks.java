@@ -3,6 +3,7 @@ package com.pixelutilities.config;
 import com.pixelutilities.Basemod;
 import com.pixelutilities.blocks.*;
 import com.pixelutilities.blocks.ores.*;
+import com.pixelutilities.tileentitys.PokegiftEntity;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
@@ -73,6 +74,7 @@ public class PixelUtilitiesBlocks {
 	public static Block redRugBlock;
 	public static Block greenRugBlock;
 	public static Block pokeballStatue;
+	public static Block obtainablePixelmon;
 
 
 	//lights
@@ -95,14 +97,14 @@ public class PixelUtilitiesBlocks {
 		pokeSandC2Block = new PokeSandC2Block().setHardness(0.5f).setStepSound(Block.soundTypeSand).setBlockName("PokeSandCorner2").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelmonBlocks).setBlockTextureName("PixelUtilities" + ":" + "PokeSandC2");
 		pokeSandC3Block = new PokeSandC3Block().setHardness(0.5f).setStepSound(Block.soundTypeSand).setBlockName("PokeSandCorner3").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelmonBlocks).setBlockTextureName("PixelUtilities" + ":" + "PokeSandC3");
 		pokeSandC4Block = new PokeSandC4Block().setHardness(0.5f).setStepSound(Block.soundTypeSand).setBlockName("PokeSandCorner4").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelmonBlocks).setBlockTextureName("PixelUtilities" + ":" + "PokeSandC4");
-		insideMoldingBlock = new InsideMoldingBlock().setHardness(0.5f).setStepSound(Block.soundTypeWood).setBlockName("Inside Wall Molding").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelmonBlocks).setBlockTextureName("PixelUtilities" + ":" + "InsideMolding");
+		insideMoldingBlock = new InsideMoldingBlock().setHardness(0.5f).setStepSound(Block.soundTypeWood).setBlockName("Inside_Wall_Molding").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelmonBlocks).setBlockTextureName("PixelUtilities" + ":" + "InsideMolding");
 		if (Basemod.instance.pixelmonPresent)
-			pixelmonGrassBlock = new PixelmonGrassBlock().setHardness(0.5f).setStepSound(Block.soundTypeGrass).setBlockName("Pixelmon Grass").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelmonBlocks).setBlockTextureName("PixelUtilities" + ":" + "PixelmonGrass");
+			pixelmonGrassBlock = new PixelmonGrassBlock().setHardness(0.5f).setStepSound(Block.soundTypeGrass).setBlockName("Pixelmon_Grass").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelmonBlocks).setBlockTextureName("PixelUtilities" + ":" + "PixelmonGrass");
 		shinglesBlock = new ShinglesBlock().setHardness(0.5f).setStepSound(Block.soundTypeStone).setBlockName("Shingles").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelmonBlocks).setBlockTextureName("PixelUtilities" + ":" + "Shingles");
-		shinglesCorner1Block = new ShinglesCorner1Block().setHardness(0.5f).setStepSound(Block.soundTypeStone).setBlockName("Shingles Corner 1").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelmonBlocks).setBlockTextureName("PixelUtilities" + ":" + "RoofCorner1");
-		shinglesCorner2Block = new ShinglesCorner2Block().setHardness(0.5f).setStepSound(Block.soundTypeStone).setBlockName("Shingles Corner 2").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelmonBlocks).setBlockTextureName("PixelUtilities" + ":" + "RoofCorner2");
-		treeTopBlock = new TreeTopBlock().setHardness(0.5f).setStepSound(Block.soundTypeWood).setBlockName("Tree Top").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelmonBlocks).setBlockTextureName("PixelUtilities" + ":" + "TreeTop");
-		treeBottomBlock = new TreeBottomBlock().setHardness(0.5f).setStepSound(Block.soundTypeWood).setBlockName("Tree Bottom").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelmonBlocks).setBlockTextureName("PixelUtilities" + ":" + "TreeBottom");
+		shinglesCorner1Block = new ShinglesCorner1Block().setHardness(0.5f).setStepSound(Block.soundTypeStone).setBlockName("Shingles_Corner_1").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelmonBlocks).setBlockTextureName("PixelUtilities" + ":" + "RoofCorner1");
+		shinglesCorner2Block = new ShinglesCorner2Block().setHardness(0.5f).setStepSound(Block.soundTypeStone).setBlockName("Shingles_Corner_2").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelmonBlocks).setBlockTextureName("PixelUtilities" + ":" + "RoofCorner2");
+		treeTopBlock = new TreeTopBlock().setHardness(0.5f).setStepSound(Block.soundTypeWood).setBlockName("Tree_Top").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelmonBlocks).setBlockTextureName("PixelUtilities" + ":" + "TreeTop");
+		treeBottomBlock = new TreeBottomBlock().setHardness(0.5f).setStepSound(Block.soundTypeWood).setBlockName("Tree_Bottom").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelmonBlocks).setBlockTextureName("PixelUtilities" + ":" + "TreeBottom");
 		pokeSandSide1Block = new PokeSandSide1Block().setHardness(0.5f).setStepSound(Block.soundTypeSand).setBlockName("PokeSandSide1").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelmonBlocks).setBlockTextureName("PixelUtilities" + ":" + "PokeSandSide1");
 		pokeSandSide2Block = new PokeSandSide2Block().setHardness(0.5f).setStepSound(Block.soundTypeSand).setBlockName("PokeSandSide2").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelmonBlocks).setBlockTextureName("PixelUtilities" + ":" + "PokeSandSide2");
 		pokeSandSide3Block = new PokeSandSide3Block().setHardness(0.5f).setStepSound(Block.soundTypeSand).setBlockName("PokeSandSide3").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelmonBlocks).setBlockTextureName("PixelUtilities" + ":" + "PokeSandSide3");
@@ -114,10 +116,10 @@ public class PixelUtilitiesBlocks {
 		pokeMartSignBlock = new PokeMartSignBlock().setHardness(0.5f).setStepSound(Block.soundTypeWood).setBlockName("PokeMartSign").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelmonBlocks).setBlockTextureName("PixelUtilities" + ":" + "PokemartSign");
 		sandyGrassBlock = new SandyGrassBlock().setHardness(0.5f).setStepSound(Block.soundTypeGrass).setBlockName("SandyGrass").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelmonBlocks).setBlockTextureName("PixelUtilities" + ":" + "SandyGrass");
 		rockBlock = new RockBlock().setHardness(0.5f).setStepSound(Block.soundTypeGrass).setBlockName("Rock").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelmonBlocks).setBlockTextureName("PixelUtilities" + ":" + "Rock");
-		caveRockBlock = new CaveRockBlock().setHardness(0.5f).setStepSound(Block.soundTypeGrass).setBlockName("CabeRock").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelmonBlocks).setBlockTextureName("PixelUtilities" + ":" + "CaveRock");
+		caveRockBlock = new CaveRockBlock().setHardness(0.5f).setStepSound(Block.soundTypeGrass).setBlockName("CaveRock").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelmonBlocks).setBlockTextureName("PixelUtilities" + ":" + "CaveRock");
 		bridgeBlockBlock = new BridgeBlockBlock().setHardness(0.5f).setStepSound(Block.soundTypeGrass).setBlockName("BridgeBlock").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelmonBlocks).setBlockTextureName("PixelUtilities" + ":" + "BridgeBlock");
 		treeBlock = new TreeBlock().setHardness(0.5f).setStepSound(Block.soundTypeWood).setBlockName("Tree").setBlockTextureName("pixelutilities:Tree").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelmonBlocks);
-		bolderBlock = new BolderBlock().setHardness(0.5f).setStepSound(Block.soundTypeWood).setBlockName("Bolder").setBlockTextureName("pixelutilities:Bolder").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelmonBlocks);
+		bolderBlock = new BolderBlock().setHardness(0.5f).setStepSound(Block.soundTypeWood).setBlockName("Boulder").setBlockTextureName("pixelutilities:Bolder").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelmonBlocks);
 		boxBlock = new BoxBlock().setHardness(0.5f).setStepSound(Block.soundTypeWood).setBlockName("Box");
 		rubyOre = new RubyOre().setHardness(1.5f).setStepSound(Block.soundTypeStone).setBlockName("RubyOre").setBlockTextureName("pixelutilities:RubyOre");
 		saphireOre = new SaphireOre().setHardness(1.5f).setStepSound(Block.soundTypeStone).setBlockName("SaphireOre").setBlockTextureName("pixelutilities:SaphireOre");
@@ -145,7 +147,10 @@ public class PixelUtilitiesBlocks {
 		redRugBlock = new RugBlock("red").setHardness(0.5f).setStepSound(Block.soundTypeMetal).setBlockName("RedRug").setCreativeTab(PixelUtilitiesCreativeTabs.tabPokefurniture);
 		greenRugBlock = new RugBlock("green").setHardness(0.5f).setStepSound(Block.soundTypeMetal).setBlockName("GreenRug").setCreativeTab(PixelUtilitiesCreativeTabs.tabPokefurniture);
 		if (Basemod.instance.pixelmonPresent)
+		{
 			pokeballStatue = new PokeballStatueBlock().setCreativeTab(PixelUtilitiesCreativeTabs.tabPokefurniture).setBlockName("PokeballStatue");
+			obtainablePixelmon = new PokegiftBlock(PokegiftEntity.class).setHardness(0.5f).setStepSound(Block.soundTypeMetal).setBlockName("Pokegift").setCreativeTab(PixelUtilitiesCreativeTabs.tabPokefurniture);
+		}
 
 		//lights
 		Basemod.instance.blueLightBlock = new LightBlock("Blue", Color.BLUE);
@@ -216,7 +221,10 @@ public class PixelUtilitiesBlocks {
 		GameRegistry.registerBlock(redRugBlock, "RedRug");
 		GameRegistry.registerBlock(greenRugBlock, "GreenRug");
 		if (Basemod.instance.pixelmonPresent)
+		{
 			GameRegistry.registerBlock(pokeballStatue, "PokeballStatue");
+			GameRegistry.registerBlock(obtainablePixelmon, "Pokegift");
+		}
 
 		//lights
 		GameRegistry.registerBlock(Basemod.instance.blueLightBlock, "BlueLight");

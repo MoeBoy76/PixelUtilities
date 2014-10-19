@@ -29,7 +29,7 @@ public class OS implements IArcadeGame {
 	public final int resX = 256;
 	public final int resY = 224;
 
-	private static OSSettings settings = OSSettings.load();
+	private static OSSettings settings = new OSSettings();
 	public static OSLogger logger = new OSLogger("blazeit OS");
 
 	public IArcadeMachine machine;
@@ -67,7 +67,7 @@ public class OS implements IArcadeGame {
 	public void reloadSettings() {
 		osBackground = null;
 		osForeground = null;
-		settings = OSSettings.load();
+		//settings = OSSettings.load();
 		imageDirty = true;
 	}
 
