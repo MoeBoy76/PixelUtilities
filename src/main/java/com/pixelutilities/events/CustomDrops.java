@@ -25,7 +25,7 @@ public class CustomDrops
 	private static CustomDrops instance;
 	private Configuration dropConfig = null;
 	String[] blankArray = {"notConfigured"};
-	ArrayList<ItemStack> dropStacks;
+	ArrayList<ItemStack> dropStacks = new ArrayList<>();
 
 	static
 	{
@@ -49,28 +49,31 @@ public class CustomDrops
 	@SubscribeEvent
 	public void onWildPokemonDefeat(BeatWildPixelmonEvent event)
 	{
-		if(!dropStacks.isEmpty())
+		if(event.player != null)
 		{
-			int itemNum = event.player.getRNG().nextInt(dropStacks.size());
-			ItemStack toDrop = dropStacks.get(itemNum);
-			toDrop.stackSize = event.player.getRNG().nextInt(toDrop.stackSize);
-			event.player.inventory.addItemStackToInventory(toDrop);
-		}
-		if(Basemod.instance.pixelmonPresent)
-		{
-			if (!pixelConfig.coinDrops)
+			if(!dropStacks.isEmpty())
 			{
-				return;
+				int itemNum = event.player.getRNG().nextInt(dropStacks.size());
+				ItemStack toDrop = dropStacks.get(itemNum);
+				toDrop.stackSize = event.player.getRNG().nextInt(toDrop.stackSize);
+				event.player.inventory.addItemStackToInventory(toDrop);
 			}
-			int doDrop = (int) (Math.random() * (pixelConfig.coinDropRate * 25));
-			if(doDrop < 25 && doDrop != 10)
+			if(Basemod.instance.pixelmonPresent)
 			{
-				int amount = event.player.getRNG().nextInt(2) + 1;
-				event.player.inventory.addItemStackToInventory(new ItemStack(Basemod.instance.pokeCoin1Item, amount));
-			}
-			if(doDrop == 10)
-			{
-				event.player.inventory.addItemStackToInventory(new ItemStack(Basemod.instance.pokeCoin10Item, 1));
+				if (!pixelConfig.coinDrops)
+				{
+					return;
+				}
+				int doDrop = (int) (Math.random() * (pixelConfig.coinDropRate * 25));
+				if(doDrop < 25 && doDrop != 10)
+				{
+					int amount = event.player.getRNG().nextInt(2) + 1;
+					event.player.inventory.addItemStackToInventory(new ItemStack(Basemod.instance.pokeCoin1Item, amount));
+				}
+				if(doDrop == 10)
+				{
+					event.player.inventory.addItemStackToInventory(new ItemStack(Basemod.instance.pokeCoin10Item, 1));
+				}
 			}
 		}
 	}
@@ -78,7 +81,7 @@ public class CustomDrops
 	public void addItemDrop(ICommandSender sender, ItemStack stack)
 	{	
 		dropStacks.add(stack);
-		
+
 		/*List<String> dropItems = Arrays.asList(dropConfig.get(Configuration.CATEGORY_GENERAL, "Items for Pixelmon to drop", blankArray).getStringList());
 		if(dropItems.contains(blankArray[0]))//not configured
 		{

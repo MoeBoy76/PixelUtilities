@@ -10,7 +10,10 @@ import net.minecraft.world.gen.feature.WorldGenMinable;
 
 import java.util.Random;
 
-public class RubyGenerator implements IWorldGenerator {
+public class RubyGenerator implements IWorldGenerator
+{
+	WorldGenMinable rubyGen = new WorldGenMinable(PixelUtilitiesBlocks.rubyOre, 7);
+	
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
         switch (world.provider.dimensionId) {
@@ -35,7 +38,7 @@ public class RubyGenerator implements IWorldGenerator {
             int firstBlockYCoord = rand.nextInt(64);
             int firstBlockZCoord = chunkZ + rand.nextInt(25);
 
-            (new WorldGenMinable(PixelUtilitiesBlocks.rubyOre, 7)).generate(world, rand, firstBlockXCoord, firstBlockYCoord, firstBlockZCoord);
+            rubyGen.generate(world, rand, firstBlockXCoord, firstBlockYCoord, firstBlockZCoord);
         }
     }
 

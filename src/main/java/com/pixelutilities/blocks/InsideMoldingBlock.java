@@ -10,7 +10,7 @@ public class InsideMoldingBlock extends Block {
         super(Material.wood);
         setHardness(4.0F); // 33% harder than diamond
         setStepSound(Block.soundTypeWood);
-        setBlockName("Inside Wall Molding");
+        setBlockName("Inside_Wall_Molding");
         setCreativeTab(CreativeTabs.tabBlock);
 
         setBlockTextureName("pixelmonblocks" + ":" + "InsideMolding");
