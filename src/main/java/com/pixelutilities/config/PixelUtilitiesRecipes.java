@@ -6,6 +6,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 import com.pixelmonmod.pixelmon.config.PixelmonItems;
+import com.pixelmonmod.pixelmon.config.PixelmonItemsPokeballs;
 import com.pixelutilities.Basemod;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -133,6 +134,8 @@ public class PixelUtilitiesRecipes
             makePlateRecipe(Basemod.instance.moonstonePlate,PixelmonItems.moonStone);
             makeLegsRecipe(Basemod.instance.moonstoneLegs, PixelmonItems.moonStone);
             makeBootsRecipe(Basemod.instance.moonstoneBoots, PixelmonItems.moonStone);
+            
+            GameRegistry.addRecipe(new ItemStack(PixelUtilitiesBlocks.obtainablePixelmon, 4), " B ","B B"," B ", 'B', new ItemStack(PixelmonItemsPokeballs.cherishBall,1));
             
         }//TODO alternative recipies!
 

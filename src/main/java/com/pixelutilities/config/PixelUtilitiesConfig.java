@@ -34,6 +34,7 @@ public class PixelUtilitiesConfig {
 	public int coinDropRate;
 	
 	public boolean pokeGiftMany = false;
+	public boolean noStarterScreen = false;
 
 	public String BattleMusicURL;
 	public boolean battleMusicEnabled;
@@ -88,6 +89,8 @@ public class PixelUtilitiesConfig {
 		scalePokes = config.get("general", "Scale grass encounters to team", false, "random lvl between your lowest and highest party lvls").getBoolean(false);
 		
 		pokeGiftMany = config.get("general", "Are Pokegifts re-usable?", false, "true means many players get the pixelmon").getBoolean(false);
+		
+		noStarterScreen = config.get("general", "Break the starter screen", false, "Makes the starter screen do nothing").getBoolean(false);
 
 		if(config.hasChanged())
 			config.save();

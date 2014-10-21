@@ -57,7 +57,7 @@ public class Basemod
 {
 	public static final String MODID = "pixelutilities";
 	public static final String NAME = "PixelUtilities";
-	public static final String VERSION = "3.3.2";
+	public static final String VERSION = "3.3.3";
 
 	/*public final ToolMaterial FIRESTONE = EnumHelper.addToolMaterial("FIRESTONE", 3, 1561, 8.0F, 3.0F, 10);
 	public final ToolMaterial WATERSTONE = EnumHelper.addToolMaterial("WATERSTONE", 3, 1561, 8.0F, 3.0F, 10);
@@ -358,7 +358,7 @@ public class Basemod
 	{
 		proxy.registerRenderThings();
 		GameRegistry.registerTileEntity(TreeEntity.class, "Tree");
-		GameRegistry.registerTileEntity(BolderEntity.class, "Bolder");
+		GameRegistry.registerTileEntity(BolderEntity.class, "Boulder");
 		GameRegistry.registerTileEntity(BoxEntity.class, "Box");
 		GameRegistry.registerTileEntity(ClothedTableEntity.class, "ClothedTable");
 		GameRegistry.registerTileEntity(PokeballEntity.class, "Pokeball");

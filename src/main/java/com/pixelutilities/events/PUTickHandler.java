@@ -1,6 +1,8 @@
 package com.pixelutilities.events;
 
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.ChatStyle;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IChatComponent;
@@ -8,12 +10,15 @@ import net.minecraft.util.IChatComponent;
 import com.pixelmonmod.pixelmon.api.events.PlayerBattleEndedAbnormalEvent;
 import com.pixelmonmod.pixelmon.api.events.PlayerBattleEndedEvent;
 import com.pixelmonmod.pixelmon.api.events.PlayerBattleStartedEvent;
+import com.pixelmonmod.pixelmon.storage.PixelmonStorage;
+import com.pixelmonmod.pixelmon.storage.PlayerNotLoadedException;
+import com.pixelmonmod.pixelmon.storage.PlayerStorage;
 import com.pixelutilities.Basemod;
 import com.pixelutilities.config.PixelUtilitiesConfig;
 import com.pixelutilities.radioplayer.VLCPlayer;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.PlayerEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -30,66 +35,47 @@ public class PUTickHandler
 			return;
 		playerRadio.start();
 	}
-	
+
 	@SubscribeEvent
 	public void onBattleEnd(PlayerBattleEndedEvent event)
 	{
 		playerRadio.stop();
 	}
-	
+
 	@SubscribeEvent
 	public void onBattleEndAbnormal(PlayerBattleEndedAbnormalEvent event)
 	{
 		playerRadio.stop();
 	}
-	
-	
-	//http://www.youtube.com/watch?v=mTSpMl5jpPw&index=5&list=RDLqqjTHqYmiM
-	//https://www.youtube.com/watch?v=eDfbtYOtNAU&list=RDLqqjTHqYmiM&index=3
-	//https://www.youtube.com/watch?v=JuPx-3_8ssQ&index=4&list=RDLqqjTHqYmiM
-/*
-	@Override
-	public void eventFired(EventType eventType, EntityPlayer player, Object... objects)
-	{
-		if (!PixelUtilitiesConfig.getInstance().battleMusicEnabled)
-			return;
 
-		switch(eventType)
-		{
-		case PlayerBattleStarted:
-			playerRadio.start();
-			break;
-
-		case PlayerBattleEnded:
-		case PlayerBattleEndedAbnormal:
-			playerRadio.stop();
-			break;
-		case BeatTrainer:
-			break;
-		case BeatWildPokemon:
-			break;
-		case CapturePokemon:
-			break;
-		case LostToTrainer:
-			break;
-		case PixelmonReceived:
-			break;
-		case PokeLootClaimed:
-			break;
-		case PokemonFaint:
-			break;
-		case RecieveModList:
-			break;
-		case RidePokemon:
-			break;
-		default:
-			break;
-		}
-	}
-*/
 	@SubscribeEvent
-	public void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event)
+	public void onPlayerLogin(PlayerLoggedInEvent event)
 	{
+		if(Basemod.instance.pixelmonPresent)
+		{
+			if(PixelUtilitiesConfig.getInstance().noStarterScreen)
+			{
+				if(event.player instanceof EntityPlayerMP)
+				{
+					EntityPlayerMP player = (EntityPlayerMP) event.player;
+					try {
+						PlayerStorage s = PixelmonStorage.PokeballManager.getPlayerStorage(player);
+						if(!s.starterPicked)
+						{
+							s.starterPicked = true;
+
+							ChatComponentTranslation chat = new ChatComponentTranslation("Starter screen has been skipped!");
+							chat.getChatStyle().setColor(EnumChatFormatting.GREEN);
+							player.addChatMessage(chat);
+						}
+					}
+					catch (PlayerNotLoadedException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+
 		System.out.println("world join ");
 		if (!Basemod.instance.vlcLoaded)//Display message in chat with link to vlc for arch
 		{
