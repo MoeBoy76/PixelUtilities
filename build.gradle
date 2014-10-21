@@ -54,6 +54,8 @@ configurations {
 
 //noinspection GroovyAssignabilityCheck
 dependencies {
+    testCompile 'junit:junit:4.10'
+    testCompile 'org.mockito:mockito-all:1.8.4'
     compile files('libs/compile/Pixelmon-deob.jar')
     compile files('libs/runtime/vlcj-3.0.1.jar')
     runtimeOnly files('libs/runtime/jna-3.5.2.jar')
