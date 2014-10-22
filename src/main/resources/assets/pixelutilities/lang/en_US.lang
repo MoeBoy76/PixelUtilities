@@ -1,15 +1,34 @@
 achievement.teammagma=Team Magma Grunt!
 achievement.teammagma.desc=Join Team Magma!
+
 achievement.teamaqua=Team Aqua Grunt!
 achievement.teamaqua.desc=Join Team Aqua!
-achievement.teammagma1=Team Magma Executive!
-achievement.teammagma1.desc=Become a Team Magma Executive
-achievement.teamaqua1=Team Aqua Executive!
-achievement.teamaqua1.desc=Become a Team Magma Executive
+
+achievement.teammagma1=Team Magma ???!
+achievement.teammagma1.desc=Become a Team Magma ???
+
+achievement.teamaqua1=Team Aqua ???!
+achievement.teamaqua1.desc=Become a Team Aqua ???
+
+achievement.teammagma2=Team Magma Executive!
+achievement.teammagma2.desc=Become a Team Magma Executive
+
+achievement.teamaqua2=Team Aqua Executive!
+achievement.teamaqua2.desc=Become a Team Aqua Executive
+
+achievement.teammagma3=Team Magma Leader!
+achievement.teammagma3.desc=Become a Team Magma Leader
+
+achievement.teamaqua3=Team Aqua Leader!
+achievement.teamaqua3.desc=Become a Team Aqua Leader
+
 achievement.getSilicon=Get Silicon!
 achievement.getSilicon.desc=Smelt some Silicon
+
 achievement.pokeGift=Pokegift Get!
 achievement.pokeGift.desc=Find a Pokegift from another player
+achievement.givenPokeGift=Pokegift Give!
+achievement.givenPokeGift.desc=Leave a Pokegift for another player
 
 tile.PokeGrass.name=PokeGrass
 tile.PokeDirt.name=PokeDirt
@@ -186,58 +205,59 @@ item.crystalSword.name=Crystal Sword
 item.crystalShovel.name=Crystal Shovel
 item.crystalHammer.name=Crystal Hammer
 
-item.Ruby Helmet.name=Magma Helmet
-item.Ruby Boots.name=Magma Boots
-item.Ruby Chestlate.name=Magma Chestplate
-item.Ruby Leggings.name=Magma Leggings
-item.Saphire Helmet.name=Aqua Helmet
-item.Saphire Booties.name=Aqua Boots
-item.Saphire ChestPlate.name=Aqua Chestplate
-item.Saphire Leggings.name=Aqua Leggings
-item.Galactic Helmet.name=Galactic Swag
-item.Galactic Boots.name=Galactic Boots
-item.Galactic ChestPlate.name=Galactic Chestplate
-item.Galactic Leggings.name=Galactic Leggings
-item.Rocket Helmet.name=Rocket Helmet
-item.Rocket ChestPlate.name=Rocket ChestPlate
-item.Rocket Boots.name=Rocket Boots
-item.Rocket Leggings.name=Rocket Leggings
+item.Ruby_Helmet.name=Magma Helmet
+item.Ruby_Boots.name=Magma Boots
+item.Ruby_Chestlate.name=Magma Chestplate
+item.Ruby_Leggings.name=Magma Leggings
+item.Saphire_Helmet.name=Aqua Helmet
+item.Saphire_Booties.name=Aqua Boots
+item.Saphire_ChestPlate.name=Aqua Chestplate
+item.Saphire_Leggings.name=Aqua Leggings
+item.Galactic_Helmet.name=Galactic Swag
+item.Galactic_Boots.name=Galactic Boots
+item.Galactic_ChestPlate.name=Galactic Chestplate
+item.Galactic_Leggings.name=Galactic Leggings
+item.Rocket_Helmet.name=Rocket Helmet
+item.Rocket_ChestPlate.name=Rocket ChestPlate
+item.Rocket_Boots.name=Rocket Boots
+item.Rocket_Leggings.name=Rocket Leggings
 
-item.Firestone Helmet.name=Firestone Helmet
-item.Firestone ChestPlate.name=Firestone ChestPlate
-item.Firestone Boots.name=Firestone Boots
-item.Firestone Leggings.name=Firestone Leggings
-item.Waterstone Helmet.name=Waterstone Helmet
-item.Waterstone ChestPlate.name=Waterstone ChestPlate
-item.Waterstone Boots.name=Waterstone Boots
-item.Waterstone Leggings.name=Waterstone Leggings
-item.Leafstone Helmet.name=Leafstone Helmet
-item.Leafstone ChestPlate.name=Leafstone ChestPlate
-item.Leafstone Boots.name=Leafstone Boots
-item.Leafstone Leggings.name=Leafstone Leggings
-item.Thunderstone Helmet.name=Thunderstone Helmet
-item.Thunderstone ChestPlate.name=Thunderstone ChestPlate
-item.Thunderstone Boots.name=Thunderstone Boots
-item.Thunderstone Leggings.name=Thunderstone Leggings
-item.Sunstone Helmet.name=Sunstone Helmet
-item.Sunstone ChestPlate.name=Sunstone ChestPlate
-item.Sunstone Boots.name=Sunstone Boots
-item.Sunstone Leggings.name=Sunstone Leggings
-item.Moonstone Helmet.name=Moonstone Helmet
-item.Moonstone ChestPlate.name=Moonstone ChestPlate
-item.Moonstone Boots.name=Moonstone Boots
-item.Moonstone Leggings.name=Moonstone Leggings
-item.Dawnstone Helmet.name=Dawnstone Helmet
-item.Dawnstone ChestPlate.name=Dawnstone ChestPlate
-item.Dawnstone Boots.name=Dawnstone Boots
-item.Dawnstone Leggings.name=Dawnstone Leggings
-item.Crystal Helmet.name=Crystal Helmet
-item.Crystal ChestPlate.name=Crystal ChestPlate
-item.Crystal Boots.name=Crystal Boots
-item.Crystal Leggings.name=Crystal Leggings
+item.Firestone_Helmet.name=Firestone Helmet
+item.Firestone_ChestPlate.name=Firestone ChestPlate
+item.Firestone_Boots.name=Firestone Boots
+item.Firestone_Leggings.name=Firestone Leggings
+item.Waterstone_Helmet.name=Waterstone Helmet
+item.Waterstone_ChestPlate.name=Waterstone ChestPlate
+item.Waterstone_Boots.name=Waterstone Boots
+item.Waterstone_Leggings.name=Waterstone Leggings
+item.Leafstone_Helmet.name=Leafstone Helmet
+item.Leafstone_ChestPlate.name=Leafstone ChestPlate
+item.Leafstone_Boots.name=Leafstone Boots
+item.Leafstone_Leggings.name=Leafstone Leggings
+item.Thunderstone_Helmet.name=Thunderstone Helmet
+item.Thunderstone_ChestPlate.name=Thunderstone ChestPlate
+item.Thunderstone_Boots.name=Thunderstone Boots
+item.Thunderstone_Leggings.name=Thunderstone Leggings
+item.Sunstone_Helmet.name=Sunstone Helmet
+item.Sunstone_ChestPlate.name=Sunstone ChestPlate
+item.Sunstone_Boots.name=Sunstone Boots
+item.Sunstone_Leggings.name=Sunstone Leggings
+item.Moonstone_Helmet.name=Moonstone Helmet
+item.Moonstone_ChestPlate.name=Moonstone ChestPlate
+item.Moonstone_Boots.name=Moonstone Boots
+item.Moonstone_Leggings.name=Moonstone Leggings
+item.Dawnstone_Helmet.name=Dawnstone Helmet
+item.Dawnstone_ChestPlate.name=Dawnstone ChestPlate
+item.Dawnstone_Boots.name=Dawnstone Boots
+item.Dawnstone_Leggings.name=Dawnstone Leggings
+item.Plasma_Helmet.name=Plasma Helmet
+item.Plasma_ChestPlate.name=Plasma ChestPlate
+item.Plasma_Boots.name=Plasma Boots
+item.Plasma_Leggings.name=Plasma Leggings
 
 itemGroup.tabPixelUtilitiesTools=PixelUtilities Tools
 itemGroup.tabPixelUtilitiesLights=PixelUtilities Colored Lights
 itemGroup.tabPixelUtilitiesArmours=PixelUtilities Armors
 
 pixelutilities.blocks.emptygift=You found an empty %s :(
+pixelutilities.blocks.fillmefirst=You need to place a Pixelmon inside first!

@@ -74,7 +74,7 @@ public class PixelUtilitiesBlocks {
 	public static Block redRugBlock;
 	public static Block greenRugBlock;
 	public static Block pokeballStatue;
-	public static Block obtainablePixelmon;
+	public static Block pokegift;
 
 
 	//lights
@@ -149,7 +149,7 @@ public class PixelUtilitiesBlocks {
 		if (Basemod.instance.pixelmonPresent)
 		{
 			pokeballStatue = new PokeballStatueBlock().setCreativeTab(PixelUtilitiesCreativeTabs.tabPokefurniture).setBlockName("PokeballStatue");
-			obtainablePixelmon = new PokegiftBlock(PokegiftEntity.class).setHardness(0.5f).setStepSound(Block.soundTypeMetal).setBlockName("Pokegift").setCreativeTab(PixelUtilitiesCreativeTabs.tabPokefurniture);
+			pokegift = new PokegiftBlock(PokegiftEntity.class).setHardness(0.5f).setStepSound(Block.soundTypeMetal).setBlockName("Pokegift").setCreativeTab(PixelUtilitiesCreativeTabs.tabPokefurniture);
 		}
 
 		//lights
@@ -223,7 +223,7 @@ public class PixelUtilitiesBlocks {
 		if (Basemod.instance.pixelmonPresent)
 		{
 			GameRegistry.registerBlock(pokeballStatue, "PokeballStatue");
-			GameRegistry.registerBlock(obtainablePixelmon, "Pokegift");
+			GameRegistry.registerBlock(pokegift, "Pokegift");
 		}
 
 		//lights

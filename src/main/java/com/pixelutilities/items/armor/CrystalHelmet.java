@@ -20,22 +20,22 @@ public class CrystalHelmet extends ItemArmor {
         setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesArmours);
         if (!PixelUtilitiesArmor.getArmourList().contains(this))
 			PixelUtilitiesArmor.getArmourList().add(this);
-        setTextureName("pixelUtilities:armor/CrystalHelmet");
-        setUnlocalizedName("Crystal Helmet");
+        setTextureName("pixelUtilities:armor/PlasmaHelmet");
+        setUnlocalizedName("Plasma_Helmet");
     }
 
     @Override
     public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
         if (stack.getItem() == Basemod.instance.crystalLegs) {
-            return "pixelutilities:textures/armor/CrystalArmor_2.png";
+            return "pixelutilities:textures/armor/PlasmaArmor_2.png";
         } else {
-            return "pixelutilities:textures/armor/CrystalArmor_1.png";
+            return "pixelutilities:textures/armor/PlasmaArmor_1.png";
         }
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister par1IconRegister) {
-        this.itemIcon = par1IconRegister.registerIcon("pixelutilities:armor/CrystalHelmet");
+        this.itemIcon = par1IconRegister.registerIcon("pixelutilities:armor/PlasmaHelmet");
     }
 }

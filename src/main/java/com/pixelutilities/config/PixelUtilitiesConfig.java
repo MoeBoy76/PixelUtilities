@@ -1,24 +1,14 @@
 package com.pixelutilities.config;
 
-import java.lang.reflect.Modifier;
-import java.util.Iterator;
-import java.util.List;
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.config.Property;
 
-import com.pixelmonmod.pixelmon.entities.npcs.EntityTrainer;
-import com.pixelmonmod.pixelmon.entities.pixelmon.EntityPixelmon;
 import com.pixelutilities.Basemod;
 
 import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.registry.EntityRegistry;
-import net.minecraft.entity.EntityList;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.common.config.Property;
 
 public class PixelUtilitiesConfig {
 
@@ -113,6 +103,7 @@ public class PixelUtilitiesConfig {
 	public void removePixelmonSpawns(FMLServerStartingEvent event)
 	{
 		//TODO remove pixelmon from dimension spawn list
+		
 	}
 
 	@SubscribeEvent

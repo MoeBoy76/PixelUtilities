@@ -20,7 +20,7 @@ public class RubyLegs extends ItemArmor {
         setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesArmours);
         if (!PixelUtilitiesArmor.getArmourList().contains(this))
 			PixelUtilitiesArmor.getArmourList().add(this);
-        setUnlocalizedName("Ruby Leggings");
+        setUnlocalizedName("Ruby_Leggings");
     }
 
     @Override

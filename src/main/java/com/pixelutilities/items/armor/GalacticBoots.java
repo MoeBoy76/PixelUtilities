@@ -20,7 +20,7 @@ public class GalacticBoots extends ItemArmor {
         if (!PixelUtilitiesArmor.getArmourList().contains(this))
 			PixelUtilitiesArmor.getArmourList().add(this);
         setTextureName("pixelutilities:armor/GalacticBoots");
-        setUnlocalizedName("Galactic Boots");
+        setUnlocalizedName("Galactic_Boots");
     }
 
     @Override

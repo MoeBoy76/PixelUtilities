@@ -135,7 +135,7 @@ public class PixelUtilitiesRecipes
             makeLegsRecipe(Basemod.instance.moonstoneLegs, PixelmonItems.moonStone);
             makeBootsRecipe(Basemod.instance.moonstoneBoots, PixelmonItems.moonStone);
             
-            GameRegistry.addRecipe(new ItemStack(PixelUtilitiesBlocks.obtainablePixelmon, 4), " B ","B B"," B ", 'B', new ItemStack(PixelmonItemsPokeballs.cherishBall,1));
+            GameRegistry.addRecipe(new ItemStack(PixelUtilitiesBlocks.pokegift, 4), " B ","B B"," B ", 'B', new ItemStack(PixelmonItemsPokeballs.cherishBall,1));
             
         }//TODO alternative recipies!
 
@@ -162,6 +162,16 @@ public class PixelUtilitiesRecipes
         makePlateRecipe(Basemod.instance.galacticPlate,Basemod.instance.siliconItem);
         makeLegsRecipe(Basemod.instance.galacticLegs, Basemod.instance.siliconItem);
         makeBootsRecipe(Basemod.instance.galacticBoots, Basemod.instance.siliconItem);
+        
+        makeHelmRecipe(Basemod.instance.crystalHelm, Basemod.instance.crystalItem);
+        makePlateRecipe(Basemod.instance.crystalPlate,Basemod.instance.crystalItem);
+        makeLegsRecipe(Basemod.instance.crystalLegs, Basemod.instance.crystalItem);
+        makeBootsRecipe(Basemod.instance.crystalBoots, Basemod.instance.crystalItem);
+        
+        makeHelmRecipe(Basemod.instance.rocketHelm, Basemod.instance.amethystItem);
+        makePlateRecipe(Basemod.instance.rocketPlate,Basemod.instance.amethystItem);
+        makeLegsRecipe(Basemod.instance.rocketLegs, Basemod.instance.amethystItem);
+        makeBootsRecipe(Basemod.instance.rocketBoots, Basemod.instance.amethystItem);
 
         //Radio
         GameRegistry.addRecipe(new ItemStack(PixelUtilitiesBlocks.radioBlock), "  y", "xyx", "xzx", 'x', new ItemStack(Blocks.planks), 'y', new ItemStack(Items.iron_ingot), 'z', new ItemStack(Items.diamond));

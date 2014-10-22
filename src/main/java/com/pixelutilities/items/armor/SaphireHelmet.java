@@ -21,7 +21,7 @@ public class SaphireHelmet extends ItemArmor {
         if (!PixelUtilitiesArmor.getArmourList().contains(this))
 			PixelUtilitiesArmor.getArmourList().add(this);
         setTextureName("pixelUtilities:armor/SaphireHelmet");
-        setUnlocalizedName("Saphire Helmet");
+        setUnlocalizedName("Saphire_Helmet");
     }
 
     @Override

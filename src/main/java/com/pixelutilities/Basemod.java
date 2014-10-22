@@ -1,14 +1,12 @@
 package com.pixelutilities;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
 import uk.co.caprica.vlcj.discovery.NativeDiscovery;
@@ -26,7 +24,6 @@ import com.pixelutilities.entitys.SeatEntity;
 import com.pixelutilities.events.CustomDrops;
 import com.pixelutilities.events.FallEliminator;
 import com.pixelutilities.events.PUTickHandler;
-import com.pixelutilities.items.armor.DawnstoneBoots;
 import com.pixelutilities.networking.PacketHandler;
 import com.pixelutilities.proxies.CommonProxy;
 import com.pixelutilities.radioplayer.VLCPlayer;
@@ -40,7 +37,6 @@ import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.ModMetadata;
 import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLEvent;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartedEvent;
@@ -85,6 +81,7 @@ public class Basemod
 	public final ArmorMaterial SAPHIREA = EnumHelper.addArmorMaterial("SAPHIRE", 200, new int[]{3, 7, 6, 3}, 10);
 	public final ArmorMaterial CRYSTALA = EnumHelper.addArmorMaterial("CRYSTAL", 200, new int[]{3, 7, 6, 3}, 10);
 	public final ArmorMaterial SILICONA = EnumHelper.addArmorMaterial("SILICON", 200, new int[]{3, 7, 6, 3}, 10);
+	public final ArmorMaterial AMETHYSTA = EnumHelper.addArmorMaterial("AMETHYST", 200, new int[]{3, 7, 6, 3}, 10);
 
 	//Massive chunk of variables to reduce static
 	//Items
@@ -228,7 +225,7 @@ public class Basemod
     public static Item rocketBoots;
     public static Item rocketPlate;
     public static Item rocketLegs;
-
+    
     
     public static Item firestoneHelm;
     public static Item firestonePlate;
@@ -277,10 +274,10 @@ public class Basemod
 	public boolean vlcLoaded = false;
 	public boolean pixelmonPresent = false;
 	public final boolean is64bit = Integer.parseInt(System.getProperty("sun.arch.data.model")) == 64;
-	public boolean DEBUGMODE = false;
+	public boolean DEBUGMODE = true;
 	public FMLEventChannel channel;
-	public static List<VLCPlayer> playerList = new ArrayList<>();
-	public static List<VLCPlayer> battleMusicList = new ArrayList<>();
+	public static ArrayList<VLCPlayer> playerList = new ArrayList<>();
+	public static ArrayList<VLCPlayer> battleMusicList = new ArrayList<>();
 	public VLCPlayer localMusicPlayer = null;
 
 	@Instance(Basemod.MODID)
@@ -329,6 +326,7 @@ public class Basemod
 			PUTickHandler tickHandler = new PUTickHandler();
 			
 			FMLCommonHandler.instance().bus().register(tickHandler);
+			FMLCommonHandler.instance().bus().register(new PixelUtilitiesAchievements());
 			MinecraftForge.EVENT_BUS.register(tickHandler);
 			initVLC();
 		}
@@ -432,7 +430,7 @@ public class Basemod
 
 				String itemName = item.getItemStackDisplayName(itemStack);
 
-				if (!itemName.getClass().getName().contains(MODID) || !itemName.getClass().getName().contains(Pixelmon.MODID))
+				if (!itemName.getClass().getName().contains(MODID))
 					return;
 
 				if (itemName.contains("item."))
@@ -448,12 +446,6 @@ public class Basemod
 
 	}
 	
-	@Mod.EventHandler
-	public void onServerStarted(FMLServerStartedEvent event)
-	{
-		event.getModState();
-	}
-
 	@Mod.EventHandler
 	public void serverStop(FMLServerStoppedEvent event) {
 		killAllStreams();

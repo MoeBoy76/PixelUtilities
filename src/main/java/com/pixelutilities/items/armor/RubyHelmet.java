@@ -20,7 +20,7 @@ public class RubyHelmet extends ItemArmor {
         setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesArmours);
         if (!PixelUtilitiesArmor.getArmourList().contains(this))
 			PixelUtilitiesArmor.getArmourList().add(this);
-        setUnlocalizedName("Ruby Helmet");
+        setUnlocalizedName("Ruby_Helmet");
     }
 
     @Override

@@ -21,22 +21,22 @@ public class CrystalBoots extends ItemArmor {
         setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesArmours);
 		if (!PixelUtilitiesArmor.getArmourList().contains(this))
 			PixelUtilitiesArmor.getArmourList().add(this);
-        setTextureName("pixelUtilities:armor/CrystalBoots");
-        setUnlocalizedName("Crystal Boots");
+        setTextureName("pixelUtilities:armor/PlasmaBoots");
+        setUnlocalizedName("Plasma_Boots");
     }
 
     @Override
     public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
         if (stack.getItem() == Basemod.instance.crystalLegs) {
-            return "pixelutilities:textures/armor/CrystalArmor_2.png";
+            return "pixelutilities:textures/armor/PlasmaArmor_2.png";
         } else {
-            return "pixelutilities:textures/armor/CrystalArmor_1.png";
+            return "pixelutilities:textures/armor/PlasmaArmor_1.png";
         }
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister par1IconRegister) {
-        this.itemIcon = par1IconRegister.registerIcon("pixelutilities:armor/CrystalBoots");
+        this.itemIcon = par1IconRegister.registerIcon("pixelutilities:armor/PlasmaBoots");
     }
 }

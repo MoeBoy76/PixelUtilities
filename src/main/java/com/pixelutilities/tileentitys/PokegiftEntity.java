@@ -4,14 +4,9 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 
-import com.pixelmonmod.pixelmon.blocks.TileEntityPokeChest.Type;
-import com.pixelmonmod.pixelmon.config.PixelmonConfig;
 import com.pixelmonmod.pixelmon.config.PixelmonEntityList;
 import com.pixelmonmod.pixelmon.entities.pixelmon.EntityPixelmon;
 import com.pixelmonmod.pixelmon.pokeloot.data.LootClaim;
@@ -71,8 +66,9 @@ public class PokegiftEntity extends TileEntity {
 		if(pixelmon != null && !(nbtPixelmon.hasNoTags()))
 		{
 			pixelmon.writeEntityToNBT(nbtPixelmon);
+			tagger.setTag("pixelmon", nbtPixelmon);
 		}
-		tagger.setTag("pixelmon", nbtPixelmon);
+		
 		
 		super.writeToNBT(tagger);
 

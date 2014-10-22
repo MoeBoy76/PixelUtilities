@@ -177,8 +177,15 @@ public class PokegiftBlock extends BlockContainer {
 				boolean shiftClick = PokeLoot.proxy.isShiftClick(player);
 
 				if (shiftClick) { // Set Server Owner
-					tile.setOwner(null);
-					ChatHandler.sendChat(player, "pixelmon.blocks.ownerchanged");
+					if(tile.getPixelmon() != null)
+					{
+						tile.setOwner(null);
+						ChatHandler.sendChat(player, "pixelmon.blocks.ownerchanged");
+						player.addStat(PixelUtilitiesAchievements.givenPokeGift, 1);
+						return true;
+					}
+					ChatHandler.sendChat(player, "pixelutilities.blocks.fillmefirst");
+					return false;
 				}
 				else
 				{

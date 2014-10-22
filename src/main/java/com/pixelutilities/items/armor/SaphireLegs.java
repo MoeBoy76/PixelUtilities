@@ -21,7 +21,7 @@ public class SaphireLegs extends ItemArmor {
         if (!PixelUtilitiesArmor.getArmourList().contains(this))
 			PixelUtilitiesArmor.getArmourList().add(this);
         setTextureName("pixelUtilities:armor/SaphireLegs");
-        setUnlocalizedName("Saphire Leggings");
+        setUnlocalizedName("Saphire_Leggings");
     }
 
     @Override
