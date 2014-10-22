@@ -1,28 +1,16 @@
 package com.pixelutilities.achievements;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.stats.Achievement;
-import net.minecraftforge.common.AchievementPage;
-
 import com.pixelutilities.Basemod;
 import com.pixelutilities.config.PixelUtilitiesBlocks;
-import com.pixelutilities.config.PixelUtilitiesItems;
 import com.pixelutilities.items.Siliconitem;
-import com.pixelutilities.items.armor.RubyBoots;
-import com.pixelutilities.items.armor.RubyHelmet;
-import com.pixelutilities.items.armor.RubyLegs;
-import com.pixelutilities.items.armor.RubyPlate;
-import com.pixelutilities.items.armor.SaphireBoots;
-import com.pixelutilities.items.armor.SaphireHelmet;
-import com.pixelutilities.items.armor.SaphireLegs;
-import com.pixelutilities.items.armor.SaphirePlate;
-
+import com.pixelutilities.items.armor.*;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.ItemSmeltedEvent;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.stats.Achievement;
+import net.minecraftforge.common.AchievementPage;
 
 public class PixelUtilitiesAchievements
 {
@@ -85,6 +73,22 @@ public class PixelUtilitiesAchievements
 			player.addStat(teamaqua, 1);
 			return;
 		}
+        if (item instanceof SaphireBoots)
+        {
+            player.addStat(teamaqua1, 1);
+            return;
+        }
+        if (item instanceof SaphireLegs)
+        {
+            player.addStat(teamaqua2, 1);
+            return;
+        }
+        if (item instanceof SaphirePlate)
+        {
+            player.addStat(teamaqua3, 1);
+            return;
+        }
+
 	}
 
 	@SubscribeEvent
