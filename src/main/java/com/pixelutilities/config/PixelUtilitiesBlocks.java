@@ -75,6 +75,7 @@ public class PixelUtilitiesBlocks {
 	public static Block greenRugBlock;
 	public static Block pokeballStatue;
 	public static Block pokegift;
+	public static Block eventPokegift;
 
 
 	//lights
@@ -98,8 +99,6 @@ public class PixelUtilitiesBlocks {
 		pokeSandC3Block = new PokeSandC3Block().setHardness(0.5f).setStepSound(Block.soundTypeSand).setBlockName("PokeSandCorner3").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelmonBlocks).setBlockTextureName("PixelUtilities" + ":" + "PokeSandC3");
 		pokeSandC4Block = new PokeSandC4Block().setHardness(0.5f).setStepSound(Block.soundTypeSand).setBlockName("PokeSandCorner4").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelmonBlocks).setBlockTextureName("PixelUtilities" + ":" + "PokeSandC4");
 		insideMoldingBlock = new InsideMoldingBlock().setHardness(0.5f).setStepSound(Block.soundTypeWood).setBlockName("Inside_Wall_Molding").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelmonBlocks).setBlockTextureName("PixelUtilities" + ":" + "InsideMolding");
-		if (Basemod.instance.pixelmonPresent)
-			pixelmonGrassBlock = new PixelmonGrassBlock().setHardness(0.5f).setStepSound(Block.soundTypeGrass).setBlockName("Pixelmon_Grass").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelmonBlocks).setBlockTextureName("PixelUtilities" + ":" + "PixelmonGrass");
 		shinglesBlock = new ShinglesBlock().setHardness(0.5f).setStepSound(Block.soundTypeStone).setBlockName("Shingles").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelmonBlocks).setBlockTextureName("PixelUtilities" + ":" + "Shingles");
 		shinglesCorner1Block = new ShinglesCorner1Block().setHardness(0.5f).setStepSound(Block.soundTypeStone).setBlockName("Shingles_Corner_1").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelmonBlocks).setBlockTextureName("PixelUtilities" + ":" + "RoofCorner1");
 		shinglesCorner2Block = new ShinglesCorner2Block().setHardness(0.5f).setStepSound(Block.soundTypeStone).setBlockName("Shingles_Corner_2").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelmonBlocks).setBlockTextureName("PixelUtilities" + ":" + "RoofCorner2");
@@ -130,9 +129,7 @@ public class PixelUtilitiesBlocks {
 		amethystBlock = new AmethystBlock().setHardness(8.5f).setStepSound(Block.soundTypeMetal).setBlockName("AmethystBlock").setBlockTextureName("pixelutilities:AmethystBlock").setCreativeTab(CreativeTabs.tabBlock);
 		crystalBlock = new CrystalBlock().setHardness(8.5f).setStepSound(Block.soundTypeMetal).setBlockName("CrystalBlock").setBlockTextureName("pixelutilities:CrystalBlock").setCreativeTab(CreativeTabs.tabBlock);
 		siliconOre = new SiliconOre().setHardness(1.2f).setStepSound(Block.soundTypeMetal).setBlockName("SiliconOre").setBlockTextureName("pixelutilities:SiliconOre").setCreativeTab(CreativeTabs.tabBlock);
-		clothedTableBlock = new ClothedTableBlock().setHardness(0.5f).setStepSound(Block.soundTypeWood).setBlockName("ClothedTable").setCreativeTab(PixelUtilitiesCreativeTabs.tabPokefurniture);
-		if (Basemod.instance.pixelmonPresent)
-			pokeballBlock = new PokeballBlock().setHardness(0.5f).setStepSound(Block.soundTypeMetal).setBlockName("Pokeball").setCreativeTab(PixelUtilitiesCreativeTabs.tabPokefurniture);
+		clothedTableBlock = new ClothedTableBlock().setHardness(0.5f).setStepSound(Block.soundTypeWood).setBlockName("ClothedTable").setCreativeTab(PixelUtilitiesCreativeTabs.tabPokefurniture);			
 		redCusionChairBlock = new RedCusionChairBlock().setHardness(0.5f).setStepSound(Block.soundTypeWood).setBlockName("RedCusionChair").setCreativeTab(PixelUtilitiesCreativeTabs.tabPokefurniture);
 		trashcanBlock = new TrashcanBlock().setHardness(0.5f).setStepSound(Block.soundTypeMetal).setBlockName("Trashcan").setCreativeTab(PixelUtilitiesCreativeTabs.tabPokefurniture);
 		yellowCusionChairBlock = new YellowCusionChairBlock().setHardness(0.5f).setStepSound(Block.soundTypeWood).setBlockName("YellowCusionChair").setCreativeTab(PixelUtilitiesCreativeTabs.tabPokefurniture);
@@ -150,6 +147,9 @@ public class PixelUtilitiesBlocks {
 		{
 			pokeballStatue = new PokeballStatueBlock().setCreativeTab(PixelUtilitiesCreativeTabs.tabPokefurniture).setBlockName("PokeballStatue");
 			pokegift = new PokegiftBlock(PokegiftEntity.class).setHardness(0.5f).setStepSound(Block.soundTypeMetal).setBlockName("Pokegift").setCreativeTab(PixelUtilitiesCreativeTabs.tabPokefurniture);
+			pixelmonGrassBlock = new PixelmonGrassBlock().setHardness(0.5f).setStepSound(Block.soundTypeGrass).setBlockName("Pixelmon_Grass").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelmonBlocks).setBlockTextureName("PixelUtilities" + ":" + "PixelmonGrass");
+			pokeballBlock = new PokeballBlock().setHardness(0.5f).setStepSound(Block.soundTypeMetal).setBlockName("Pokeball").setCreativeTab(PixelUtilitiesCreativeTabs.tabPokefurniture);
+			eventPokegift = new PokegiftEventBlock(PokegiftEntity.class).setHardness(0.5f).setStepSound(Block.soundTypeMetal).setBlockName("Event_Pokegift");
 		}
 
 		//lights
@@ -171,9 +171,7 @@ public class PixelUtilitiesBlocks {
 		GameRegistry.registerBlock(pokeSandC3Block, "PokeSandCorner3");
 		GameRegistry.registerBlock(pokeSandC4Block, "PokeSandCorner4");
 		GameRegistry.registerBlock(pokeDirtBlock, "PokeDirt");
-		GameRegistry.registerBlock(insideMoldingBlock, "Inside Wall Molding");
-		if (Basemod.instance.pixelmonPresent)
-			GameRegistry.registerBlock(pixelmonGrassBlock, "Pixelmon Grass");
+		GameRegistry.registerBlock(insideMoldingBlock, "Inside Wall Molding");			
 		GameRegistry.registerBlock(shinglesCorner2Block, "Shingles Corner 2");
 		GameRegistry.registerBlock(shinglesBlock, "Shingles");
 		GameRegistry.registerBlock(shinglesCorner1Block, "Shingles Corner 1");
@@ -200,8 +198,6 @@ public class PixelUtilitiesBlocks {
 		GameRegistry.registerBlock(bolderBlock, "Bolder");
 		GameRegistry.registerBlock(boxBlock, "Box");
 		GameRegistry.registerBlock(clothedTableBlock, "ClothedTable");
-		if (Basemod.instance.pixelmonPresent)
-			GameRegistry.registerBlock(pokeballBlock, "Pokeball");
 		GameRegistry.registerBlock(redCusionChairBlock, "RedCusionChair");
 		GameRegistry.registerBlock(trashcanBlock, "Trashcan");
 		GameRegistry.registerBlock(yellowCusionChairBlock, "YellowCusionChair");
@@ -212,7 +208,6 @@ public class PixelUtilitiesBlocks {
 		GameRegistry.registerBlock(crystalOre, "CrystalOre");
 		GameRegistry.registerBlock(totodilePokedollBlock, "TotodileDoll");
 		GameRegistry.registerBlock(aronPokedollBlock, "AronDoll");
-		//GameRegistry.registerBlock(BisharpPokedollBlock, "BisharpDoll");
 		GameRegistry.registerBlock(radioBlock, "Radio");
 		GameRegistry.registerBlock(gymSignBlock, "GymSign");
 		GameRegistry.registerBlock(tvBlock, "TV");
@@ -224,6 +219,9 @@ public class PixelUtilitiesBlocks {
 		{
 			GameRegistry.registerBlock(pokeballStatue, "PokeballStatue");
 			GameRegistry.registerBlock(pokegift, "Pokegift");
+			GameRegistry.registerBlock(pixelmonGrassBlock, "Pixelmon Grass");
+			GameRegistry.registerBlock(pokeballBlock, "Pokeball");
+			GameRegistry.registerBlock(eventPokegift, "Event_Pokegift");
 		}
 
 		//lights

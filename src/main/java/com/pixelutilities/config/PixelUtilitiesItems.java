@@ -72,7 +72,6 @@ public class PixelUtilitiesItems {
 		Basemod.instance.siliconItem = new Siliconitem().setCreativeTab(CreativeTabs.tabMaterials).setTextureName("PixelUtilities:Silicon");
 		Basemod.instance.crystalItem = new CrystalItem().setCreativeTab(CreativeTabs.tabMaterials).setTextureName("PixelUtilities:Crystal");
 		Basemod.instance.cdItem = new CDItem().setCreativeTab(CreativeTabs.tabMisc).setTextureName("PixelUtilities:CD");
-		//HandHeldRadio = new HandHeldRadioItem().setCreativeTab(CreativeTabs.tabMisc).setTextureName("PixelUtilities:handheldradio");
 		Basemod.instance.amethystItem = new AmethystItem().setCreativeTab(CreativeTabs.tabMaterials).setTextureName("PixelUtilities:Amethyst");
 		Basemod.instance.pixelBoyItem = new PixelBoyItem().setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesLights).setTextureName("pixelutilities:PixelBoy");
 	}
@@ -89,7 +88,6 @@ public class PixelUtilitiesItems {
 		GameRegistry.registerItem(Basemod.instance.rubyItem, Basemod.instance.rubyItem.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(Basemod.instance.siliconItem, Basemod.instance.siliconItem.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(Basemod.instance.cdItem, Basemod.instance.cdItem.getUnlocalizedName().substring(5));
-		//GameRegistry.registerItem(HandHeldRadio, HandHeldRadio.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(Basemod.instance.crystalItem, Basemod.instance.crystalItem.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(Basemod.instance.amethystItem, Basemod.instance.amethystItem.getUnlocalizedName().substring(5));
 

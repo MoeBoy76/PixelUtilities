@@ -15,26 +15,27 @@ import net.minecraftforge.common.AchievementPage;
 public class PixelUtilitiesAchievements
 {
 
-	private final static String INDEX = "wtf";
 	private int magArmor = 0;
 	private int aquaArmor = 0;
 
-	public static Achievement teammagma = new Achievement(INDEX, "teammagma", -1, -1, Basemod.instance.rubyHelm, null);
-	public static Achievement teamaqua = new Achievement(INDEX + 1, "teamaqua", 3, -1, Basemod.instance.saphireHelm, null);
+	public static Achievement teammagma = new Achievement("achievement.teammagma", "teammagma", -1, -1, Basemod.instance.rubyHelm, null).registerStat();
+	public static Achievement teamaqua = new Achievement("achievement.teamaqua", "teamaqua", 3, -1, Basemod.instance.saphireHelm, null).registerStat();
 	
-	public static Achievement teammagma1 = new Achievement(INDEX + 2, "teammagma1", -1, 1, Basemod.instance.rubyBoots, teammagma);
-	public static Achievement teamaqua1 = new Achievement(INDEX + 3, "teamaqua1", 3, 1, Basemod.instance.saphireBoots, teamaqua);
+	public static Achievement teammagma1 = new Achievement("achievement.teammagma1", "teammagma1", -1, 1, Basemod.instance.rubyBoots, teammagma).registerStat();
+	public static Achievement teamaqua1 = new Achievement("achievement.teamaqua1", "teamaqua1", 3, 1, Basemod.instance.saphireBoots, teamaqua).registerStat();
 	
-	public static Achievement getSilicon = new Achievement(INDEX + 4, "getSilicon", 1, -1, Basemod.instance.siliconItem, null);
+	public static Achievement getSilicon = new Achievement("achievement.getsilicon", "getSilicon", 1, -1, Basemod.instance.siliconItem, null).registerStat();
 
-	public static Achievement pokeGift = new Achievement(INDEX + 5, "pokeGift", 1, 1, PixelUtilitiesBlocks.pokegift, null);
-	public static Achievement givenPokeGift = new Achievement(INDEX + 6, "givenPokeGift", 1, 3, PixelUtilitiesBlocks.pokegift, null).setSpecial();
+	public static Achievement pokeGift = new Achievement("achievement.pokegift", "pokeGift", 1, 1, PixelUtilitiesBlocks.pokegift, null).registerStat();
+	public static Achievement givenPokeGift = new Achievement("achievement.givenpokegift", "givenPokeGift", 1, 3, PixelUtilitiesBlocks.pokegift, null).registerStat().setSpecial();
 	
-	public static Achievement teammagma2 = new Achievement(INDEX + 7, "teammagma2", -1, 3, Basemod.instance.rubyLegs, teammagma1);
-	public static Achievement teammagma3 = new Achievement(INDEX + 8, "teammagma3", -1, 5, Basemod.instance.rubyPlate, teammagma2);
+	public static Achievement teammagma2 = new Achievement("achievement.teammagma2", "teammagma2", -1, 3, Basemod.instance.rubyLegs, teammagma1).registerStat();
+	public static Achievement teammagma3 = new Achievement("achievement.teammagma3", "teammagma3", -1, 5, Basemod.instance.rubyPlate, teammagma2).registerStat();
 	
-	public static Achievement teamaqua2 = new Achievement(INDEX + 9, "teamaqua2", 3, 3, Basemod.instance.saphireLegs, teamaqua1);
-	public static Achievement teamaqua3 = new Achievement(INDEX + 10, "teamaqua3", 3, 5, Basemod.instance.saphirePlate, teamaqua2);
+	public static Achievement teamaqua2 = new Achievement("achievement.teamaqua2", "teamaqua2", 3, 3, Basemod.instance.saphireLegs, teamaqua1).registerStat();
+	public static Achievement teamaqua3 = new Achievement("achievement.teamaqua3", "teamaqua3", 3, 5, Basemod.instance.saphirePlate, teamaqua2).registerStat();
+	
+	//TODO Team Rocket, Galactic and Plasma
 	
 	public static AchievementPage PixelUtilitiesPage = new AchievementPage("PixelUtilities", teammagma, teamaqua, teammagma1, teamaqua1, getSilicon, pokeGift, givenPokeGift, teammagma2, teammagma3, teamaqua2, teamaqua3);
 
@@ -89,6 +90,7 @@ public class PixelUtilitiesAchievements
             return;
         }
 
+        //TODO as above
 	}
 
 	@SubscribeEvent

@@ -57,7 +57,6 @@ public class PixelUtilitiesArmor
 	
 	public static void load(Configuration cfg)
 	{
-		//TODO, textures for armour are referenced but not present?
 		Basemod.instance.rubyHelm = new RubyHelmet(Basemod.instance.RUBYA, 0, 0);
 		Basemod.instance.rubyPlate = new RubyPlate(Basemod.instance.RUBYA, 0, 1);
 		Basemod.instance.rubyLegs = new RubyLegs(Basemod.instance.RUBYA, 0, 2);
@@ -73,11 +72,16 @@ public class PixelUtilitiesArmor
 		Basemod.instance.galacticLegs = new GalacticLegs(Basemod.instance.SILICONA, 0, 2);
 		Basemod.instance.galacticBoots = new GalacticBoots(Basemod.instance.SILICONA, 0, 3);
 
-		Basemod.instance.crystalHelm = new CrystalHelmet(Basemod.instance.CRYSTALA, 0, 0);
-		Basemod.instance.crystalPlate = new CrystalPlate(Basemod.instance.CRYSTALA, 0, 1);
-		Basemod.instance.crystalLegs = new CrystalLegs(Basemod.instance.CRYSTALA, 0, 2);
-		Basemod.instance.crystalBoots = new CrystalBoots(Basemod.instance.CRYSTALA, 0, 3);
-
+		Basemod.instance.crystalHelm = new CrystalHelmet(Basemod.instance.CRYSTALA, 0, 0, true).setTextureName("pixelUtilities:armor/PlasmaHelmet").setUnlocalizedName("Plasma_Helmet");
+		Basemod.instance.crystalPlate = new CrystalPlate(Basemod.instance.CRYSTALA, 0, 1, true).setTextureName("pixelUtilities:armor/PlasmaPlate").setUnlocalizedName("Plasma_ChestPlate");
+		Basemod.instance.crystalLegs = new CrystalLegs(Basemod.instance.CRYSTALA, 0, 2, true).setTextureName("pixelUtilities:armor/PlasmaLegs").setUnlocalizedName("Plasma_Leggings");
+		Basemod.instance.crystalBoots = new CrystalBoots(Basemod.instance.CRYSTALA, 0, 3, true).setTextureName("pixelUtilities:armor/PlasmaBoots").setUnlocalizedName("Plasma_Boots");
+		
+		Basemod.instance.neoHelm = new CrystalHelmet(Basemod.instance.CRYSTALA, 0, 0, false).setTextureName("pixelutilities:armor/NeoPlasmaHelmet").setUnlocalizedName("Neo_Plasma_Helmet");
+		Basemod.instance.neoPlate = new CrystalPlate(Basemod.instance.CRYSTALA, 0, 1, false).setTextureName("pixelUtilities:armor/NeoPlasmaPlate").setUnlocalizedName("Neo_Plasma_Chestplate");
+		Basemod.instance.neoLegs = new CrystalLegs(Basemod.instance.CRYSTALA, 0, 2, false).setTextureName("pixelUtilities:armor/NeoPlasmaLegs").setUnlocalizedName("Neo_Plasma_Leggings");
+		Basemod.instance.neoBoots = new CrystalBoots(Basemod.instance.CRYSTALA, 0, 3, false).setTextureName("pixelUtilities:armor/NeoPlasmaBoots").setUnlocalizedName("Neo_Plasma_Boots");
+		
 		Basemod.instance.rocketHelm = new RocketHelmet(Basemod.instance.AMETHYSTA, 0, 0);
 		Basemod.instance.rocketPlate = new RocketPlate(Basemod.instance.AMETHYSTA, 0, 1);
 		Basemod.instance.rocketLegs = new RocketLegs(Basemod.instance.AMETHYSTA, 0, 2);
@@ -181,6 +185,11 @@ public class PixelUtilitiesArmor
 		GameRegistry.registerItem(Basemod.instance.crystalPlate, "Plasma_Chestplate");
 		GameRegistry.registerItem(Basemod.instance.crystalLegs, "Plasma_Leggings");
 		GameRegistry.registerItem(Basemod.instance.crystalBoots, "Plasma_Boots");
+		
+		GameRegistry.registerItem(Basemod.instance.neoHelm, "Neo_Plasma_Helmet");
+		GameRegistry.registerItem(Basemod.instance.neoPlate, "Neo_Plasma_Chestplate");
+		GameRegistry.registerItem(Basemod.instance.neoLegs, "Neo_Plasma_Leggings");
+		GameRegistry.registerItem(Basemod.instance.neoBoots, "Neo_Plasma_Boots");
 	}
 	
 	public static List<Item> getArmourList() {

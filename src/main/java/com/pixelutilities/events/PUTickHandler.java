@@ -51,33 +51,8 @@ public class PUTickHandler
 	@SubscribeEvent
 	public void onPlayerLogin(PlayerLoggedInEvent event)
 	{
-		if(Basemod.instance.pixelmonPresent)
-		{
-			if(PixelUtilitiesConfig.getInstance().noStarterScreen)
-			{
-				if(event.player instanceof EntityPlayerMP)
-				{
-					EntityPlayerMP player = (EntityPlayerMP) event.player;
-					try {
-						PlayerStorage s = PixelmonStorage.PokeballManager.getPlayerStorage(player);
-						if(!s.starterPicked)
-						{
-							s.starterPicked = true;
-
-							ChatComponentTranslation chat = new ChatComponentTranslation("Starter screen has been skipped!");
-							chat.getChatStyle().setColor(EnumChatFormatting.GREEN);
-							player.addChatMessage(chat);
-						}
-					}
-					catch (PlayerNotLoadedException e) {
-						e.printStackTrace();
-					}
-				}
-			}
-		}
-
-		System.out.println("world join ");
-		if (!Basemod.instance.vlcLoaded)//Display message in chat with link to vlc for arch
+		//System.out.println("world join ");
+		if (!Basemod.instance.vlcLoaded && PixelUtilitiesConfig.getInstance().vlcMessage)//Display message in chat with link to vlc for arch
 		{
 			ChatStyle style = new ChatStyle().setUnderlined(true).setColor(EnumChatFormatting.GOLD);
 			IChatComponent text = new ChatComponentText("You need to download VLC here to hear the radio ").setChatStyle(style);
@@ -86,11 +61,11 @@ public class PUTickHandler
 			if (Basemod.instance.is64bit)
 			{
 				//TODO detect platform (mac/linux/windogs)
-				text = new ChatComponentText("http://download.videolan.org/pub/videolan/vlc/last/win64/vlc-2.1.3-win64.exe").setChatStyle(style);
+				text = new ChatComponentText("http://download.videolan.org/pub/videolan/vlc/last/win64/vlc-2.1.5-win64.exe").setChatStyle(style);
 			}
 			else
 			{
-				text = new ChatComponentText("http://download.videolan.org/pub/videolan/vlc/last/win32/vlc-2.1.3-win32.exe").setChatStyle(style);
+				text = new ChatComponentText("http://download.videolan.org/pub/videolan/vlc/last/win32/vlc-2.1.5-win32.exe").setChatStyle(style);
 			}
 			event.player.addChatComponentMessage(text);
 		}
