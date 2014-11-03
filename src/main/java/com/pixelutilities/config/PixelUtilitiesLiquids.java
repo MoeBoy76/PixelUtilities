@@ -16,7 +16,7 @@ public class PixelUtilitiesLiquids {
     {
         FluidRegistry.registerFluid(sewage);
         LiquidSewage sewageBlock = new LiquidSewage(sewage);
-        GameRegistry.registerBlock(sewageBlock, Basemod.MODID+"_"+sewageBlock.getUnlocalizedName().substring(5));
+        GameRegistry.registerBlock(sewageBlock, Basemod.MODID + "_" + sewageBlock.getUnlocalizedName().substring(5));
         sewage.setUnlocalizedName(sewageBlock.getUnlocalizedName());
     }
 

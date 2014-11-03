@@ -1,24 +1,20 @@
 package com.pixelutilities.config;
 
-import java.lang.reflect.Modifier;
-import java.util.Iterator;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 
-import com.pixelmonmod.pixelmon.entities.npcs.EntityTrainer;
-import com.pixelmonmod.pixelmon.entities.pixelmon.EntityPixelmon;
+import net.minecraft.world.World;
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.config.Property;
+
 import com.pixelutilities.Basemod;
 
 import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.registry.EntityRegistry;
-import net.minecraft.entity.EntityList;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.common.config.Property;
 
 public class PixelUtilitiesConfig {
 
@@ -37,6 +33,21 @@ public class PixelUtilitiesConfig {
 
 	public String BattleMusicURL;
 	public boolean battleMusicEnabled;
+	public boolean vlcMessage = false;
+	
+	public boolean doEvents = true;
+	public boolean isEvent = true;
+	public boolean eventLegendaries = false;
+	public boolean eventShinies = false;
+	public boolean isHalloween = false;
+	public boolean isChristmas = false;
+	public boolean setEventPlacement = false;
+	
+	public List<String> eventCoords = new ArrayList<>();
+	String[] blankArray = {"notConfigured"};
+	Property coordsProp;
+	
+	public boolean oreGen = true;
 
 	static
 	{
@@ -76,19 +87,35 @@ public class PixelUtilitiesConfig {
 		propCoinDrop.comment = "Enable/Disable PixelUtilities coins dropping from wild pokemon";
 		coinDrops = propCoinDrop.getBoolean();
 		
-		grassBattles = config.get("general", "Allow pixelmon spawning via pixelmon grass", false, "Enables/Disables Pixelmon spawning from PU grass").getBoolean(false);
+		grassBattles = config.get("general", "Pixelmon spawn in grass", false, "Enables/Disables Pixelmon spawning from PU grass").getBoolean(false);
 		onlyGrassSpawns = config.get("general", "Only spawn Pixelmon in grass", false, "Currently broken :(").getBoolean(false);
-		grassSpawnRate = config.get("general", "Pixelmon in grass spawn rate", 200, "Kinda weird ATM").getInt(200);
+		grassSpawnRate = config.get("general", "Pixelmon grass spawn rate", 200, "Kinda weird ATM").getInt(200);
 		coinDropRate = config.get("general", "Pixelmon coin drop rate", 4, "default: 4 = 1/100 chance").getInt(4);
 		
 		//music
-		BattleMusicURL = config.get("General", "BattleMusic Song URL (If youtube make sure not https)", "http://www.youtube.com/watch?v=WnkhVPmapc8", "The URL of a song to play when in-battle").getString(); //why no https??
+		BattleMusicURL = config.get("General", "BattleMusic URL", "http://www.youtube.com/watch?v=WnkhVPmapc8", "The URL of a song to play when in-battle (no https)").getString();
 		battleMusicEnabled = config.get("General", "Battle Music?", false, "Plays the BattleMusicURL when you are in battle").getBoolean(false);
 		
-		scalePokes = config.get("general", "Scale grass encounters to team", false, "random lvl between your lowest and highest party lvls").getBoolean(false);
+		scalePokes = config.get("general", "Scale encounters to team", false, "random lvl between your lowest and highest party lvls").getBoolean(false);
 		
 		pokeGiftMany = config.get("general", "Are Pokegifts re-usable?", false, "true means many players get the pixelmon").getBoolean(false);
-
+		
+		vlcMessage = config.get("general", "VLC missing message", true, "Displays the message to download VLC when it is missing").getBoolean(true);
+		
+		doEvents = config.get("general", "Have events", true, "turning this off stops the halloween and christmas pokegifts").getBoolean(true);
+		isEvent = config.get("general", "Event load", true, "Should an event pokegift spawn? (only during the 3 weeks around halloween and christmas)").getBoolean(true);
+		setEventPlacement = config.get("general", "Specify event spawns", false, "True to use a specific set of co-ordinates for each pokegift event").getBoolean(false);
+		
+		coordsProp = config.get("general", "Event Co-ords", blankArray, "specify the co-ordinates of the pokegift event chest here");
+		eventCoords = Arrays.asList(coordsProp.getStringList());
+		
+		checkTime();
+		
+		eventLegendaries = config.get("general", "Event has Legendaries", false, "Enable/Disable legendaries from being added to the event pokegift").getBoolean(false);
+		eventShinies = config.get("general","Event has Shinies",false, "Each Pixelmon has a 1/10 chance of being a shiny").getBoolean(false);
+		
+		oreGen = config.get("general", "Ore Generation", true, "Allows Ruby, Sapphire, Amethyst, Crystal and Silicon ores to spawn").getBoolean(true);
+		
 		if(config.hasChanged())
 			config.save();
 	}
@@ -109,7 +136,8 @@ public class PixelUtilitiesConfig {
 
 	public void removePixelmonSpawns(FMLServerStartingEvent event)
 	{
-		//TODO remove pixelmon from dimension spawn list
+		//TODO remove pixelmon from dimension spawn list, or someshit
+		
 	}
 
 	@SubscribeEvent
@@ -118,6 +146,61 @@ public class PixelUtilitiesConfig {
 		if(event.modID.equalsIgnoreCase(Basemod.MODID))
 		{
 			loadConfig();
+		}
+	}
+	
+	/**
+	 * check if the current time is around Halloween or Christmas
+	 */
+	private void checkTime()
+	{
+		Calendar cal = Calendar.getInstance();
+		if((cal.get(Calendar.WEEK_OF_YEAR) >= 42 && cal.get(Calendar.WEEK_OF_YEAR) <= 44))
+		{
+			isHalloween = true;
+		}
+		if((cal.get(Calendar.WEEK_OF_YEAR) >= 50 && cal.get(Calendar.WEEK_OF_YEAR) <= 52))
+		{
+			isChristmas = true;
+		}
+	}
+	
+	public void disableEventLoading()
+	{
+		isEvent = false;
+		isEvent = config.get("general", "Event load", false, "Should and event pokegift spawn").getBoolean(false);
+		config.save();
+	}
+	
+	/**
+	 * 
+	 * @param x - x co-ordinate for event pokegift
+	 * @param y - y co-ordinate for event pokegift
+	 * @param z - z co-ordinate for event pokegift
+	 * @param doSpawn - spawn the pokegift after setting the co-ordinates
+	 * @return - if event pokegift is able to be placed
+	 */
+	public boolean setLocation(int x, int y, int z, boolean doSpawn, World world)
+	{
+		String strX = "" + x;
+		String strY = "" + y;
+		String strZ = "" + z;
+		
+		String[] coords = {strX, strY, strZ};
+		
+		eventCoords = Arrays.asList(coords);
+		
+		coordsProp = config.get("general", "Event Co-ords", coords, "specify the co-ordinates of the pokegift event chest here");
+		
+		config.save();
+		
+		if(doSpawn)
+		{
+			return Basemod.instance.pge.placeEvent(world);
+		}
+		else
+		{
+			return true;
 		}
 	}
 }

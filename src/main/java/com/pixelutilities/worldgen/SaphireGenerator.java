@@ -30,12 +30,12 @@ public class SaphireGenerator implements IWorldGenerator {
     }
 
     private void generateSurface(World world, Random rand, int chunkX, int chunkZ) {
-        for (int k = 0; k < 10; k++) {
+        for (int k = 0; k < 4; k++) {
             int firstBlockXCoord = chunkX + rand.nextInt(25);
             int firstBlockYCoord = rand.nextInt(64);
             int firstBlockZCoord = chunkZ + rand.nextInt(25);
 
-            (new WorldGenMinable(PixelUtilitiesBlocks.saphireOre, 5)).generate(world, rand, firstBlockXCoord, firstBlockYCoord, firstBlockZCoord);
+            (new WorldGenMinable(PixelUtilitiesBlocks.saphireOre, 3)).generate(world, rand, firstBlockXCoord, firstBlockYCoord, firstBlockZCoord);
         }
     }
 

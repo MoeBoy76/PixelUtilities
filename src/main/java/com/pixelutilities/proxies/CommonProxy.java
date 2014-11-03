@@ -1,25 +1,14 @@
 package com.pixelutilities.proxies;
 
-public class CommonProxy {
+import com.pixelutilities.tileentitys.*;
 
-    public void initSounds() {
+import cpw.mods.fml.common.registry.GameRegistry;
 
+public class CommonProxy
+{
+
+    public void registerRenderThings()
+    {
+    	
     }
-
-    public void initRenderers() {
-
-    }
-
-    public void registerRenderThings() {
-
-    }
-
-    public void registerRenderers() {
-
-    }
-
-    public void initTileEntities() {
-
-    }
-
 }

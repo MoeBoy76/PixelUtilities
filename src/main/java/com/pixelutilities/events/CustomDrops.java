@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import tv.twitch.chat.ChatMessage;
 import net.minecraft.command.ICommandSender;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
@@ -26,6 +28,7 @@ public class CustomDrops
 	private Configuration dropConfig = null;
 	String[] blankArray = {"notConfigured"};
 	ArrayList<ItemStack> dropStacks = new ArrayList<>();
+	//ArrayList<Integer> dropStackAmounts = new ArrayList<>();
 
 	static
 	{
@@ -39,11 +42,16 @@ public class CustomDrops
 
 	private CustomDrops()
 	{
-		dropConfig = new Configuration(new File("config/" + Basemod.MODID + "-drops.cfg"));
+		//TODO make config load and save
+		/*dropConfig = new Configuration(new File("config/" + Basemod.MODID + "-drops.cfg"));
 		dropConfig.load();
-		dropConfig.get(Configuration.CATEGORY_GENERAL, "Items for Pixelmon to drop", blankArray).getStringList();
+		
+		List<String> drops = Arrays.asList(dropConfig.get(Configuration.CATEGORY_GENERAL, "Items for Pixelmon to drop", blankArray, "These are the items to drop").getStringList());
+		List<String> amounts = Arrays.asList(dropConfig.get(Configuration.CATEGORY_GENERAL, "Amounts to drop", blankArray, "these correspond to the drops").getStringList());
+		
+		
 		if(dropConfig.hasChanged())
-			dropConfig.save();
+			dropConfig.save();*/
 	}
 
 	@SubscribeEvent
@@ -57,6 +65,7 @@ public class CustomDrops
 				ItemStack toDrop = dropStacks.get(itemNum);
 				toDrop.stackSize = event.player.getRNG().nextInt(toDrop.stackSize);
 				event.player.inventory.addItemStackToInventory(toDrop);
+				event.player.addChatMessage(new ChatComponentText("You just got " + toDrop.getDisplayName() + "x" + toDrop.stackSize));
 			}
 			if(Basemod.instance.pixelmonPresent)
 			{
@@ -81,15 +90,10 @@ public class CustomDrops
 	public void addItemDrop(ICommandSender sender, ItemStack stack)
 	{	
 		dropStacks.add(stack);
-
-		/*List<String> dropItems = Arrays.asList(dropConfig.get(Configuration.CATEGORY_GENERAL, "Items for Pixelmon to drop", blankArray).getStringList());
-		if(dropItems.contains(blankArray[0]))//not configured
-		{
-			dropItems = new ArrayList<>();
-		}
-		dropItems.add(itemName);
-		dropConfig.get(itemName, itemAmount, blankArray).set(dropItems.toArray(new String[dropItems.size()]));
-		dropConfig.save();
-		sender.addChatMessage(new ChatComponentText("Successfully added " + itemName + " to the drop list"));*/
+		//dropStackAmounts.add(stack.stackSize);
+		
+		//dropConfig.save();
+		
+		//sender.addChatMessage(new ChatComponentText("Successfully added " + stack.getDisplayName() + "x" + stack.stackSize + " to the drop list"));
 	}
 }

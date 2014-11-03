@@ -12,7 +12,7 @@ import java.util.Random;
 
 public class RubyGenerator implements IWorldGenerator
 {
-	WorldGenMinable rubyGen = new WorldGenMinable(PixelUtilitiesBlocks.rubyOre, 7);
+	WorldGenMinable rubyGen = new WorldGenMinable(PixelUtilitiesBlocks.rubyOre, 3);
 	
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
@@ -33,7 +33,7 @@ public class RubyGenerator implements IWorldGenerator
     }
 
     private void generateSurface(World world, Random rand, int chunkX, int chunkZ) {
-        for (int k = 0; k < 10; k++) {
+        for (int k = 0; k < 4; k++) {
             int firstBlockXCoord = chunkX + rand.nextInt(25);
             int firstBlockYCoord = rand.nextInt(64);
             int firstBlockZCoord = chunkZ + rand.nextInt(25);

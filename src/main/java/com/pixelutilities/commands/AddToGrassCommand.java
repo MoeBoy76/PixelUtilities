@@ -60,10 +60,4 @@ public class AddToGrassCommand extends CommandBase {
         return null;
     }
 
-    @Override
-    public int compareTo(Object o) {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
 }

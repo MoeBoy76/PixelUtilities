@@ -11,11 +11,7 @@ public class RubyOre extends Block {
     public RubyOre() {
         super(Material.rock);
         setHardness(4.0F); // 33% harder than diamond
-        setStepSound(Block.soundTypeStone);
-        //setBlockName("RubyOre");
         setCreativeTab(CreativeTabs.tabBlock);
-
-        setBlockTextureName("pixelmonblocks" + ":" + "RubyOre");
     }
 
     @Override

@@ -20,7 +20,7 @@ public class RubyPlate extends ItemArmor {
         setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesArmours);
         if (!PixelUtilitiesArmor.getArmourList().contains(this))
 			PixelUtilitiesArmor.getArmourList().add(this);
-        setUnlocalizedName("Ruby Chestlate");
+        setUnlocalizedName("Ruby_Chestlate");
     }
 
     @Override

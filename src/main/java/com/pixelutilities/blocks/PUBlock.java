@@ -6,9 +6,8 @@ import net.minecraft.creativetab.CreativeTabs;
 
 public class PUBlock extends Block {
 
-    public PUBlock(Material p_i45394_1_, String blockName, float hardness, CreativeTabs tab, Block.SoundType soundType) {
-        super(p_i45394_1_);
-        // TODO Auto-generated constructor stub
+    public PUBlock(Material material, String blockName, float hardness, CreativeTabs tab, Block.SoundType soundType) {
+        super(material);
 
         setHardness(hardness); // 33% harder than diamond
         setStepSound(soundType);

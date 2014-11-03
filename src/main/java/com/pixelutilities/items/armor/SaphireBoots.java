@@ -21,7 +21,7 @@ public class SaphireBoots extends ItemArmor {
         if (!PixelUtilitiesArmor.getArmourList().contains(this))
 			PixelUtilitiesArmor.getArmourList().add(this);
         setTextureName("pixelUtilities:armor/SaphireBoots");
-        setUnlocalizedName("Saphire Booties");
+        setUnlocalizedName("Saphire_Booties");
     }
 
     @Override

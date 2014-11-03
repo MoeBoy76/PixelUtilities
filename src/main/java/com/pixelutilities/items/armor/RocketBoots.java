@@ -21,12 +21,12 @@ public class RocketBoots extends ItemArmor {
         if (!PixelUtilitiesArmor.getArmourList().contains(this))
 			PixelUtilitiesArmor.getArmourList().add(this);
         setTextureName("pixelutilities:armor/RocketBoots");
-        setUnlocalizedName("Rocket Boots");
+        setUnlocalizedName("Rocket_Boots");
     }
 
     @Override
     public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
-        if (stack.getItem() == Basemod.instance.saphireLegs) {
+        if (stack.getItem() == Basemod.instance.rocketLegs) {
             return "pixelutilities:textures/armor/RocketArmor_2.png";
         } else {
             return "pixelutilities:textures/armor/RocketArmor_1.png";

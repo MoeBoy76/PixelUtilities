@@ -31,6 +31,7 @@ import com.pixelutilities.Basemod;
 import com.pixelutilities.achievements.PixelUtilitiesAchievements;
 import com.pixelutilities.config.PixelUtilitiesConfig;
 import com.pixelutilities.tileentitys.PokegiftEntity;
+import com.pixelutilities.tileentitys.PokegiftEntity.Type;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -38,18 +39,17 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class PokegiftBlock extends BlockContainer {
 
 	// Tile Entity Class
-	private Class pokeChestTileEntityClass;
-
-	// Icons
-	private IIcon blockIconHidden;
+	protected Class pokeChestTileEntityClass;
 
 	// Drop
-	private String itemName = "pokeGift";
+	protected String itemName = "pokeGift";
 
 	// PArticle Effect Vars
-	private double xVel = 0.1;
-	private double yVel = 0.2;
-	private double zVel = 0.1;
+	protected double xVel = 0.1;
+	protected double yVel = 0.2;
+	protected double zVel = 0.1;
+	
+	protected Type TYPE = Type.GIFT;
 
 	public PokegiftBlock(Class tileEntityClass) {
 		super(Material.glass);
@@ -58,16 +58,15 @@ public class PokegiftBlock extends BlockContainer {
 		this.pokeChestTileEntityClass = tileEntityClass;
 		this.isBlockContainer = true;
 
-		setBlockName(itemName);
 		textureName = "pixelutilities:cherishball";
 	}
 
 	/**
 	 * Add Textures
 	 */
-	public void registerIcons(IIconRegister iconReg) {
+	public void registerIcons(IIconRegister iconReg)
+	{
 		this.blockIcon = iconReg.registerIcon("pixelutilities:cherishball");
-		this.blockIconHidden = iconReg.registerIcon("pixelmon:hidden");
 	}
 
 	/**
@@ -75,9 +74,6 @@ public class PokegiftBlock extends BlockContainer {
 	 */
 	@Override
 	public IIcon getIcon(int side, int metadata) {
-		// Invisible Meta
-		if (metadata > 4)
-			return this.blockIconHidden;
 
 		// Front Face +1 to not get 0 (inv block)
 		int frontFace = 4;
@@ -109,7 +105,9 @@ public class PokegiftBlock extends BlockContainer {
 		// Player Specific Stuff
 		if (world.isRemote) {
 			return true;
-		} else {
+		}
+		else
+		{
 
 			// Get Tile
 			PokegiftEntity tile = ((PokegiftEntity) world.getTileEntity(x, y, z));
@@ -143,24 +141,28 @@ public class PokegiftBlock extends BlockContainer {
 					player.addStat(PixelUtilitiesAchievements.pokeGift, 1);
 
 					// Add event PokeLootClaimed
-					//Pixelmon.EVENT_BUS.post(new PokeLootClaimedEvent(player, tile));
 					try {
+						if(tile.getPixelmon().getOwner() == null)
+						{
+							ChatHandler.sendChat(player, "pixelutilities.block.error", "null owner");
+							return false;
+						}
 						PixelmonStorage.PokeballManager.getPlayerStorage((EntityPlayerMP) player).addToParty(tile.getPixelmon());
 						Pixelmon.EVENT_BUS.post(new PixelmonRecievedEvent(player, ReceiveType.PokeBall, tile.getPixelmon()));
-					} catch (PlayerNotLoadedException e) {
+					}
+					catch (PlayerNotLoadedException e) {
 						e.printStackTrace();
+						return false;
+					}
+					catch (Exception e)
+					{
+						e.printStackTrace();
+						return false;
 					}
 
-					// Reset Claim String
-					tile.removeClaimer(playerID);
 					tile.addClaimer(playerID);
 
 					// Play Sound
-					// Old Way 1.5.2
-					// world.playSoundEffect(x, y, z, "pokeloot.itemObtained",
-					// 0.35f, 1.0f);
-
-					// New 1.6.2
 					world.playSoundAtEntity(player, "pixelmon:pixelmon.block.PokelootObtained", 0.2f, 1.0f);
 
 				}
@@ -171,14 +173,22 @@ public class PokegiftBlock extends BlockContainer {
 				}
 
 			}
-			else { // Owner activating block
+			else
+			{ // Owner activating block
 
 				// Check shift click
 				boolean shiftClick = PokeLoot.proxy.isShiftClick(player);
 
 				if (shiftClick) { // Set Server Owner
-					tile.setOwner(null);
-					ChatHandler.sendChat(player, "pixelmon.blocks.ownerchanged");
+					if(tile.getPixelmon() != null)
+					{
+						tile.setOwner(null);
+						ChatHandler.sendChat(player, "pixelmon.blocks.ownerchanged");
+						player.addStat(PixelUtilitiesAchievements.givenPokeGift, 1);
+						return true;
+					}
+					ChatHandler.sendChat(player, "pixelutilities.blocks.fillmefirst");
+					return false;
 				}
 				else
 				{
@@ -187,6 +197,12 @@ public class PokegiftBlock extends BlockContainer {
 					{
 						EntityPlayerMP playerMP = (EntityPlayerMP) player;
 						PlayerStorage ownerStorage = PixelmonStorage.PokeballManager.getPlayerStorage(playerMP);
+						
+						if(ownerStorage.count() == 1)
+						{
+							ChatHandler.sendChat(playerMP, "pixelutilities.blocks.lastpoke");
+							return false;
+						}
 						
 						int[] firstPokeID = null;
 						
@@ -202,6 +218,7 @@ public class PokegiftBlock extends BlockContainer {
 						}
 						if(firstPokeID == null)
 						{
+							ChatHandler.sendChat(player, "pixelutilities.blocks.nothingtoadd");
 							return false;
 						}
 						ownerStorage.recallAllPokemon();
@@ -282,14 +299,13 @@ public class PokegiftBlock extends BlockContainer {
 				// Get Mode
 				String mode = "";
 				if ((!tile.getChestMode()) && (!tile.getDropMode())) {
-					// We were @ Permanent, Unlimited Drops, goto Permanent,
-					// Limit 1 Drop
+					// Permanent, Limit 1 Drop
 					tile.setChestOneTime(false);
 					tile.setDropOneTime(true);
 					mode = "Permanent, Limit 1 Drop";
 				}
 				else {
-					// We were at timed drops, goto FCFS
+					// FCFS
 					tile.setDropOneTime(true);
 					tile.setChestOneTime(true);
 					mode = "First Come, First Served";
@@ -306,7 +322,7 @@ public class PokegiftBlock extends BlockContainer {
 	@Override
 	public TileEntity createNewTileEntity(World par1World, int var1) {
 		try {
-			PokegiftEntity tileP = (PokegiftEntity) this.pokeChestTileEntityClass.newInstance();
+			PokegiftEntity tileP = (PokegiftEntity) pokeChestTileEntityClass.newInstance();
 			return (TileEntity) tileP;
 		}
 		catch (Exception exception) {

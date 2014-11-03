@@ -10,7 +10,7 @@ public class WalrusModel extends ModelBase {
     public IModelCustom model;
 
     public WalrusModel() {
-        ResourceLocation model = new ResourceLocation("/assets/pixelutilitys/models/WalrusStatue.obj");
+        ResourceLocation model = new ResourceLocation("/assets/pixelutilitiess/models/WalrusStatue.obj");
         model = (ResourceLocation) AdvancedModelLoader.loadModel(model);
     }
 }

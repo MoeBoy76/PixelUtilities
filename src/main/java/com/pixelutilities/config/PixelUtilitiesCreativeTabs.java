@@ -60,7 +60,7 @@ public class PixelUtilitiesCreativeTabs
 
 		@Override
 		@SideOnly(Side.CLIENT)
-		public void displayAllReleventItems(List itemList)//Allows us to not deal with vanillas stupid sorting
+		public void displayAllReleventItems(List itemList)
 		{
 			itemList.clear();
 			for (Item item : PixelUtilitiesArmor.getArmourList())
@@ -78,7 +78,7 @@ public class PixelUtilitiesCreativeTabs
 
 		@Override
 		@SideOnly(Side.CLIENT)
-		public void displayAllReleventItems(List itemList)//Allows us to not deal with vanillas stupid sorting
+		public void displayAllReleventItems(List itemList)
 		{
 			for (Block block : PixelUtilitiesBlocks.LightBlockList)
 				((List<ItemStack>)itemList).add(new ItemStack(block, 1, 0));

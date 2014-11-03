@@ -116,7 +116,6 @@ public class RecipeHelper {
     {
         GameRegistry.addRecipe(
                 new ItemStack(result, 1),
-                "   ",
                 "X X",
                 "X X",
                 'X', craftingMaterial

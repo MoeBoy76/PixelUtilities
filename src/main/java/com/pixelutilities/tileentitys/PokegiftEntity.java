@@ -4,27 +4,32 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 
-import com.pixelmonmod.pixelmon.blocks.TileEntityPokeChest.Type;
-import com.pixelmonmod.pixelmon.config.PixelmonConfig;
 import com.pixelmonmod.pixelmon.config.PixelmonEntityList;
 import com.pixelmonmod.pixelmon.entities.pixelmon.EntityPixelmon;
 import com.pixelmonmod.pixelmon.pokeloot.data.LootClaim;
 
 public class PokegiftEntity extends TileEntity {
 
+	public enum Type {
+		GIFT,
+		EVENT
+	}
+	
 	private UUID ownerID = null;
 	private boolean chestOneTime = true;
 	private boolean dropOneTime = true;
 	private int frontFace = 4;
-	
+
 	private EntityPixelmon pixelmon = null;
 	private NBTTagCompound nbtPixelmon = new NBTTagCompound();
+	
+	private ArrayList<EntityPixelmon> specialPixelmon = new ArrayList<>();
+	private ArrayList<NBTTagCompound> nbtSpecialPixelmon = new ArrayList<>();
+	
+	private Type type = Type.GIFT;
 
 	private ArrayList<LootClaim> claimed = new ArrayList<>();
 
@@ -39,6 +44,14 @@ public class PokegiftEntity extends TileEntity {
 
 	public UUID getOwner() {
 		return ownerID;
+	}
+	
+	public void setType(Type t) {
+		this.type = t;
+	}
+
+	public Type getType() {
+		return type;
 	}
 
 	@Override
@@ -60,22 +73,45 @@ public class PokegiftEntity extends TileEntity {
 				playerInfoTag.setLong("most", playerClaim.getPlayerID().getMostSignificantBits());
 				playerInfoTag.setLong("least", playerClaim.getPlayerID().getLeastSignificantBits());
 				playerInfoTag.setLong("timeClaimed", playerClaim.getTimeClaimed());
-				
+
 				claimedTag.setTag("player" + i, playerInfoTag);
 			}
 
 			tagger.setTag("claimedPlayers", claimedTag);
 		}
+		
+		// Type
+		tagger.setInteger("type", type.ordinal());
 
-		//TODO write pixelmon to store
-		if(pixelmon != null && !(nbtPixelmon.hasNoTags()))
+		//Pixelmon
+		if(pixelmon != null)
 		{
 			pixelmon.writeEntityToNBT(nbtPixelmon);
+			tagger.setTag("pixelmon", nbtPixelmon);
 		}
-		tagger.setTag("pixelmon", nbtPixelmon);
-		
-		super.writeToNBT(tagger);
+		else if(type == Type.EVENT)
+		{
+			if(!specialPixelmon.isEmpty())
+			{
+				for(EntityPixelmon p : specialPixelmon)
+				{
+					NBTTagCompound nbt = new NBTTagCompound();
+					p.writeEntityToNBT(nbt);
+					nbtSpecialPixelmon.add(nbt);
+				}
+			}
+			if(!nbtSpecialPixelmon.isEmpty())
+			{
+				NBTTagCompound specialTag = new NBTTagCompound();
+				for(int i = 0; i < nbtSpecialPixelmon.size(); i++)
+				{
+					specialTag.setTag("special" + i, nbtSpecialPixelmon.get(i));
+				}
+				tagger.setTag("specials", specialTag);
+			}
+		}
 
+		super.writeToNBT(tagger);
 	}
 
 	@Override
@@ -90,7 +126,6 @@ public class PokegiftEntity extends TileEntity {
 		dropOneTime = tagger.getBoolean("dropOneTime");
 
 		// Claimed
-
 		if (tagger.hasKey("claimedPlayers")) {
 			NBTTagCompound claimedTag = (NBTTagCompound) tagger.getTag("claimedPlayers");
 			int i = 0;
@@ -101,13 +136,40 @@ public class PokegiftEntity extends TileEntity {
 			}
 		}
 		
+		// Type
+		type = Type.values()[tagger.getInteger("type")];
+
 		// Pixelmon
-		nbtPixelmon = tagger.getCompoundTag("pixelmon");
-		if(!(nbtPixelmon.hasNoTags()))
-			pixelmon = (EntityPixelmon) PixelmonEntityList.createEntityFromNBT(nbtPixelmon, worldObj);
+		if(type == Type.GIFT)
+		{
+			nbtPixelmon = tagger.getCompoundTag("pixelmon");
+			if(!(nbtPixelmon.hasNoTags()))
+				pixelmon = (EntityPixelmon) PixelmonEntityList.createEntityFromNBT(nbtPixelmon, worldObj);
+		}
+		else
+		{
+			if(tagger.hasKey("specials"))
+			{
+				NBTTagCompound specialTag = (NBTTagCompound) tagger.getTag("specials");
+				int i = 0;
+				while(specialTag.hasKey("special" + i))
+				{
+					NBTTagCompound nbt = (NBTTagCompound) specialTag.getTag("special" + i);
+					nbtSpecialPixelmon.add(nbt);
+					i++;
+				}
+			}
+			if(!nbtSpecialPixelmon.isEmpty())
+			{
+				for(NBTTagCompound nbt : nbtSpecialPixelmon)
+				{
+					EntityPixelmon p = (EntityPixelmon) PixelmonEntityList.createEntityFromNBT(nbt, worldObj);
+					specialPixelmon.add(p);
+				}
+			}
+		}
 
 		super.readFromNBT(tagger);
-
 	}
 
 	public boolean canClaim(UUID playerID) {
@@ -121,7 +183,7 @@ public class PokegiftEntity extends TileEntity {
 			return true;
 		}
 	}
-	
+
 	public LootClaim getLootClaim(UUID playerID) {
 		for (LootClaim claim : claimed)
 			if (claim.getPlayerID().toString().equals(playerID.toString()))
@@ -174,9 +236,24 @@ public class PokegiftEntity extends TileEntity {
 	public EntityPixelmon getPixelmon() {
 		return pixelmon;
 	}
+	
+	public ArrayList<EntityPixelmon> getSpecialPixelmon() {
+		return specialPixelmon;
+	}
 
 	public void setPixelmon(EntityPixelmon pixelmon) {
 		this.pixelmon = pixelmon;
 		pixelmon.writeEntityToNBT(nbtPixelmon);
+	}
+	
+	public void setAllSpecialPixelmon(ArrayList<EntityPixelmon> pixelmon)
+	{
+		specialPixelmon.clear();
+		specialPixelmon.addAll(pixelmon);
+	}
+	
+	public void setSpecialPixelmon(EntityPixelmon pixelmon)
+	{
+		specialPixelmon.add(pixelmon);
 	}
 }

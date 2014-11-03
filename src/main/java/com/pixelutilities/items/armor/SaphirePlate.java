@@ -15,27 +15,27 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class SaphirePlate extends ItemArmor {
 
-    public SaphirePlate(ArmorMaterial par2EnumArmorMaterial, int par3, int par4) {
-        super(par2EnumArmorMaterial, par3, par4);
-        setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesArmours);
-        if (!PixelUtilitiesArmor.getArmourList().contains(this))
+	public SaphirePlate(ArmorMaterial par2EnumArmorMaterial, int par3, int par4) {
+		super(par2EnumArmorMaterial, par3, par4);
+		setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesArmours);
+		if (!PixelUtilitiesArmor.getArmourList().contains(this))
 			PixelUtilitiesArmor.getArmourList().add(this);
-        setTextureName("pixelUtilities:armor/SaphirePlate");
-        setUnlocalizedName("Saphire ChestPlate");
-    }
+		setTextureName("pixelUtilities:armor/SaphirePlate");
+		setUnlocalizedName("Saphire_ChestPlate");
+	}
 
-    @Override
-    public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
-        if (stack.getItem() == Basemod.instance.saphireLegs) {
-            return "pixelutilities:textures/armor/SaphireArmor_2.png";
-        } else {
-            return "pixelutilities:textures/armor/SaphireArmor_1.png";
-        }
-    }
+	@Override
+	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
+		if (stack.getItem() == Basemod.instance.saphireLegs) {
+			return "pixelutilities:textures/armor/SaphireArmor_2.png";
+		} else {
+			return "pixelutilities:textures/armor/SaphireArmor_1.png";
+		}
+	}
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister par1IconRegister) {
-        this.itemIcon = par1IconRegister.registerIcon("pixelutilities:armor/SaphireChestplate");
-    }
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IIconRegister par1IconRegister) {
+		this.itemIcon = par1IconRegister.registerIcon("pixelutilities:armor/SaphireChestplate");
+	}
 }

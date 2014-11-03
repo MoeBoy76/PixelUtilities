@@ -6,6 +6,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 import com.pixelmonmod.pixelmon.config.PixelmonItems;
+import com.pixelmonmod.pixelmon.config.PixelmonItemsPokeballs;
 import com.pixelutilities.Basemod;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -20,7 +21,6 @@ public class PixelUtilitiesRecipes
         GameRegistry.addSmelting(PixelUtilitiesBlocks.rubyOre, new ItemStack(Basemod.instance.rubyItem), 10);
         GameRegistry.addSmelting(PixelUtilitiesBlocks.saphireOre, new ItemStack(Basemod.instance.saphireItem), 10);
         GameRegistry.addSmelting(PixelUtilitiesBlocks.siliconOre, new ItemStack(Basemod.instance.siliconItem), 10);
-        //We need to add a stupid af smelting method here for a easter egg. What? Not sure.
 
         //Block
         makeItemToBlockRecipe(PixelUtilitiesBlocks.rubyBlock, Basemod.instance.rubyItem);
@@ -28,12 +28,10 @@ public class PixelUtilitiesRecipes
         makeItemToBlockRecipe(PixelUtilitiesBlocks.amethystBlock, Basemod.instance.amethystItem);
         makeItemToBlockRecipe(PixelUtilitiesBlocks.crystalBlock, Basemod.instance.crystalItem);
 
-
         makeItemsFromBlock(Basemod.instance.rubyItem, PixelUtilitiesBlocks.rubyBlock);
         makeItemsFromBlock(Basemod.instance.saphireItem, PixelUtilitiesBlocks.saphireBlock);
         makeItemsFromBlock(Basemod.instance.amethystItem, PixelUtilitiesBlocks.amethystBlock);
         makeItemsFromBlock(Basemod.instance.crystalItem, PixelUtilitiesBlocks.crystalBlock);
-
 
         //Ruby Tools
         makePickaxeRecipe(Basemod.instance.rubyPickaxe, Basemod.instance.rubyItem);
@@ -134,6 +132,8 @@ public class PixelUtilitiesRecipes
             makeLegsRecipe(Basemod.instance.moonstoneLegs, PixelmonItems.moonStone);
             makeBootsRecipe(Basemod.instance.moonstoneBoots, PixelmonItems.moonStone);
             
+            GameRegistry.addRecipe(new ItemStack(PixelUtilitiesBlocks.pokegift, 4), " B ","B B"," B ", 'B', new ItemStack(PixelmonItemsPokeballs.cherishBall,1));
+            
         }//TODO alternative recipies!
 
         //Crystal Tools
@@ -159,6 +159,22 @@ public class PixelUtilitiesRecipes
         makePlateRecipe(Basemod.instance.galacticPlate,Basemod.instance.siliconItem);
         makeLegsRecipe(Basemod.instance.galacticLegs, Basemod.instance.siliconItem);
         makeBootsRecipe(Basemod.instance.galacticBoots, Basemod.instance.siliconItem);
+        
+        makeHelmRecipe(Basemod.instance.crystalHelm, Basemod.instance.crystalItem);
+        makePlateRecipe(Basemod.instance.crystalPlate,Basemod.instance.crystalItem);
+        makeLegsRecipe(Basemod.instance.crystalLegs, Basemod.instance.crystalItem);
+        makeBootsRecipe(Basemod.instance.crystalBoots, Basemod.instance.crystalItem);
+        
+        //Neo Plasma
+        GameRegistry.addRecipe(new ItemStack(Basemod.instance.neoHelm, 1), "xxx","y y","",'x', new ItemStack(Basemod.instance.crystalItem), 'y', new ItemStack(Basemod.instance.siliconItem));
+        GameRegistry.addRecipe(new ItemStack(Basemod.instance.neoPlate, 1), "x x","xxx","yyy",'x', new ItemStack(Basemod.instance.crystalItem), 'y', new ItemStack(Basemod.instance.siliconItem));
+        GameRegistry.addRecipe(new ItemStack(Basemod.instance.neoLegs, 1), "xxx","x x","y y",'x', new ItemStack(Basemod.instance.crystalItem), 'y', new ItemStack(Basemod.instance.siliconItem));
+        GameRegistry.addRecipe(new ItemStack(Basemod.instance.neoBoots, 1), "x x","y y",'x', new ItemStack(Basemod.instance.crystalItem), 'y', new ItemStack(Basemod.instance.siliconItem));
+        
+        makeHelmRecipe(Basemod.instance.rocketHelm, Basemod.instance.amethystItem);
+        makePlateRecipe(Basemod.instance.rocketPlate,Basemod.instance.amethystItem);
+        makeLegsRecipe(Basemod.instance.rocketLegs, Basemod.instance.amethystItem);
+        makeBootsRecipe(Basemod.instance.rocketBoots, Basemod.instance.amethystItem);
 
         //Radio
         GameRegistry.addRecipe(new ItemStack(PixelUtilitiesBlocks.radioBlock), "  y", "xyx", "xzx", 'x', new ItemStack(Blocks.planks), 'y', new ItemStack(Items.iron_ingot), 'z', new ItemStack(Items.diamond));
@@ -171,8 +187,6 @@ public class PixelUtilitiesRecipes
         GameRegistry.addRecipe(new ItemStack(Basemod.instance.orangeLightBlock, 1), "xxx","xyx","xxx", 'x', new ItemStack(Blocks.stained_glass_pane, 1, 1), 'y', new ItemStack(Blocks.redstone_torch, 1));
         GameRegistry.addRecipe(new ItemStack(Basemod.instance.whiteLightBlock, 1), "xxx","xyx","xxx", 'x', new ItemStack(Blocks.stained_glass_pane, 1, 0), 'y', new ItemStack(Blocks.redstone_torch, 1));
         GameRegistry.addRecipe(new ItemStack(Basemod.instance.greenLightBlock, 1), "xxx","xyx","xxx", 'x', new ItemStack(Blocks.stained_glass_pane, 1, 5), 'y', new ItemStack(Blocks.redstone_torch, 1));
-
-        //GameRegistry.addRecipe(new ItemStack(Basemod.instance.blueLightBlock), new Object[] {"X X", "X X", Character.valueOf('X'), BlockStainedGlass});
         
         GameRegistry.addRecipe(new ItemStack(Basemod.instance.pixelBoyItem, 1), new Object[] { "XXX", "XYX", "ZZZ", Character.valueOf('X'), new ItemStack(Basemod.instance.crystalItem), Character.valueOf('Y'), new ItemStack(Blocks.glass_pane), Character.valueOf('Z'), new ItemStack(Basemod.instance.siliconItem)});
     }

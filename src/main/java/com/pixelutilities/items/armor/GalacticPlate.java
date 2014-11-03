@@ -21,7 +21,7 @@ public class GalacticPlate extends ItemArmor {
         if (!PixelUtilitiesArmor.getArmourList().contains(this))
 			PixelUtilitiesArmor.getArmourList().add(this);
         setTextureName("pixelutilities:armor/GalacticPlate");
-        setUnlocalizedName("Galactic ChestPlate");
+        setUnlocalizedName("Galactic_ChestPlate");
     }
 
     @Override

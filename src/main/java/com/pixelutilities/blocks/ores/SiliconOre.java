@@ -11,8 +11,6 @@ public class SiliconOre extends Block {
     public SiliconOre() {
         super(Material.rock);
         setHardness(4.0F); // 33% harder than diamond
-        setStepSound(Block.soundTypeStone);
-        setBlockName("SiliconOre");
         setCreativeTab(CreativeTabs.tabBlock);
     }
 
@@ -20,6 +18,4 @@ public class SiliconOre extends Block {
     public int quantityDropped(Random random) {
         return 1;
     }
-
-
 }

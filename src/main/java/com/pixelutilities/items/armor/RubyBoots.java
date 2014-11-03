@@ -20,7 +20,7 @@ public class RubyBoots extends ItemArmor {
         setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesArmours);
         if (!PixelUtilitiesArmor.getArmourList().contains(this))
 			PixelUtilitiesArmor.getArmourList().add(this);
-        setUnlocalizedName("Ruby Boots");
+        setUnlocalizedName("Ruby_Boots");
     }
 
     @Override
