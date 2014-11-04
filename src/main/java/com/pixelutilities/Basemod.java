@@ -347,12 +347,13 @@ public class Basemod
 			FMLCommonHandler.instance().bus().register(config);
 
 			PUTickHandler tickHandler = new PUTickHandler();
-
 			FMLCommonHandler.instance().bus().register(tickHandler);
-			FMLCommonHandler.instance().bus().register(new PixelUtilitiesAchievements());
 			MinecraftForge.EVENT_BUS.register(tickHandler);
+			
 			initVLC();
 		}
+		
+		FMLCommonHandler.instance().bus().register(new PixelUtilitiesAchievements());
 		MinecraftForge.EVENT_BUS.register(new FallEliminator());
 		PacketHandler.init();		
 	}

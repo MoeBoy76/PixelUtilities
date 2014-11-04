@@ -166,7 +166,7 @@ public class PixelUtilitiesRecipes
         makeBootsRecipe(Basemod.instance.crystalBoots, Basemod.instance.crystalItem);
         
         //Neo Plasma
-        GameRegistry.addRecipe(new ItemStack(Basemod.instance.neoHelm, 1), "xxx","y y","",'x', new ItemStack(Basemod.instance.crystalItem), 'y', new ItemStack(Basemod.instance.siliconItem));
+        GameRegistry.addRecipe(new ItemStack(Basemod.instance.neoHelm, 1), "xxx","y y","  ",'x', new ItemStack(Basemod.instance.crystalItem), 'y', new ItemStack(Basemod.instance.siliconItem));
         GameRegistry.addRecipe(new ItemStack(Basemod.instance.neoPlate, 1), "x x","xxx","yyy",'x', new ItemStack(Basemod.instance.crystalItem), 'y', new ItemStack(Basemod.instance.siliconItem));
         GameRegistry.addRecipe(new ItemStack(Basemod.instance.neoLegs, 1), "xxx","x x","y y",'x', new ItemStack(Basemod.instance.crystalItem), 'y', new ItemStack(Basemod.instance.siliconItem));
         GameRegistry.addRecipe(new ItemStack(Basemod.instance.neoBoots, 1), "x x","y y",'x', new ItemStack(Basemod.instance.crystalItem), 'y', new ItemStack(Basemod.instance.siliconItem));
