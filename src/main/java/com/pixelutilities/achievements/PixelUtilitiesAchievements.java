@@ -15,9 +15,6 @@ import net.minecraftforge.common.AchievementPage;
 public class PixelUtilitiesAchievements
 {
 
-	private int magArmor = 0;
-	private int aquaArmor = 0;
-
 	public static Achievement teammagma = new Achievement("achievement.teammagma", "teammagma", -1, -1, Basemod.instance.rubyHelm, null).registerStat();
 	public static Achievement teamaqua = new Achievement("achievement.teamaqua", "teamaqua", 3, -1, Basemod.instance.saphireHelm, null).registerStat();
 	

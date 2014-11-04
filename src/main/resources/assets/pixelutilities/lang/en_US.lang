@@ -1,14 +1,14 @@
-achievement.teammagma=Team Magma Grunt!
+achievement.teammagma=Team Magma Wannabe!
 achievement.teammagma.desc=Join Team Magma!
 
-achievement.teamaqua=Team Aqua Grunt!
+achievement.teamaqua=Team Aqua Wannabe!
 achievement.teamaqua.desc=Join Team Aqua!
 
-achievement.teammagma1=Team Magma ???!
-achievement.teammagma1.desc=Become a Team Magma ???
+achievement.teammagma1=Team Magma Grunt!
+achievement.teammagma1.desc=Become a Team Magma Grunt
 
-achievement.teamaqua1=Team Aqua ???!
-achievement.teamaqua1.desc=Become a Team Aqua ???
+achievement.teamaqua1=Team Aqua Grunt!
+achievement.teamaqua1.desc=Become a Team Aqua Grunt
 
 achievement.teammagma2=Team Magma Executive!
 achievement.teammagma2.desc=Become a Team Magma Executive
@@ -227,7 +227,7 @@ item.Plasma_ChestPlate.name=Plasma Chestplate
 item.Plasma_Boots.name=Plasma Boots
 item.Plasma_Leggings.name=Plasma Leggings
 item.Neo_Plasma_Helmet.name=Neo Plasma Helmet
-item.Neo_Plasma_ChestPlate.name=Neo Plasma Chestplate
+item.Neo_Plasma_Chestplate.name=Neo Plasma Chestplate
 item.Neo_Plasma_Boots.name=Neo Plasma Boots
 item.Neo_Plasma_Leggings.name=Neo Plasma Leggings
 
