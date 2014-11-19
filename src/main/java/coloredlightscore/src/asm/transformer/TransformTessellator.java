@@ -9,7 +9,6 @@ public class TransformTessellator extends SingleMethodTransformer {
 
 
     public TransformTessellator() {
-        // TODO Auto-generated constructor stub
     }
 
     @Override

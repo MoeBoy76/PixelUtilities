@@ -137,7 +137,7 @@ public class PixelUtilitiesBlocks {
 		aronPokedollBlock = new AronPokedollBlock().setHardness(0.5f).setStepSound(Block.soundTypeMetal).setBlockName("AronDoll").setCreativeTab(PixelUtilitiesCreativeTabs.tabPokefurniture);
 		bisharpPokedollBlock = new BisharpPokedollBlock().setHardness(0.5f).setStepSound(Block.soundTypeMetal).setBlockName("BisharpDoll");
 		radioBlock = new RadioBlock();
-		gymSignBlock = new com.pixelutilities.blocks.GymSignBlock().setHardness(0.5f).setStepSound(Block.soundTypeMetal).setBlockName("GymSign").setCreativeTab(PixelUtilitiesCreativeTabs.tabPokefurniture);
+		gymSignBlock = new GymSignBlock().setHardness(0.5f).setStepSound(Block.soundTypeMetal).setBlockName("GymSign").setCreativeTab(PixelUtilitiesCreativeTabs.tabPokefurniture);
 		tvBlock = new TVBlock().setHardness(0.5f).setStepSound(Block.soundTypeMetal).setBlockName("TV").setCreativeTab(PixelUtilitiesCreativeTabs.tabPokefurniture);
 		blockConveyor = new BlockConveyor();
 		blueRugBlock = new RugBlock("blue").setHardness(0.5f).setStepSound(Block.soundTypeMetal).setBlockName("BlueRug").setCreativeTab(PixelUtilitiesCreativeTabs.tabPokefurniture);
@@ -171,24 +171,24 @@ public class PixelUtilitiesBlocks {
 		GameRegistry.registerBlock(pokeSandC3Block, "PokeSandCorner3");
 		GameRegistry.registerBlock(pokeSandC4Block, "PokeSandCorner4");
 		GameRegistry.registerBlock(pokeDirtBlock, "PokeDirt");
-		GameRegistry.registerBlock(insideMoldingBlock, "Inside Wall Molding");			
-		GameRegistry.registerBlock(shinglesCorner2Block, "Shingles Corner 2");
+		GameRegistry.registerBlock(insideMoldingBlock, "Inside_Wall_Molding");			
+		GameRegistry.registerBlock(shinglesCorner2Block, "Shingles_Corner_2");
 		GameRegistry.registerBlock(shinglesBlock, "Shingles");
-		GameRegistry.registerBlock(shinglesCorner1Block, "Shingles Corner 1");
-		GameRegistry.registerBlock(treeTopBlock, "Tree Top");
-		GameRegistry.registerBlock(treeBottomBlock, "Tree Bottom");
-		GameRegistry.registerBlock(pokeSandSide1Block, "PokeSand Side 1");
-		GameRegistry.registerBlock(pokeSandSide2Block, "PokeSand Side 2");
-		GameRegistry.registerBlock(pokeSandSide3Block, "PokeSand Side 3");
-		GameRegistry.registerBlock(pokeSandSide4Block, "PokeSand Side 4");
-		GameRegistry.registerBlock(window1Block, "Window 1");
-		GameRegistry.registerBlock(window2Block, "Window 2");
-		GameRegistry.registerBlock(woodenFlooringBlock, "Wooden Flooring");
-		GameRegistry.registerBlock(pokeCenterSignBlock, "PokeCenter Sign");
-		GameRegistry.registerBlock(pokeMartSignBlock, "PokeMart Sign");
-		GameRegistry.registerBlock(sandyGrassBlock, "Sandy Grass");
+		GameRegistry.registerBlock(shinglesCorner1Block, "Shingles_Corner_1");
+		GameRegistry.registerBlock(treeTopBlock, "Tree_Top");
+		GameRegistry.registerBlock(treeBottomBlock, "Tree_Bottom");
+		GameRegistry.registerBlock(pokeSandSide1Block, "PokeSand_Side_1");
+		GameRegistry.registerBlock(pokeSandSide2Block, "PokeSand_Side_2");
+		GameRegistry.registerBlock(pokeSandSide3Block, "PokeSand_Side_3");
+		GameRegistry.registerBlock(pokeSandSide4Block, "PokeSand_Side_4");
+		GameRegistry.registerBlock(window1Block, "Window_1");
+		GameRegistry.registerBlock(window2Block, "Window_2");
+		GameRegistry.registerBlock(woodenFlooringBlock, "Wooden_Flooring");
+		GameRegistry.registerBlock(pokeCenterSignBlock, "PokeCenter_Sign");
+		GameRegistry.registerBlock(pokeMartSignBlock, "PokeMart_Sign");
+		GameRegistry.registerBlock(sandyGrassBlock, "Sandy_Grass");
 		GameRegistry.registerBlock(rockBlock, "Rock");
-		GameRegistry.registerBlock(caveRockBlock, "Cave Rock");
+		GameRegistry.registerBlock(caveRockBlock, "Cave_Rock");
 		GameRegistry.registerBlock(bridgeBlockBlock, "Bridge");
 		GameRegistry.registerBlock(rubyBlock, "RubyBlock");
 		GameRegistry.registerBlock(saphireBlock, "SaphireBlock");
@@ -219,7 +219,7 @@ public class PixelUtilitiesBlocks {
 		{
 			GameRegistry.registerBlock(pokeballStatue, "PokeballStatue");
 			GameRegistry.registerBlock(pokegift, "Pokegift");
-			GameRegistry.registerBlock(pixelmonGrassBlock, "Pixelmon Grass");
+			GameRegistry.registerBlock(pixelmonGrassBlock, "Pixelmon_Grass");
 			GameRegistry.registerBlock(pokeballBlock, "Pokeball");
 			GameRegistry.registerBlock(eventPokegift, "Event_Pokegift");
 		}

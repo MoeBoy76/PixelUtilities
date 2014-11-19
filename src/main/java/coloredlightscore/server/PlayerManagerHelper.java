@@ -10,7 +10,6 @@ import java.util.ArrayList;
 public class PlayerManagerHelper {
 
     public PlayerManagerHelper() {
-        // TODO Auto-generated constructor stub
     }
 
     /**
