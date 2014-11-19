@@ -13,7 +13,6 @@ public class TransformEntityPlayerMP extends MethodTransformer {
     private final String CLASSNAME = "net.minecraft.entity.player.EntityPlayerMP";
 
     public TransformEntityPlayerMP() {
-        // TODO Auto-generated constructor stub
     }
 
     @Override

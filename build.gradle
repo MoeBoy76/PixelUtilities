@@ -10,7 +10,6 @@ buildscript {
             url = "https://oss.sonatype.org/content/repositories/snapshots/"
         }
     }
-    //noinspection GroovyAssignabilityCheck
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
     }
@@ -18,7 +17,7 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "3.3.3"
+version = "3.3.5"
 group = "pixelutilities"
 archivesBaseName = "PixelUtilities"
 
@@ -26,8 +25,27 @@ sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
 minecraft {
-    version = "1.7.10-10.13.0.1187"
+    version = "1.7.10-10.13.2.1230"
     runDir = "eclipse"
+}
+
+processResources
+{
+
+    // replace stuff in mcmod.info, nothing else
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+                
+        // replace version and mcversion
+        expand 'version':project.version, 'mcversion':project.minecraft.version, 'fversion':"Forge 10.13.2.1230;Forge 10.13.0.1188",'pixelmonVersion':"3.3.4"
+    }
+        
+    // copy everything else, thats not the mcmod.info
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+        include 'Pixelmon.info'
+	}
+    
 }
 
 task deobfJar(type: Jar) {
@@ -54,8 +72,6 @@ configurations {
 
 //noinspection GroovyAssignabilityCheck
 dependencies {
-    testCompile 'junit:junit:4.10'
-    testCompile 'org.mockito:mockito-all:1.8.4'
     compile files('libs/compile/Pixelmon-deob.jar')
     compile files('libs/runtime/vlcj-3.0.1.jar')
     runtimeOnly files('libs/runtime/jna-3.5.2.jar')

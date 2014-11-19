@@ -32,12 +32,19 @@ import com.pixelutilities.events.PokegiftEventGen;
 import com.pixelutilities.networking.PacketHandler;
 import com.pixelutilities.proxies.CommonProxy;
 import com.pixelutilities.radioplayer.VLCPlayer;
+import com.pixelutilities.tileentitys.AronPokedollEntity;
+import com.pixelutilities.tileentitys.BlueRugEntity;
 import com.pixelutilities.tileentitys.BolderEntity;
 import com.pixelutilities.tileentitys.BoxEntity;
 import com.pixelutilities.tileentitys.ClothedTableEntity;
+import com.pixelutilities.tileentitys.GreenRugEntity;
+import com.pixelutilities.tileentitys.GymSignEntity;
 import com.pixelutilities.tileentitys.PokeballEntity;
+import com.pixelutilities.tileentitys.PokeballStatueTileEntity;
 import com.pixelutilities.tileentitys.PokegiftEntity;
 import com.pixelutilities.tileentitys.RedCusionChairEntity;
+import com.pixelutilities.tileentitys.RedRugEntity;
+import com.pixelutilities.tileentitys.TVEntity;
 import com.pixelutilities.tileentitys.TileEntityConveyor;
 import com.pixelutilities.tileentitys.TileEntityRadio;
 import com.pixelutilities.tileentitys.TotodilePokedollEntity;
@@ -69,7 +76,7 @@ public class Basemod
 {
 	public static final String MODID = "pixelutilities";
 	public static final String NAME = "PixelUtilities";
-	public static final String VERSION = "3.3.3";
+	public static final String VERSION = "3.3.5";
 
 	/*public final ToolMaterial FIRESTONE = EnumHelper.addToolMaterial("FIRESTONE", 3, 1561, 8.0F, 3.0F, 10);
 	public final ToolMaterial WATERSTONE = EnumHelper.addToolMaterial("WATERSTONE", 3, 1561, 8.0F, 3.0F, 10);
@@ -294,7 +301,7 @@ public class Basemod
 	public boolean vlcLoaded = false;
 	public boolean pixelmonPresent = false;
 	public final boolean is64bit = Integer.parseInt(System.getProperty("sun.arch.data.model")) == 64;
-	public boolean DEBUGMODE = true;
+	public boolean DEBUGMODE = false;
 	public static ArrayList<VLCPlayer> playerList = new ArrayList<>();
 	public static ArrayList<VLCPlayer> battleMusicList = new ArrayList<>();
 	public VLCPlayer localMusicPlayer = null;
@@ -389,7 +396,18 @@ public class Basemod
 		GameRegistry.registerTileEntity(TrashcanEntity.class, "Trashcan");
 		GameRegistry.registerTileEntity(YellowCusionChairEntity.class, "YellowCusionChair");
 		GameRegistry.registerTileEntity(TotodilePokedollEntity.class, "TotodileDoll");
-
+		
+		//where the hell did these disappear from? 
+		GameRegistry.registerTileEntity(AronPokedollEntity.class, "AronDoll");
+		GameRegistry.registerTileEntity(GymSignEntity.class, "GymSign");
+		GameRegistry.registerTileEntity(TVEntity.class, "TV");
+		GameRegistry.registerTileEntity(BlueRugEntity.class, "BlueRug");
+		GameRegistry.registerTileEntity(RedRugEntity.class, "RedRug");
+		GameRegistry.registerTileEntity(GreenRugEntity.class, "GreenRug");
+		
+		if(event.getSide() == Side.CLIENT)
+			GameRegistry.registerTileEntity(PokeballStatueTileEntity.class, "PokeballStatue");
+				
 		GameRegistry.registerTileEntity(TileEntityRadio.class, "Radio");
 		GameRegistry.registerTileEntity(TileEntityConveyor.class, "Conveyor");
 

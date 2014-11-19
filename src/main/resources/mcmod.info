@@ -1,0 +1,18 @@
+[
+{
+  "modid": "pixelutilities",
+  "name": "PixelUtilities",
+  "description": "",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "forgeversion": "${fversion}",
+  "pixelmonVersion": "${pixelmonVersion}",
+  "url": "http://pixelmonmod.com",
+  "updateUrl": "http://pixelmonmod.com",
+  "authorList": [],
+  "credits": "PixelUtilities Development Team",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

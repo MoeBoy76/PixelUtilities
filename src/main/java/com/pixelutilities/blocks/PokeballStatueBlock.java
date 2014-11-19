@@ -107,7 +107,8 @@ public class PokeballStatueBlock extends MultiBlock {
 
     @Override
     public Item getDroppedItem(World world, int x, int y, int z) {
-        return getItem(world, x, y, z);
+        return null;
+    	//return getItem(world, x, y, z);
     }
 
 
