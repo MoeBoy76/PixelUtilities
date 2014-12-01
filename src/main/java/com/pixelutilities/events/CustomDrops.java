@@ -17,6 +17,7 @@ import com.pixelmonmod.pixelmon.api.events.BeatWildPixelmonEvent;
 import com.pixelmonmod.pixelmon.enums.EnumPokemon;
 import com.pixelutilities.Basemod;
 import com.pixelutilities.config.PixelUtilitiesConfig;
+import com.sun.xml.internal.bind.v2.TODO;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
@@ -45,11 +46,11 @@ public class CustomDrops
 		//TODO make config load and save
 		/*dropConfig = new Configuration(new File("config/" + Basemod.MODID + "-drops.cfg"));
 		dropConfig.load();
-		
+
 		List<String> drops = Arrays.asList(dropConfig.get(Configuration.CATEGORY_GENERAL, "Items for Pixelmon to drop", blankArray, "These are the items to drop").getStringList());
 		List<String> amounts = Arrays.asList(dropConfig.get(Configuration.CATEGORY_GENERAL, "Amounts to drop", blankArray, "these correspond to the drops").getStringList());
-		
-		
+
+
 		if(dropConfig.hasChanged())
 			dropConfig.save();*/
 	}
@@ -63,9 +64,16 @@ public class CustomDrops
 			{
 				int itemNum = event.player.getRNG().nextInt(dropStacks.size());
 				ItemStack toDrop = dropStacks.get(itemNum);
-				toDrop.stackSize = event.player.getRNG().nextInt(toDrop.stackSize);
+				if(toDrop.stackSize > 0)
+				{
+					toDrop.stackSize = event.player.getRNG().nextInt(toDrop.stackSize);
+				}
+				else
+				{
+					toDrop.stackSize = 1;
+				}
 				event.player.inventory.addItemStackToInventory(toDrop);
-				event.player.addChatMessage(new ChatComponentText("You just got " + toDrop.getDisplayName() + "x" + toDrop.stackSize));
+				event.player.addChatMessage(new ChatComponentText("You just got " + toDrop.getDisplayName() + " x " + toDrop.stackSize));
 			}
 			if(Basemod.instance.pixelmonPresent)
 			{
@@ -91,9 +99,9 @@ public class CustomDrops
 	{	
 		dropStacks.add(stack);
 		//dropStackAmounts.add(stack.stackSize);
-		
+
 		//dropConfig.save();
-		
+
 		//sender.addChatMessage(new ChatComponentText("Successfully added " + stack.getDisplayName() + "x" + stack.stackSize + " to the drop list"));
 	}
 }

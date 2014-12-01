@@ -25,6 +25,7 @@ public class PixelUtilitiesConfig {
 	public boolean coinDrops = false;
 	public boolean grassBattles = false;
 	public boolean onlyGrassSpawns = false;
+	public boolean grassGen = false;
 	public boolean scalePokes = false;
 	public int grassSpawnRate;
 	public int coinDropRate;
@@ -91,6 +92,7 @@ public class PixelUtilitiesConfig {
 		onlyGrassSpawns = config.get("general", "Only spawn Pixelmon in grass", false, "Currently broken :(").getBoolean(false);
 		grassSpawnRate = config.get("general", "Pixelmon grass spawn rate", 200, "Kinda weird ATM").getInt(200);
 		coinDropRate = config.get("general", "Pixelmon coin drop rate", 4, "default: 4 = 1/100 chance").getInt(4);
+		grassGen = config.get("general", "Pixelmon grass worldgen", false, "Enables/Disables Pixelmon grass from randomly generating").getBoolean(false);
 		
 		//music
 		BattleMusicURL = config.get("General", "BattleMusic URL", "http://www.youtube.com/watch?v=WnkhVPmapc8", "The URL of a song to play when in-battle (no https)").getString();

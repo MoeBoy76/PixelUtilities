@@ -1,6 +1,7 @@
 package com.pixelutilities;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -76,7 +77,7 @@ public class Basemod
 {
 	public static final String MODID = "pixelutilities";
 	public static final String NAME = "PixelUtilities";
-	public static final String VERSION = "3.3.5";
+	public static final String VERSION = "3.3.6";
 
 	/*public final ToolMaterial FIRESTONE = EnumHelper.addToolMaterial("FIRESTONE", 3, 1561, 8.0F, 3.0F, 10);
 	public final ToolMaterial WATERSTONE = EnumHelper.addToolMaterial("WATERSTONE", 3, 1561, 8.0F, 3.0F, 10);
@@ -305,6 +306,9 @@ public class Basemod
 	public static ArrayList<VLCPlayer> playerList = new ArrayList<>();
 	public static ArrayList<VLCPlayer> battleMusicList = new ArrayList<>();
 	public VLCPlayer localMusicPlayer = null;
+	
+	//this holds players battling in grass
+	public HashMap<String, ArrayList<String>> grassBattlers = new HashMap<String, ArrayList<String>>();
 
 	@Instance(Basemod.MODID)
 	public static Basemod instance;
@@ -397,7 +401,7 @@ public class Basemod
 		GameRegistry.registerTileEntity(YellowCusionChairEntity.class, "YellowCusionChair");
 		GameRegistry.registerTileEntity(TotodilePokedollEntity.class, "TotodileDoll");
 		
-		//where the hell did these disappear from? 
+		//where the hell did these disappear from?
 		GameRegistry.registerTileEntity(AronPokedollEntity.class, "AronDoll");
 		GameRegistry.registerTileEntity(GymSignEntity.class, "GymSign");
 		GameRegistry.registerTileEntity(TVEntity.class, "TV");
@@ -405,8 +409,7 @@ public class Basemod
 		GameRegistry.registerTileEntity(RedRugEntity.class, "RedRug");
 		GameRegistry.registerTileEntity(GreenRugEntity.class, "GreenRug");
 		
-		if(event.getSide() == Side.CLIENT)
-			GameRegistry.registerTileEntity(PokeballStatueTileEntity.class, "PokeballStatue");
+		GameRegistry.registerTileEntity(PokeballStatueTileEntity.class, "PokeballStatue");
 				
 		GameRegistry.registerTileEntity(TileEntityRadio.class, "Radio");
 		GameRegistry.registerTileEntity(TileEntityConveyor.class, "Conveyor");
@@ -422,6 +425,9 @@ public class Basemod
 			GameRegistry.registerWorldGenerator(new SiliconGenerator(), 3);
 			GameRegistry.registerWorldGenerator(new CrystalGenerator(), 3);
 		}
+		
+		if(config.grassGen)
+			GameRegistry.registerWorldGenerator(new PixelmonGrassGenerator(), 3);
 
 		PixelUtilitiesRecipes recipes = new PixelUtilitiesRecipes();
 		recipes.addRecipes();
@@ -452,22 +458,27 @@ public class Basemod
 			//Here be dragons.
 			for (Block block : (Iterable<Block>) GameData.getBlockRegistry())
 			{
-				if (!GameRegistry.findUniqueIdentifierFor(block).modId.equals(MODID))
+				if (!GameRegistry.findUniqueIdentifierFor(block).modId.equals("minecraft"))
 					continue;
 
+				if(block.delegate.name().contains("minecraft"))
+					continue;
+				
 				String localName = block.getLocalizedName();
 
 				if (localName.contains("tile"))
 				{
 					System.out.println("Block " + block.getClass().getName() + " Doesn't seem to have a name set!");
 					System.out.println();
+					System.out.println(localName);
+					System.out.println();
 				}
 
-				if (block.getCreativeTabToDisplayOn() == null)
+				/*if (block.getCreativeTabToDisplayOn() == null)
 				{
 					System.out.println("Block " + block.getClass().getName() + " Doesn't seem to have a creative tab set!");
 					System.out.println();
-				}
+				}*/
 
 			}
 
@@ -477,12 +488,13 @@ public class Basemod
 
 				String itemName = item.getItemStackDisplayName(itemStack);
 
-				if (!GameRegistry.findUniqueIdentifierFor(item).modId.equals(MODID))
-					return;
+				//if (!GameRegistry.findUniqueIdentifierFor(item).modId.equals(MODID))
+				//	continue;
 
 				if (itemName.contains("item."))
 				{
 					System.out.println("Item " + itemName + " doesn't seem to have a name set");
+					System.out.println();
 				}
 
 			}
@@ -539,7 +551,8 @@ public class Basemod
 		m.url = "";
 		m.updateUrl = "";
 		//m.description = "A mod that adds Pokemon blocks and items into Pixelmon";
-		m.description = "Happy Halloween >=D";
+		//m.description = "Happy Halloween >=D";
+		m.description = "Welcome to Pixeltopia";
 		m.authorList.add("AnDwHaT5");
 		m.authorList.add("Clienthax");
 		m.authorList.add("MoeBoy76");

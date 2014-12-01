@@ -17,7 +17,7 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "3.3.5"
+version = "3.3.6"
 group = "pixelutilities"
 archivesBaseName = "PixelUtilities"
 
@@ -37,7 +37,7 @@ processResources
         include 'mcmod.info'
                 
         // replace version and mcversion
-        expand 'version':project.version, 'mcversion':project.minecraft.version, 'fversion':"Forge 10.13.2.1230;Forge 10.13.0.1188",'pixelmonVersion':"3.3.4"
+        expand 'version':project.version, 'mcversion':project.minecraft.version, 'fversion':"Forge 10.13.2.1230",'pixelmonVersion':"3.3.4"
     }
         
     // copy everything else, thats not the mcmod.info
@@ -72,7 +72,7 @@ configurations {
 
 //noinspection GroovyAssignabilityCheck
 dependencies {
-    compile files('libs/compile/Pixelmon-deob.jar')
+    compile files('libs/compile/Pixelmon-deobf.jar')
     compile files('libs/runtime/vlcj-3.0.1.jar')
     runtimeOnly files('libs/runtime/jna-3.5.2.jar')
     runtimeOnly files('libs/runtime/platform-3.5.2.jar')
