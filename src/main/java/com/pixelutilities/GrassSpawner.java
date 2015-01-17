@@ -123,10 +123,10 @@ public class GrassSpawner
 	private String[] defaultEncounterListIceMountains = {"Swinub", "Slowpoke", "Magnemite", "Jynx"};
 	private String[] defaultEncounterListOcean = {"Magikarp", "Staryu", "Goldeen", "Shellder"};
 
-	private double xCoOrd;
-	private double lastXCoOrd = 0.0;
-	private double zCoOrd;
-	private double lastZCoOrd = 0.0;
+	private int xCoOrd;
+	private int lastXCoOrd = 0;
+	private int zCoOrd;
+	private int lastZCoOrd = 0;
 	BattleControllerBase bc;
 
 	public void spawnInGrass(World world, int x, int y, int z, EntityPlayerMP player)
@@ -141,16 +141,16 @@ public class GrassSpawner
 		//Random random = new Random(System.currentTimeMillis()); why create a new Random when there's already one in player?
 		int isGrassBattle = player.getRNG().nextInt(100);
 
-		xCoOrd = player.lastTickPosX;
-		zCoOrd = player.lastTickPosZ;
+		xCoOrd = (int) player.lastTickPosX;
+		zCoOrd = (int) player.lastTickPosZ;
 
-		if (xCoOrd == lastXCoOrd && zCoOrd == lastZCoOrd)
+		if (xCoOrd == lastXCoOrd && zCoOrd == lastZCoOrd || xCoOrd - 1 == lastXCoOrd && zCoOrd == lastZCoOrd || xCoOrd + 1 == lastXCoOrd && zCoOrd == lastZCoOrd || xCoOrd == lastXCoOrd && zCoOrd - 1 == lastZCoOrd || xCoOrd == lastXCoOrd && zCoOrd + 1 == lastZCoOrd)
 			return;
 
 		if (isGrassBattle <= PixelUtilitiesConfig.getInstance().grassSpawnRate)
 		{
-			if (PixelmonGrassBlock.isActive)
-				processGrassBattle(world, x, y, z, player);
+			//if (PixelmonGrassBlock.isActive)
+			processGrassBattle(world, x, y, z, player);
 		}
 		lastXCoOrd = xCoOrd;
 		lastZCoOrd = zCoOrd;

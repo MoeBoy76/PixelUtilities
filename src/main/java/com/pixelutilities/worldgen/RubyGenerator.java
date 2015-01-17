@@ -4,6 +4,7 @@ import com.pixelutilities.Basemod;
 import com.pixelutilities.config.PixelUtilitiesBlocks;
 
 import cpw.mods.fml.common.IWorldGenerator;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
@@ -12,7 +13,7 @@ import java.util.Random;
 
 public class RubyGenerator implements IWorldGenerator
 {
-	WorldGenMinable rubyGen = new WorldGenMinable(PixelUtilitiesBlocks.rubyOre, 3);
+	WorldGenMinable rubyGen = new WorldGenMinable(PixelUtilitiesBlocks.rubyOre, 3, Blocks.stone);
 	
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
@@ -33,7 +34,7 @@ public class RubyGenerator implements IWorldGenerator
     }
 
     private void generateSurface(World world, Random rand, int chunkX, int chunkZ) {
-        for (int k = 0; k < 4; k++) {
+        for (int k = 0; k < 2; k++) {
             int firstBlockXCoord = chunkX + rand.nextInt(25);
             int firstBlockYCoord = rand.nextInt(64);
             int firstBlockZCoord = chunkZ + rand.nextInt(25);

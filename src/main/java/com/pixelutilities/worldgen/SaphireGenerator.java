@@ -4,6 +4,7 @@ import com.pixelutilities.Basemod;
 import com.pixelutilities.config.PixelUtilitiesBlocks;
 
 import cpw.mods.fml.common.IWorldGenerator;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
@@ -30,12 +31,12 @@ public class SaphireGenerator implements IWorldGenerator {
     }
 
     private void generateSurface(World world, Random rand, int chunkX, int chunkZ) {
-        for (int k = 0; k < 4; k++) {
+        for (int k = 0; k < 2; k++) {
             int firstBlockXCoord = chunkX + rand.nextInt(25);
             int firstBlockYCoord = rand.nextInt(64);
             int firstBlockZCoord = chunkZ + rand.nextInt(25);
 
-            (new WorldGenMinable(PixelUtilitiesBlocks.saphireOre, 3)).generate(world, rand, firstBlockXCoord, firstBlockYCoord, firstBlockZCoord);
+            (new WorldGenMinable(PixelUtilitiesBlocks.saphireOre, 3, Blocks.stone)).generate(world, rand, firstBlockXCoord, firstBlockYCoord, firstBlockZCoord);
         }
     }
 
