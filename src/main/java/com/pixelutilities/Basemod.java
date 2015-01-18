@@ -8,6 +8,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
+import net.minecraft.launchwrapper.LogWrapper;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
@@ -18,47 +19,21 @@ import uk.co.caprica.vlcj.version.Version;
 
 import com.pixelmonmod.pixelmon.Pixelmon;
 import com.pixelutilities.achievements.PixelUtilitiesAchievements;
-import com.pixelutilities.commands.AddToDrops;
-import com.pixelutilities.commands.AddToGrassCommand;
-import com.pixelutilities.commands.EventLocation;
+import com.pixelutilities.commands.*;
 import com.pixelutilities.config.PixelUtilitiesBlocks;
 import com.pixelutilities.config.PixelUtilitiesConfig;
 import com.pixelutilities.config.PixelUtilitiesRecipes;
 import com.pixelutilities.entitys.SeatEntity;
-import com.pixelutilities.events.CustomDrops;
-import com.pixelutilities.events.FallEliminator;
-import com.pixelutilities.events.MissingMappingsHandler;
-import com.pixelutilities.events.PUTickHandler;
-import com.pixelutilities.events.PokegiftEventGen;
+import com.pixelutilities.events.*;
 import com.pixelutilities.networking.PacketHandler;
 import com.pixelutilities.proxies.CommonProxy;
 import com.pixelutilities.radioplayer.VLCPlayer;
-import com.pixelutilities.tileentitys.AronPokedollEntity;
-import com.pixelutilities.tileentitys.BlueRugEntity;
-import com.pixelutilities.tileentitys.BolderEntity;
-import com.pixelutilities.tileentitys.BoxEntity;
-import com.pixelutilities.tileentitys.ClothedTableEntity;
-import com.pixelutilities.tileentitys.GreenRugEntity;
-import com.pixelutilities.tileentitys.GymSignEntity;
-import com.pixelutilities.tileentitys.PokeballEntity;
-import com.pixelutilities.tileentitys.PokeballStatueTileEntity;
-import com.pixelutilities.tileentitys.PokegiftEntity;
-import com.pixelutilities.tileentitys.RedCusionChairEntity;
-import com.pixelutilities.tileentitys.RedRugEntity;
-import com.pixelutilities.tileentitys.TVEntity;
-import com.pixelutilities.tileentitys.TileEntityConveyor;
-import com.pixelutilities.tileentitys.TileEntityRadio;
-import com.pixelutilities.tileentitys.TotodilePokedollEntity;
-import com.pixelutilities.tileentitys.TrashcanEntity;
-import com.pixelutilities.tileentitys.TreeEntity;
-import com.pixelutilities.tileentitys.YellowCusionChairEntity;
+import com.pixelutilities.tileentitys.*;
 import com.pixelutilities.worldgen.*;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.ModMetadata;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -77,14 +52,7 @@ public class Basemod
 {
 	public static final String MODID = "pixelutilities";
 	public static final String NAME = "PixelUtilities";
-	public static final String VERSION = "3.3.6";
-
-	/*public final ToolMaterial FIRESTONE = EnumHelper.addToolMaterial("FIRESTONE", 3, 1561, 8.0F, 3.0F, 10);
-	public final ToolMaterial WATERSTONE = EnumHelper.addToolMaterial("WATERSTONE", 3, 1561, 8.0F, 3.0F, 10);
-	public final ToolMaterial LEAFSTONE = EnumHelper.addToolMaterial("LEAFSTONE", 2, 250, 6.0F, 2.0F, 14);
-	public final ToolMaterial THUNDERSTONE = EnumHelper.addToolMaterial("THUNDERSTONE", 3, 1561, 8.0F, 3.0F, 10);
-	public final ToolMaterial MOONSTONE = EnumHelper.addToolMaterial("MOONSTONE", 2, 500, 6.0F, 2.0F, 14);
-	public final ToolMaterial SUNSTONE = EnumHelper.addToolMaterial("SUNSTONE", 3, 1561, 8.0F, 3.0F, 10);*/
+	public static final String VERSION = "3.3.7";
 
 	public final ToolMaterial ELEMENTSTONE = EnumHelper.addToolMaterial("ELEMENTSTONE", 3, 1561, 12.0F, 0.0F, 22);
 
@@ -92,11 +60,7 @@ public class Basemod
 	public final ToolMaterial SAPHIRE = EnumHelper.addToolMaterial("SAPHIRE", 2, 300, 6.5F, 2, 14);
 	public final ToolMaterial AMETHYST = EnumHelper.addToolMaterial("AMETHYST", 2, 300, 6.5F, 2, 14);
 	public final ToolMaterial CRYSTAL = EnumHelper.addToolMaterial("CRYSTAL", 2, 300, 6.5F, 2, 14);
-
-	/*public final ArmorMaterial FIRESTONEA = EnumHelper.addArmorMaterial("FIRESTONE", 40, new int[]{4, 8, 6, 4}, 10);
-	public final ArmorMaterial WATERSTONEA = EnumHelper.addArmorMaterial("WATERSTONE", 40, new int[]{4, 8, 6, 4}, 10);
-	public final ArmorMaterial LEAFSTONEA = EnumHelper.addArmorMaterial("LEAFSTONE", 15, new int[]{2, 6, 5, 2}, 9);*/
-
+	
 	public final ArmorMaterial ELEMENTSTONE1 = EnumHelper.addArmorMaterial("ELEMENTSTONE1", 40, new int[]{4, 8, 6, 4}, 0);
 	public final ArmorMaterial ELEMENTSTONE2 = EnumHelper.addArmorMaterial("ELEMENTSTONE2", 15, new int[]{3, 7, 6, 3}, 0);
 
@@ -306,11 +270,13 @@ public class Basemod
 	public static ArrayList<VLCPlayer> playerList = new ArrayList<>();
 	public static ArrayList<VLCPlayer> battleMusicList = new ArrayList<>();
 	public VLCPlayer localMusicPlayer = null;
-	
+		
 	//this holds players battling in grass
-	public HashMap<String, ArrayList<String>> grassBattlers = new HashMap<String, ArrayList<String>>();
+	//public HashMap<String, ArrayList<String>> grassBattlers = new HashMap<String, ArrayList<String>>();
+	
+	private World eventWorld;
 
-	@Instance(Basemod.MODID)
+	@Mod.Instance(Basemod.MODID)
 	public static Basemod instance;
 
 	@SidedProxy(clientSide = "com.pixelutilities.proxies.ClientProxy", serverSide = "com.pixelutilities.proxies.CommonProxy")
@@ -357,7 +323,7 @@ public class Basemod
 		{
 			FMLCommonHandler.instance().bus().register(config);
 
-			PUTickHandler tickHandler = new PUTickHandler();
+			StandardTickHandler tickHandler = new StandardTickHandler();
 			FMLCommonHandler.instance().bus().register(tickHandler);
 			MinecraftForge.EVENT_BUS.register(tickHandler);
 			
@@ -446,12 +412,8 @@ public class Basemod
 		event.registerServerCommand(new AddToDrops());
 		event.registerServerCommand(new AddToGrassCommand());
 		event.registerServerCommand(new EventLocation());
-
-		if(config.doEvents && config.isEvent && pixelmonPresent)
-		{
-			World world = event.getServer().worldServerForDimension(0);
-			pge.generate(world);
-		}
+		
+		eventWorld = event.getServer().worldServerForDimension(0);
 		
 		if (DEBUGMODE)
 		{
@@ -488,12 +450,18 @@ public class Basemod
 
 				String itemName = item.getItemStackDisplayName(itemStack);
 
-				//if (!GameRegistry.findUniqueIdentifierFor(item).modId.equals(MODID))
-				//	continue;
+				if (!GameRegistry.findUniqueIdentifierFor(item).modId.equals(MODID))
+					continue;
 
 				if (itemName.contains("item."))
 				{
 					System.out.println("Item " + itemName + " doesn't seem to have a name set");
+					System.out.println();
+				}
+				
+				if(item.getCreativeTab() == null)
+				{
+					System.out.println("Item " + itemName + " doesn't seem to have a creative tab set");
 					System.out.println();
 				}
 
@@ -502,14 +470,17 @@ public class Basemod
 		}
 		//////////////////////////////////////////////////////
 
-
 	}
 
-	/*@Mod.EventHandler
+	@Mod.EventHandler
 	public void onServerStarted(FMLServerStartedEvent event)
 	{
-		event.getModState(); //this is here for when i check the debug
-	}*/
+		//moved here so the world is loaded and we can make sure the chunk is too
+		if(config.doEvents && config.isEvent && pixelmonPresent)
+		{
+			pge.generate(eventWorld);
+		}
+	}
 
 	@Mod.EventHandler
 	public void serverStop(FMLServerStoppedEvent event) {
