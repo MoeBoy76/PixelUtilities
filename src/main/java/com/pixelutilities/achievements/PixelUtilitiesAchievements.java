@@ -32,9 +32,25 @@ public class PixelUtilitiesAchievements
 	public static Achievement teamaqua2 = new Achievement("achievement.teamaqua2", "teamaqua2", 3, 3, Basemod.instance.saphireLegs, teamaqua1).registerStat();
 	public static Achievement teamaqua3 = new Achievement("achievement.teamaqua3", "teamaqua3", 3, 5, Basemod.instance.saphirePlate, teamaqua2).registerStat();
 	
-	//TODO Team Rocket, Galactic and Plasma
+	public static Achievement teamrocket = new Achievement("achievement.teamrocket", "teamrocket", -3, -1, Basemod.instance.rocketHelm, null).registerStat();
+	public static Achievement teamrocket1 = new Achievement("achievement.teamrocket1", "teamrocket1", -5, -1, Basemod.instance.rocketBoots, teamrocket).registerStat();
+	public static Achievement teamrocket2 = new Achievement("achievement.teamrocket2", "teamrocket2", -7, -1, Basemod.instance.rocketLegs, teamrocket1).registerStat();
+	public static Achievement teamrocket3 = new Achievement("achievement.teamrocket3", "teamrocket3", -9, -1, Basemod.instance.rocketPlate, teamrocket2).registerStat();
 	
-	public static AchievementPage PixelUtilitiesPage = new AchievementPage("PixelUtilities", teammagma, teamaqua, teammagma1, teamaqua1, getSilicon, pokeGift, givenPokeGift, teammagma2, teammagma3, teamaqua2, teamaqua3);
+	public static Achievement teamgalactic = new Achievement("achievement.teamgalactic", "teamgalactic", 1, -3, Basemod.instance.galacticHelm, null).registerStat();
+	public static Achievement teamgalactic1 = new Achievement("achievement.teamgalactic1", "teamgalactic1", 1, -5, Basemod.instance.galacticBoots, teamgalactic).registerStat();
+	public static Achievement teamgalactic2 = new Achievement("achievement.teamgalactic2", "teamgalactic2", 1, -7, Basemod.instance.galacticLegs, teamgalactic1).registerStat();
+	public static Achievement teamgalactic3 = new Achievement("achievement.teamgalactic3", "teamgalactic3", 1, -9, Basemod.instance.galacticPlate, teamgalactic2).registerStat();
+	
+	public static Achievement teamplasma = new Achievement("achievement.teamplasma", "teamplasma", 5, -1, Basemod.instance.crystalHelm, null).registerStat();
+	public static Achievement teamplasma1 = new Achievement("achievement.teamplasma1", "teamplasma1", 7, -1, Basemod.instance.crystalBoots, teamplasma).registerStat();
+	public static Achievement teamplasma2 = new Achievement("achievement.teamplasma2", "teamplasma2", 9, -1, Basemod.instance.crystalLegs, teamplasma1).registerStat();
+	public static Achievement teamplasma3 = new Achievement("achievement.teamplasma3", "teamplasma3", 11, -1, Basemod.instance.crystalPlate, teamplasma2).registerStat();
+	
+	public static AchievementPage PixelUtilitiesPage = new AchievementPage("PixelUtilities", teammagma, teamaqua, teammagma1, teamaqua1, 
+			getSilicon, pokeGift, givenPokeGift, teammagma2, teammagma3, teamaqua2, teamaqua3, 
+			teamgalactic, teamgalactic1, teamgalactic2, teamgalactic3,
+			teamplasma, teamplasma1, teamplasma2, teamplasma3, teamrocket, teamrocket1, teamrocket2, teamrocket3);
 
 	public static void setupAchievements() {
 		AchievementPage.registerAchievementPage(PixelUtilitiesPage);
@@ -87,7 +103,68 @@ public class PixelUtilitiesAchievements
             return;
         }
 
-        //TODO as above
+        if (item instanceof RocketHelmet)
+		{
+			player.addStat(teamrocket, 1);
+			return;
+		}
+		if (item instanceof RocketBoots)
+		{
+			player.addStat(teamrocket1, 1);
+			return;
+		}
+		if (item instanceof RocketLegs)
+		{
+			player.addStat(teamrocket2, 1);
+			return;
+		}
+		if (item instanceof RocketPlate)
+		{
+			player.addStat(teamrocket3, 1);
+			return;
+		}
+		
+		if (item instanceof GalacticHelmet)
+		{
+			player.addStat(teamgalactic, 1);
+			return;
+		}
+        if (item instanceof GalacticBoots)
+        {
+            player.addStat(teamgalactic1, 1);
+            return;
+        }
+        if (item instanceof GalacticLegs)
+        {
+            player.addStat(teamgalactic2, 1);
+            return;
+        }
+        if (item instanceof GalacticPlate)
+        {
+            player.addStat(teamgalactic3, 1);
+            return;
+        }
+        
+        if (item instanceof CrystalHelmet)
+		{
+			player.addStat(teamplasma, 1);
+			return;
+		}
+		if (item instanceof CrystalBoots)
+		{
+			player.addStat(teamplasma1, 1);
+			return;
+		}
+		if (item instanceof CrystalLegs)
+		{
+			player.addStat(teamplasma2, 1);
+			return;
+		}
+		if (item instanceof CrystalPlate)
+		{
+			player.addStat(teamplasma3, 1);
+			return;
+		}
 	}
 
 	@SubscribeEvent

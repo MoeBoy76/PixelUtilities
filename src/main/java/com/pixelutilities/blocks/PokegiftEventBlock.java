@@ -43,9 +43,13 @@ public class PokegiftEventBlock extends PokegiftBlock
 		{
 			itemName = "Christmas Pokegift";
 		}
-		if(PixelUtilitiesConfig.getInstance().isHalloween)
+		else if(PixelUtilitiesConfig.getInstance().isHalloween)
 		{
 			itemName = "Halloween Pokegift";
+		}
+		else if(PixelUtilitiesConfig.getInstance().isCustomHoliday)
+		{
+			itemName = "Custom Event Pokegift";
 		}
 		TYPE = Type.EVENT;
 	}
@@ -123,7 +127,7 @@ public class PokegiftEventBlock extends PokegiftBlock
 				}
 			}
 		}
-		else if(PixelUtilitiesConfig.getInstance().isChristmas || PixelUtilitiesConfig.getInstance().isHalloween)
+		else// if(PixelUtilitiesConfig.getInstance().isChristmas || PixelUtilitiesConfig.getInstance().isHalloween || PixelUtilitiesConfig.getInstance().isCustomHoliday)
 		{
 			ChatHandler.sendChat(player, "pixelutilities.event.noevents");
 		}
@@ -153,14 +157,16 @@ public class PokegiftEventBlock extends PokegiftBlock
 		
 		Random rng = new Random();
 		
-		int numberToCreate = rng.nextInt(6) + 1;
+		int max = PixelUtilitiesConfig.getInstance().maxEventPokes;
 		
-		if(numberToCreate == 0 || numberToCreate == 7)
+		int numberToCreate = rng.nextInt(max);
+		
+		if(numberToCreate == 0 || numberToCreate > 6 || numberToCreate > max)
 		{
-			numberToCreate = 3;
+			numberToCreate = 1;
 		}
 		
-		for(int i = 0; i <= numberToCreate; i++)
+		for(int i = 0; i < numberToCreate; i++)
 		{
 			String name = "";
 			if(PixelUtilitiesConfig.getInstance().eventLegendaries)
@@ -176,7 +182,7 @@ public class PokegiftEventBlock extends PokegiftBlock
 			p.setGrowth(EnumGrowth.getRandomGrowth());
 			if(PixelUtilitiesConfig.getInstance().eventShinies)
 			{
-				if(rng.nextInt(10) == 0)
+				if(rng.nextInt(PixelUtilitiesConfig.getInstance().eventShinyRate) == 0)
 				{
 					p.setIsShiny(true);
 				}

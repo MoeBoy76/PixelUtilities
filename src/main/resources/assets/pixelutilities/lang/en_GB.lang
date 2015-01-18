@@ -22,6 +22,33 @@ achievement.teammagma3.desc=Become a Team Magma Leader
 achievement.teamaqua3=Team Aqua Leader!
 achievement.teamaqua3.desc=Become a Team Aqua Leader
 
+achievement.teamgalactic=Team Galactic Wannabe!
+achievement.teamgalactic.desc=Join Team Galactic!
+achievement.teamgalactic1=Team Galactic Grunt!
+achievement.teamgalactic1.desc=Become a Team Galactic Grunt
+achievement.teamgalactic2=Team Galactic Executive!
+achievement.teamgalactic2.desc=Become a Team Galactic Executive
+achievement.teamgalactic3=Team Galactic Leader!
+achievement.teamgalactic3.desc=Become a Team Galactic Leader
+
+achievement.teamrocket=Team Rocket Wannabe!
+achievement.teamrocket.desc=Join Team Rocket!
+achievement.teamrocket1=Team Rocket Grunt!
+achievement.teamrocket1.desc=Become a Team Rocket Grunt
+achievement.teamrocket2=Team Rocket Executive!
+achievement.teamrocket2.desc=Become a Team Rocket Executive
+achievement.teamrocket3=Team Rocket Leader!
+achievement.teamrocket3.desc=Become a Team Rocket Leader
+
+achievement.teamplasma=Team Plasma Wannabe!
+achievement.teamplasma.desc=Join Team Plasma!
+achievement.teamplasma1=Team Plasma Grunt!
+achievement.teamplasma1.desc=Become a Team Plasma Grunt
+achievement.teamplasma2=Team Plasma Executive!
+achievement.teamplasma2.desc=Become a Team Plasma Executive
+achievement.teamplasma3=Team Plasma Leader!
+achievement.teamplasma3.desc=Become a Team Plasma Leader
+
 achievement.getSilicon=Get Silicon!
 achievement.getSilicon.desc=Smelt some Silicon
 
@@ -270,3 +297,7 @@ pixelutilities.event.noevents=Events are disabled :'(
 pixelutilities.blocks.nothingtoadd=You need to send out a Pixelmon first
 pixelutilities.block.error=An Error was caused by %s
 pixelutilities.blocks.lastpoke=This is your last Pixelmon!
+
+pixelutilities.gui.config.general.tooltip=The general settings for PU
+pixelutilities.gui.config.pokegifts.tooltip=All the gift settings, including events
+pixelutilities.gui.config.pokegrass.tooltip=All the settings for grass battles
