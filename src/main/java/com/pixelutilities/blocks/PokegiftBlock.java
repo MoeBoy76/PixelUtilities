@@ -5,7 +5,6 @@ import java.util.UUID;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -13,13 +12,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-import com.pixelmonmod.pixelmon.Pixelmon;
-import com.pixelmonmod.pixelmon.api.events.PixelmonRecievedEvent;
-import com.pixelmonmod.pixelmon.api.events.ReceiveType;
 import com.pixelmonmod.pixelmon.comm.ChatHandler;
 import com.pixelmonmod.pixelmon.config.PixelmonEntityList;
 import com.pixelmonmod.pixelmon.entities.pixelmon.EntityPixelmon;
@@ -27,14 +22,10 @@ import com.pixelmonmod.pixelmon.pokeloot.PokeLoot;
 import com.pixelmonmod.pixelmon.storage.PixelmonStorage;
 import com.pixelmonmod.pixelmon.storage.PlayerNotLoadedException;
 import com.pixelmonmod.pixelmon.storage.PlayerStorage;
-import com.pixelutilities.Basemod;
 import com.pixelutilities.achievements.PixelUtilitiesAchievements;
 import com.pixelutilities.config.PixelUtilitiesConfig;
 import com.pixelutilities.tileentitys.PokegiftEntity;
 import com.pixelutilities.tileentitys.PokegiftEntity.Type;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class PokegiftBlock extends BlockContainer {
 
@@ -57,43 +48,6 @@ public class PokegiftBlock extends BlockContainer {
 		// Entity
 		this.pokeChestTileEntityClass = tileEntityClass;
 		this.isBlockContainer = true;
-
-		textureName = "pixelutilities:cherishball";
-	}
-
-	/**
-	 * Add Textures
-	 */
-	public void registerIcons(IIconRegister iconReg)
-	{
-		this.blockIcon = iconReg.registerIcon("pixelutilities:cherishball");
-	}
-
-	/**
-	 * Used to determine which texture to display on each face
-	 */
-	@Override
-	public IIcon getIcon(int side, int metadata) {
-
-		// Front Face +1 to not get 0 (inv block)
-		int frontFace = 4;
-		if (metadata == 2)
-		{ // Meta 2
-			frontFace = 4;
-		}
-		else if (metadata == 4)
-		{ // Meta 4
-			frontFace = 5;
-		}
-		else if (metadata == 3)
-		{ // Meta 3
-			frontFace = 2;
-		}
-		else if (metadata == 1)
-		{ // Meta 1
-			frontFace = 3;
-		}
-		return this.blockIcon;
 	}
 
 	/**
@@ -148,7 +102,9 @@ public class PokegiftBlock extends BlockContainer {
 							return false;
 						}
 						PixelmonStorage.PokeballManager.getPlayerStorage((EntityPlayerMP) player).addToParty(tile.getPixelmon());
-						Pixelmon.EVENT_BUS.post(new PixelmonRecievedEvent(player, ReceiveType.PokeBall, tile.getPixelmon()));
+
+						//TODO 1.8
+//						Pixelmon.EVENT_BUS.post(new PixelmonRecievedEvent(player, ReceiveType.PokeBall, tile.getPixelmon()));
 					}
 					catch (PlayerNotLoadedException e) {
 						e.printStackTrace();
@@ -281,7 +237,7 @@ public class PokegiftBlock extends BlockContainer {
 
 			// Set Front Face
 			int face = MathHelper.floor_double((double) (player.rotationYaw * 4.0F / 360.0F) + 2.5D) & 3;
-			world.setBlockMetadataWithNotify(x, y, z, face + 1, 2); // +1 to not get 0 (inv block)
+			//world.setBlockMetadataWithNotify(x, y, z, face + 1, 2); // +1 to not get 0 (inv block)
 		}
 	}
 

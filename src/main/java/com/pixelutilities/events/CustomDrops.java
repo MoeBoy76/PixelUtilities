@@ -1,25 +1,15 @@
 package com.pixelutilities.events;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import tv.twitch.chat.ChatMessage;
+import com.pixelmonmod.pixelmon.api.events.BeatWildPixelmonEvent;
+import com.pixelutilities.Basemod;
+import com.pixelutilities.config.PixelUtilitiesConfig;
 import net.minecraft.command.ICommandSender;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-import com.pixelmonmod.pixelmon.api.events.BeatWildPixelmonEvent;
-import com.pixelmonmod.pixelmon.enums.EnumPokemon;
-import com.pixelutilities.Basemod;
-import com.pixelutilities.config.PixelUtilitiesConfig;
-import com.sun.xml.internal.bind.v2.TODO;
-
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import java.util.ArrayList;
 
 public class CustomDrops
 {

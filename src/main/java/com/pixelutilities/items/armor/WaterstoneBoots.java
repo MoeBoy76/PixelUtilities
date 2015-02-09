@@ -2,8 +2,6 @@ package com.pixelutilities.items.armor;
 
 import java.util.UUID;
 
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -13,7 +11,6 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
@@ -23,9 +20,6 @@ import com.google.common.collect.Multimap;
 import com.pixelutilities.Basemod;
 import com.pixelutilities.config.PixelUtilitiesArmor;
 import com.pixelutilities.config.PixelUtilitiesCreativeTabs;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class WaterstoneBoots extends ItemArmor
 {
@@ -47,12 +41,6 @@ public class WaterstoneBoots extends ItemArmor
 		{
 			return "pixelutilities:textures/armor/WaterstoneArmor_1.png";
 		}
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister par1IconRegister) {
-		this.itemIcon = par1IconRegister.registerIcon("pixelutilities:armor/WaterstoneBoots");
 	}
 
 	private UUID elementalBootsUUID = UUID.fromString("10ae6bcc-5b15-41b1-ba51-b6101e178401");

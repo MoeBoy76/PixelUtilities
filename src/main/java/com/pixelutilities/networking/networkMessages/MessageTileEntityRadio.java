@@ -2,45 +2,45 @@ package com.pixelutilities.networking.networkMessages;
 
 import com.pixelutilities.networking.PacketHandler;
 import com.pixelutilities.tileentitys.TileEntityRadio;
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
-import cpw.mods.fml.relauncher.Side;
 import io.netty.buffer.ByteBuf;
+import jdk.nashorn.internal.ir.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockPos;
+import net.minecraftforge.fml.common.network.ByteBufUtils;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.relauncher.Side;
 
 public class MessageTileEntityRadio implements IMessage {
 
-    public int x, y, z;
+    public BlockPos blockPos;
     public boolean playing = false;
     public String url = "http://www.youtube.com/watch?v=4M6qAMMqFhI&hd=1";
 
     public MessageTileEntityRadio() {
     }
 
-    public MessageTileEntityRadio(int x, int y, int z, boolean playing, String url) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
+    public MessageTileEntityRadio(BlockPos blockPos, boolean playing, String url) {
+        this.blockPos = blockPos;
         this.playing = playing;
         this.url = url;
     }
 
     public MessageTileEntityRadio(TileEntityRadio radio) {
-        this.x = radio.xCoord;
-        this.y = radio.yCoord;
-        this.z = radio.zCoord;
+        this.blockPos = radio.getPos();
         this.url = radio.streamURL;
     }
 
     @Override
     public void fromBytes(ByteBuf buf) {
-        this.x = buf.readInt();
-        this.y = buf.readInt();
-        this.z = buf.readInt();
+        int x = buf.readInt();
+        int y = buf.readInt();
+        int z = buf.readInt();
+	    this.blockPos = new BlockPos(x, y, z);
         this.playing = buf.readBoolean();
         int streamLength = buf.readInt();
         if (streamLength > 0)
@@ -49,9 +49,9 @@ public class MessageTileEntityRadio implements IMessage {
 
     @Override
     public void toBytes(ByteBuf buf) {
-        buf.writeInt(this.x);
-        buf.writeInt(this.y);
-        buf.writeInt(this.z);
+        buf.writeInt(this.blockPos.getX());
+        buf.writeInt(this.blockPos.getY());
+        buf.writeInt(this.blockPos.getZ());
         buf.writeBoolean(playing);
 
         int urlLength = this.url.length();
@@ -71,16 +71,16 @@ public class MessageTileEntityRadio implements IMessage {
             TileEntity te = null;
             if (context.side == Side.SERVER) {
                 EntityPlayerMP p = context.getServerHandler().playerEntity;
-                te = MinecraftServer.getServer().worldServerForDimension(p.dimension).getTileEntity(message.x, message.y, message.z);
+                te = MinecraftServer.getServer().worldServerForDimension(p.dimension).getTileEntity(message.blockPos);
             }
             if (context.side == Side.CLIENT) {
-                te = Minecraft.getMinecraft().theWorld.getTileEntity(message.x, message.y, message.z);
+                te = Minecraft.getMinecraft().theWorld.getTileEntity(message.blockPos);
             }
 
 
             if (te == null) {
                 System.out.println("te is null D:");
-                System.out.println("te should be at " + message.x + " " + message.y + " " + message.z);
+                System.out.println("te should be at "+ message.blockPos.toString());
             }
 
 

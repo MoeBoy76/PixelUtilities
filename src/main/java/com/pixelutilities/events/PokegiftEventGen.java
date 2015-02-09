@@ -11,19 +11,17 @@ import com.pixelutilities.config.PixelUtilitiesBlocks;
 import com.pixelutilities.config.PixelUtilitiesConfig;
 import com.pixelutilities.tileentitys.PokegiftEntity;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.ChunkCoordinates;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.ChunkProviderServer;
 
 /**
- * 
+ *
  * @author MoeBoy76
- * 
+ *
  * this is for making the {@link PokegiftEventBlock} for Halloween or Christmas
  *
  */
@@ -32,23 +30,21 @@ public class PokegiftEventGen {
 	private enum EventType {
 		Christmas, Custom, Halloween
 	}
-	
-	private int x, y, z, distance, face = 0;
+
+	private BlockPos position;
 	Block underBlock;
-	private int x2, y2, z2, underID2, distance2, face2 = 0;
-	private BiomeGenBase biome, biome2;
+	private BiomeGenBase biome;
 	private boolean goodBiome = true;
-	private boolean goodBiome2 = true;
 	private World world;
-	
+
 	private EventType type;
 
 	List<String> coords = PixelUtilitiesConfig.getInstance().eventCoords;
 
 	/**
-	 * 
+	 *
 	 * similar to {@link PokeLoot} generation with some tweaks
-	 * 
+	 *
 	 * @param world - the mc world
 	 */
 	public void generate(World world)
@@ -67,20 +63,18 @@ public class PokegiftEventGen {
 			return;
 		}
 
-		ChunkCoordinates cc = world.getSpawnPoint();
+		BlockPos cc = world.getSpawnPoint();
 		ChunkProviderServer ccServer = (ChunkProviderServer) world.getChunkProvider();
-		if(!ccServer.chunkExists(cc.posX, cc.posZ))
+		if(!ccServer.chunkExists(cc.getX(), cc.getZ()))
 		{
-			ccServer.loadChunk(cc.posX, cc.posZ);
-			if(!ccServer.chunkExists(cc.posX, cc.posZ))
+			ccServer.loadChunk(cc.getX(), cc.getZ());
+			if(!ccServer.chunkExists(cc.getX(), cc.getZ()))
 				return;
 		}
 
 		if(PixelUtilitiesConfig.getInstance().isChristmas)
 		{
-			x = cc.posX + 5;
-			z = cc.posZ + 5;
-			y = world.getHeightValue(x, z) + 1;
+			position = cc.add(5, world.getHeight(cc).getY() + 1, 5);
 			type = EventType.Christmas;
 			if(!verifyCoords())
 			{
@@ -89,9 +83,7 @@ public class PokegiftEventGen {
 		}
 		else if(PixelUtilitiesConfig.getInstance().isHalloween)
 		{
-			x = cc.posX - 5;
-			z = cc.posZ - 5;
-			y = world.getHeightValue(x, z) + 1;
+			position = cc.add(-5, world.getHeight(cc).getY() + 1, -5);
 			type = EventType.Halloween;
 			if(!verifyCoords())
 			{
@@ -100,9 +92,7 @@ public class PokegiftEventGen {
 		}
 		else if(PixelUtilitiesConfig.getInstance().isCustomHoliday)
 		{
-			x = cc.posX + 5;
-			z = cc.posZ - 5;
-			y = world.getHeightValue(x, z) + 1;
+			position = cc.add(5, world.getHeight(cc).getY() + 1, -5);
 			type = EventType.Custom;
 			if(!verifyCoords())
 			{
@@ -115,7 +105,7 @@ public class PokegiftEventGen {
 		}
 
 		// Get Block under loc
-		underBlock = world.getBlock(x, y - 1, z);
+		underBlock = world.getBlockState(position.down()).getBlock();
 		if(underBlock instanceof PokegiftBlock)
 		{
 			PixelUtilitiesConfig.getInstance().disableEventLoading();
@@ -123,17 +113,17 @@ public class PokegiftEventGen {
 		}
 
 		// Get Biome
-		biome = world.getBiomeGenForCoords(cc.posX * 16, cc.posZ * 16);
+		biome = world.getBiomeGenForCoords(new BlockPos(cc.getX() * 16, 0, cc.getZ() * 16));
 
 		// Adjust y to not be on trees/above air
-		while (underBlock == Blocks.leaves || underBlock == Blocks.log || world.isAirBlock(x, y - 1, z)) {
+		while (underBlock == Blocks.leaves || underBlock == Blocks.log || world.isAirBlock(position.down())) {
 
 			// Adjust Y
-			y--;
+			position = position.down();
 
 			// Reset Under ID
 			try {
-				underBlock = world.getBlock(x, y - 1, z);
+				underBlock = world.getBlockState(position.down()).getBlock();
 				if(underBlock instanceof PokegiftBlock)
 				{
 					PixelUtilitiesConfig.getInstance().disableEventLoading();
@@ -161,8 +151,8 @@ public class PokegiftEventGen {
 
 		// Do not place over water or lava blocks
 		if (goodBiome && underBlock != Blocks.water && underBlock != Blocks.flowing_water && underBlock != Blocks.flowing_lava && underBlock != Blocks.lava) {
-			world.setBlock(x, y, z, PixelUtilitiesBlocks.eventPokegift);
-			System.out.println("Pokegift Event spawned at " + x + ", " + y + ", " + z);
+			world.setBlockState(position, PixelUtilitiesBlocks.eventPokegift.getDefaultState());
+			System.out.println("Pokegift Event spawned at " + position.toString());
 			PixelUtilitiesConfig.getInstance().disableEventLoading();
 		}
 		else
@@ -173,8 +163,8 @@ public class PokegiftEventGen {
 			}
 			try
 			{
-				world.setBlock(x, y, z, PixelUtilitiesBlocks.eventPokegift);
-				System.out.println("Pokegift Event spawned at " + x + ", " + y + ", " + z);
+				world.setBlockState(position, PixelUtilitiesBlocks.eventPokegift.getDefaultState());
+				System.out.println("Pokegift Event spawned at " + position.toString());
 				PixelUtilitiesConfig.getInstance().disableEventLoading();
 			}
 			catch(Exception e)
@@ -186,55 +176,49 @@ public class PokegiftEventGen {
 	}
 
 	/**
-	 * 
+	 *
 	 * checks for existing event pokegift and checks tries to find an empty block
-	 * 
+	 *
 	 * @author MoeBoy76
-	 * 
+	 *
 	 * @return false if an event pokegift is detected
 	 */
 	private boolean verifyCoords()
 	{
-		if(world.getTileEntity(x, y, z) != null && world.getTileEntity(x, y, z) instanceof PokegiftEntity)
+		if(world.getTileEntity(position) != null && world.getTileEntity(position) instanceof PokegiftEntity)
 		{
-			PokegiftEntity te = (PokegiftEntity) world.getTileEntity(x, y, z);
+			PokegiftEntity te = (PokegiftEntity) world.getTileEntity(position);
 			if(te.getType() == PokegiftEntity.Type.EVENT)
 			{
 				return false;
 			}
 		}
-		Block b = world.getBlock(x, y, z);
+		Block b = world.getBlockState(position).getBlock();
 		while(b != Blocks.air)
 		{
 			if(type == EventType.Halloween)
 			{
-				x -= 1;
-				z -= 1;
-				y = world.getHeightValue(x, z) + 1;
+				position = position.add(-1, world.getHeight(position).getY() + 1, -1);
 			}
 			if(type == EventType.Christmas)
 			{
-				x += 1;
-				z += 1;
-				y = world.getHeightValue(x, z) + 1;
+				position = position.add(1, world.getHeight(position).getY() + 1, 1);
 			}
 			if(type == EventType.Custom)
 			{
-				x += 1;
-				z -= 1;
-				y = world.getHeightValue(x, z) + 1;
+				position = position.add(1, world.getHeight(position).getY() + 1, -1);
 			}
-			b = world.getBlock(x, y, z);
+			b = world.getBlockState(position).getBlock();
 		}
 		return true;
 	}
 
 	/**
-	 * 
+	 *
 	 * called by {@link EventLocation} to place the event pokegift at pre-dermined co-ords
-	 * 
+	 *
 	 * @author MoeBoy76
-	 * 
+	 *
 	 * @return true if placed and false if an error occurs 
 	 */
 	public boolean placeEvent(World world)
@@ -247,11 +231,12 @@ public class PokegiftEventGen {
 			{
 				coords = PixelUtilitiesConfig.getInstance().eventCoords;
 
-				x = Integer.parseInt(coords.get(0));
-				y = Integer.parseInt(coords.get(1));
-				z = Integer.parseInt(coords.get(2));
+				int x = Integer.parseInt(coords.get(0));
+				int y = Integer.parseInt(coords.get(1));
+				int z = Integer.parseInt(coords.get(2));
+				BlockPos pos = new BlockPos(x, y, z);
 
-				world.setBlock(x, y, z, PixelUtilitiesBlocks.eventPokegift);
+				world.setBlockState(pos, PixelUtilitiesBlocks.eventPokegift.getDefaultState());
 				return true;
 			}
 		}

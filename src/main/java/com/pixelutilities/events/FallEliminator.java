@@ -7,8 +7,7 @@ import com.pixelutilities.items.armor.DawnstoneBoots;
 import com.pixelutilities.items.armor.DawnstoneHelmet;
 import com.pixelutilities.items.armor.DawnstoneLegs;
 import com.pixelutilities.items.armor.DawnstonePlate;
-
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class FallEliminator
 {

@@ -1,8 +1,7 @@
 package com.pixelutilities.events;
 
 import com.pixelmonmod.pixelmon.api.events.PlayerBattleEndedEvent;
-
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class PixelmonEventHandler {
 

@@ -4,9 +4,8 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 
 import com.pixelutilities.Basemod;
-
-import cpw.mods.fml.common.event.FMLMissingMappingsEvent;
-import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.event.FMLMissingMappingsEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class MissingMappingsHandler
 {

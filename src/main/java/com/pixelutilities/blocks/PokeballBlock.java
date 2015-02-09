@@ -77,11 +77,6 @@ public class PokeballBlock extends BlockContainer {
     }
 
     @Override
-    public boolean renderAsNormalBlock() {
-        return false;
-    }
-
-    @Override
     public int getRenderType() {
         return -1;
     }

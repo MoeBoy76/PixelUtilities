@@ -11,10 +11,9 @@ import com.pixelutilities.config.PixelUtilitiesBlocks;
 import com.pixelutilities.networking.PacketHandler;
 import com.pixelutilities.networking.networkMessages.MessageTileEntityRadio;
 import com.pixelutilities.radioplayer.VLCPlayer;
-
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TileEntityRadio extends TileEntity {
 
@@ -81,7 +80,7 @@ public class TileEntityRadio extends TileEntity {
     @SideOnly(Side.CLIENT)
     @Override
     public void invalidate() {
-        PacketHandler.INSTANCE.sendToServer(new MessageTileEntityRadio(xCoord, yCoord, zCoord, !isPlaying(), streamURL));
+        PacketHandler.INSTANCE.sendToServer(new MessageTileEntityRadio(this.getPos(), !isPlaying(), streamURL));
         stopStream();
         super.invalidate();
     }
@@ -98,7 +97,7 @@ public class TileEntityRadio extends TileEntity {
     @Override
     public void updateEntity() {
         if (Minecraft.getMinecraft().thePlayer != null && player != null && !isInvalid()) {
-            float vol = (float) getDistanceFrom(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ);
+            float vol = (float) getDistanceSq(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ);
             if (vol > 10000) {
                 player.setVolume(0);
             } else {
@@ -109,7 +108,6 @@ public class TileEntityRadio extends TileEntity {
                     player.setVolume(v2);
                 }
             }
-            //System.out.println("streamurl: \""+streamURL+"\"");
         }
     }
 
@@ -128,7 +126,7 @@ public class TileEntityRadio extends TileEntity {
     @Override
     public Packet getDescriptionPacket() {
         if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
-            PacketHandler.INSTANCE.sendToServer(new MessageTileEntityRadio(xCoord, yCoord, zCoord, isPlaying(), streamURL));
+            PacketHandler.INSTANCE.sendToServer(new MessageTileEntityRadio(this.getPos(), isPlaying(), streamURL));
         return null;
     }
 }

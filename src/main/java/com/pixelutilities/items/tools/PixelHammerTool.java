@@ -20,16 +20,8 @@ public class PixelHammerTool extends ItemHammer {
 
 	public PixelHammerTool(ToolMaterial par3EnumToolMaterial, String itemString, String itemName) {
 		super(par3EnumToolMaterial, itemString, itemName);
-
-		setTextureName(itemString);
 		setUnlocalizedName(itemName);
 		setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools);
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister par1IconRegister) {
-		this.itemIcon = par1IconRegister.registerIcon(this.getIconString());
 	}
 
 	@Override

@@ -9,10 +9,15 @@ import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.launchwrapper.LogWrapper;
-import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
+import net.minecraftforge.fml.common.*;
+import net.minecraftforge.fml.common.event.*;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
+import net.minecraftforge.fml.common.registry.GameData;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
 import uk.co.caprica.vlcj.discovery.NativeDiscovery;
 import uk.co.caprica.vlcj.version.LibVlcVersion;
 import uk.co.caprica.vlcj.version.Version;
@@ -31,22 +36,6 @@ import com.pixelutilities.radioplayer.VLCPlayer;
 import com.pixelutilities.tileentitys.*;
 import com.pixelutilities.worldgen.*;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.FMLLog;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.ModMetadata;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLMissingMappingsEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerStartedEvent;
-import cpw.mods.fml.common.event.FMLServerStartingEvent;
-import cpw.mods.fml.common.event.FMLServerStoppedEvent;
-import cpw.mods.fml.common.registry.EntityRegistry;
-import cpw.mods.fml.common.registry.GameData;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.relauncher.Side;
-
 @Mod(modid = Basemod.MODID, name = Basemod.NAME, version = Basemod.VERSION, dependencies = "after:pixelmon", guiFactory="com.pixelutilities.PixelUtilitiesGuiFactory")
 public class Basemod
 {
@@ -60,16 +49,18 @@ public class Basemod
 	public final ToolMaterial SAPHIRE = EnumHelper.addToolMaterial("SAPHIRE", 2, 300, 6.5F, 2, 14);
 	public final ToolMaterial AMETHYST = EnumHelper.addToolMaterial("AMETHYST", 2, 300, 6.5F, 2, 14);
 	public final ToolMaterial CRYSTAL = EnumHelper.addToolMaterial("CRYSTAL", 2, 300, 6.5F, 2, 14);
-	
+
+	//TODO 1.8 armor
+
 	public final ArmorMaterial ELEMENTSTONE1 = EnumHelper.addArmorMaterial("ELEMENTSTONE1", 40, new int[]{4, 8, 6, 4}, 0);
 	public final ArmorMaterial ELEMENTSTONE2 = EnumHelper.addArmorMaterial("ELEMENTSTONE2", 15, new int[]{3, 7, 6, 3}, 0);
-
 
 	public final ArmorMaterial RUBYA = EnumHelper.addArmorMaterial("RUBY", 200, new int[]{3, 7, 6, 3}, 10);
 	public final ArmorMaterial SAPHIREA = EnumHelper.addArmorMaterial("SAPHIRE", 200, new int[]{3, 7, 6, 3}, 10);
 	public final ArmorMaterial CRYSTALA = EnumHelper.addArmorMaterial("CRYSTAL", 200, new int[]{3, 7, 6, 3}, 10);
 	public final ArmorMaterial SILICONA = EnumHelper.addArmorMaterial("SILICON", 200, new int[]{3, 7, 6, 3}, 10);
 	public final ArmorMaterial AMETHYSTA = EnumHelper.addArmorMaterial("AMETHYST", 200, new int[]{3, 7, 6, 3}, 10);
+
 
 	//Massive chunk of variables to reduce static
 	//Items
@@ -254,6 +245,7 @@ public class Basemod
 	public static Item dawnstoneLegs;
 	public static Item dawnstoneBoots;
 
+
 	//lights
 	public Block blueLightBlock;
 	public Block redLightBlock;
@@ -302,10 +294,11 @@ public class Basemod
 
 		if(pixelmonPresent)
 		{
-			Pixelmon.EVENT_BUS.register(CustomDrops.getInstance());
+			//TODO pixel 1.8
+/*			Pixelmon.EVENT_BUS.register(CustomDrops.getInstance());
 			if(event.getSide().equals(Side.CLIENT))
 				Pixelmon.EVENT_BUS.register(new PUTickHandler());
-		}
+*/		}
 
 		AddMeta(event);
 		config = PixelUtilitiesConfig.getInstance();

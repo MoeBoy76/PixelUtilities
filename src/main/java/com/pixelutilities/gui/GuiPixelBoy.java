@@ -84,7 +84,8 @@ public class GuiPixelBoy extends GuiScreen {
 
         float scaler = 1.00f;
         glScalef(scaler,scaler,scaler);
-        drawTexturedModalRect(offsetX, offsetY, 0, 0, texture.width, texture.height);
+	    //TODO 1.8 access transformer to get these!
+//        drawTexturedModalRect(offsetX, offsetY, 0, 0, texture.width, texture.height);
 
         texture.deleteGlTexture();
         texture = null;

@@ -4,9 +4,8 @@ import com.pixelutilities.Basemod;
 import com.pixelutilities.entitys.SeatEntity;
 import com.pixelutilities.models.renderers.*;
 import com.pixelutilities.tileentitys.*;
-
-import cpw.mods.fml.client.registry.ClientRegistry;
-import cpw.mods.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 public class ClientProxy extends CommonProxy
 {
@@ -33,7 +32,6 @@ public class ClientProxy extends CommonProxy
 		ClientRegistry.bindTileEntitySpecialRenderer(GreenRugEntity.class, new GreenRugRenderer());
 
 		RenderingRegistry.registerEntityRenderingHandler(SeatEntity.class, new InvisibleRenderer());
-		RenderingRegistry.registerBlockHandler(500, new ConveyorRenderer());
 
 		if(Basemod.instance.pixelmonPresent)
 		{

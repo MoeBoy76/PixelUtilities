@@ -6,53 +6,12 @@ import java.util.List;
 import com.pixelutilities.Basemod;
 import com.pixelutilities.items.armor.*;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class PixelUtilitiesArmor
 {
-	/*public static Item rubyHelm;
-    public static Item rubyPlate;
-    public static Item rubyLegs;
-    public static Item rubyBoots;
-
-    public static Item saphireHelm;
-    public static Item saphirePlate;
-    public static Item saphireLegs;
-    public static Item saphireBoots;
-
-    public static Item galacticHelm;
-    public static Item galacticBoots;
-    public static Item galacticPlate;
-    public static Item galacticLegs;
-
-    public static Item crystalHelm;
-    public static Item crystalBoots;
-    public static Item crystalPlate;
-    public static Item crystalLegs;
-
-    public static Item rocketHelm;
-    public static Item rocketBoots;
-    public static Item rocketPlate;
-    public static Item rocketLegs;
-
-
-    public static Item firestoneHelm;
-    public static Item firestonePlate;
-    public static Item firestoneLegs;
-    public static Item firestoneBoots;
-
-    public static Item waterstoneHelm;
-    public static Item waterstonePlate;
-    public static Item waterstoneLegs;
-    public static Item waterstoneBoots;
-
-    public static Item leafstoneHelm;
-    public static Item leafstonePlate;
-    public static Item leafstoneLegs;
-    public static Item leafstoneBoots;
-	 */
 	private static List<Item> armourList = new ArrayList<>();
 	
 	public static void load(Configuration cfg)

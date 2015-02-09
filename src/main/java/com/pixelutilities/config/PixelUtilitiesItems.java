@@ -5,10 +5,9 @@ import com.pixelutilities.items.badges.*;
 import com.pixelutilities.items.economy.*;
 import com.pixelutilities.items.*;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class PixelUtilitiesItems {
 
