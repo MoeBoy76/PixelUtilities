@@ -23,7 +23,7 @@ public class PixelUtilitiesTools
 
 	//Saphire Tools
 	public Item saphirePickaxe;
-	public Item saphireHammer;// new com.PixelUtilities.tools.SaphireHammerTool(6052, Basemod.instance.SAPHIRE, "saphireHammer", "Saphire Hammer").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("saphireHammer");
+	public Item saphireHammer;// new com.PixelUtilities.tools.SaphireHammerTool(6052, Basemod.instance.SAPHIRE, "saphireHammer", "Saphire_Hammer").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("saphireHammer");
 	public Item saphireAxe;// new com.PixelUtilities.tools.SaphireAxeTool(6053, Basemod.instance.SAPHIRE, "pixelutilities:tools/SaphireAxe").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("saphireAxe");
 	public Item saphireShovel;// new com.PixelUtilities.tools.SaphireShovelTool(6054, Basemod.instance.SAPHIRE, "pixelutilities:tools/SaphireShovel").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("saphireShovel");
 	public Item saphireHoe;// new com.PixelUtilities.tools.SaphireHoeTool(6055, Basemod.instance.SAPHIRE, "PixelUtilities:SaphireHoe").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("saphireHoe");
@@ -31,7 +31,7 @@ public class PixelUtilitiesTools
 
 	//Amethyst Tools
 	public Item amethystPickaxe;// new com.PixelUtilities.tools.AmethystPickaxeTool(6057, 6.5F, Basemod.instance.AMETHYST, "PixelUtilities:AmethystPickaxe").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("amethystPickaxe");
-	public Item amethystHammer;// new com.PixelUtilities.tools.AmethystHammerTool(6058, Basemod.instance.AMETHYST, "AmethystHammer", "Amethyst Hammer").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("amethystHammer").setTextureName("PixelUtilities:AmethystHammer");
+	public Item amethystHammer;// new com.PixelUtilities.tools.AmethystHammerTool(6058, Basemod.instance.AMETHYST, "AmethystHammer", "Amethyst_Hammer").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("amethystHammer").setTextureName("PixelUtilities:AmethystHammer");
 	public Item amethystShovel;// new com.PixelUtilities.tools.AmethystShovelTool(6059, Basemod.instance.AMETHYST, "PixelUtilities:AmethystShovel").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("amethystShovel");
 	public Item amethystAxe;// new com.PixelUtilities.tools.AmethystAxeTool(6060, Basemod.instance.AMETHYST, "PixelUtilities:AmethystAxe").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("amethystAxe");
 	public Item amethystHoe;// new com.PixelUtilities.tools.AmethystHoeTool(6061, Basemod.instance.AMETHYST, "PixelUtilities:AmethystHoe").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("amethystHoe");
@@ -40,7 +40,7 @@ public class PixelUtilitiesTools
 	//EvoTools
 	//Firestone tools
 	public Item FirestonePickaxe;// new com.PixelUtilities.tools.FirestonePickaxe(6083, 6.5F, ELEMENTSTONE, "pixelutilities:tools/FirestonePickaxe").setTextureName("PixelUtilities:FirestonePickaxe").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("FirestonePickaxe");
-	public Item FirestoneHammer;// new com.PixelUtilities.tools.FirestoneHammer(6084, ELEMENTSTONE, "FirestoneHammer", "Firestone Hammer").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setTextureName("PixelUtilities:FirestoneHammer").setUnlocalizedName("FirestoneHammer");
+	public Item FirestoneHammer;// new com.PixelUtilities.tools.FirestoneHammer(6084, ELEMENTSTONE, "FirestoneHammer", "Firestone_Hammer").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setTextureName("PixelUtilities:FirestoneHammer").setUnlocalizedName("FirestoneHammer");
 	public Item FirestoneAxe;// new com.PixelUtilities.tools.FirestoneAxe(6085, ELEMENTSTONE, "pixelutilities:tools/FirestoneAxe").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("FirestoneAxe").setTextureName("PixelUtilities:FirestoneAxe");
 	public Item FirestoneShovel;// new com.PixelUtilities.tools.FirestoneShovel(6086, ELEMENTSTONE, "pixelutilities:tools/FirestoneShovel").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("FirestoneShovel").setTextureName("PixelUtilities:FirestoneShovel");
 	public Item FirestoneHoe;// new com.PixelUtilities.tools.FirestoneHoe(6087, ELEMENTSTONE, "pixelutilities:tools/FirestoneHoe").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("FirestoneHoe").setTextureName("pixelutilities:tools/FirestoneHoe");
@@ -48,7 +48,7 @@ public class PixelUtilitiesTools
 
 	//Waterstone tools
 	public Item WaterstonePickaxe;// new com.PixelUtilities.tools.WaterstonePickaxe(6089, 6.5F, Basemod.instance.ELEMENTSTONE, "pixelutilities:tools/WaterstonePickaxe").setTextureName("PixelUtilities:WaterstonePickaxe").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("WaterstonePickaxe");
-	public Item WaterstoneHammer;// new com.PixelUtilities.tools.WaterstoneHammer(6090, Basemod.instance.ELEMENTSTONE, "WaterstoneHammer", "Waterstone Hammer").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setTextureName("PixelUtilities:WaterstoneHammer").setUnlocalizedName("WaterstoneHammer");
+	public Item WaterstoneHammer;// new com.PixelUtilities.tools.WaterstoneHammer(6090, Basemod.instance.ELEMENTSTONE, "WaterstoneHammer", "Waterstone_Hammer").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setTextureName("PixelUtilities:WaterstoneHammer").setUnlocalizedName("WaterstoneHammer");
 	public Item WaterstoneAxe;// new com.PixelUtilities.tools.WaterstoneAxe(6091, Basemod.instance.ELEMENTSTONE, "pixelutilities:tools/WaterstoneAxe").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("WaterstoneAxe").setTextureName("PixelUtilities:WaterstoneAxe");
 	public Item WaterstoneShovel;// new com.PixelUtilities.tools.WaterstoneShovel(6092, Basemod.instance.ELEMENTSTONE, "pixelutilities:tools/WaterstoneShovel").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("WaterstoneShovel").setTextureName("PixelUtilities:WaterstoneShovel");
 	public Item WaterstoneHoe;// new com.PixelUtilities.tools.WaterstoneHoe(6093, Basemod.instance.ELEMENTSTONE, "pixelutilities:tools/WaterstoneHoe").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("WaterstoneHoe").setTextureName("pixelutilities:tools/WaterstoneHoe");
@@ -56,7 +56,7 @@ public class PixelUtilitiesTools
 
 	//Leafstone tools
 	public Item LeafstonePickaxe;// new com.PixelUtilities.tools.LeafstonePickaxe(6095, 6.5F, Basemod.instance.ELEMENTSTONE, "pixelutilities:tools/LeafstonePickaxe").setTextureName("PixelUtilities:LeafstonePickaxe").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("LeafstonePickaxe");
-	public Item LeafstoneHammer;// new com.PixelUtilities.tools.LeafstoneHammer(6096, Basemod.instance.ELEMENTSTONE, "rubyHammer", "Leafstone Hammer").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setTextureName("PixelUtilities:LeafstoneHammer").setUnlocalizedName("LeafstoneHammer");
+	public Item LeafstoneHammer;// new com.PixelUtilities.tools.LeafstoneHammer(6096, Basemod.instance.ELEMENTSTONE, "rubyHammer", "Leafstone_Hammer").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setTextureName("PixelUtilities:LeafstoneHammer").setUnlocalizedName("LeafstoneHammer");
 	public Item LeafstoneAxe;// new com.PixelUtilities.tools.LeafstoneAxe(6097, Basemod.instance.ELEMENTSTONE, "pixelutilities:tools/LeafstoneAxe").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("LeafstoneAxe").setTextureName("PixelUtilities:LeafstoneAxe");
 	public Item LeafstoneShovel;// new com.PixelUtilities.tools.LeafstoneShovel(6098, Basemod.instance.ELEMENTSTONE, "pixelutilities:tools/LeafstoneShovel").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("LeafstoneShovel").setTextureName("PixelUtilities:LeafstoneShovel");
 	public Item LeafstoneHoe;// new com.PixelUtilities.tools.LeafstoneHoe(6099, Basemod.instance.ELEMENTSTONE, "pixelutilities:tools/LeafstoneHoe").setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesTools).setUnlocalizedName("LeafstoneHoe").setTextureName("pixelutilities:tools/LeafstoneHoe");
@@ -149,7 +149,7 @@ public class PixelUtilitiesTools
 		Basemod.instance.leafstonePickaxe = new PixelPickaxeTool(Basemod.instance.ELEMENTSTONE, "pixelutilities:tools/LeafstonePickaxe", "leafstonePickaxe");
 		Basemod.instance.leafstoneHammer = registerHammer(Basemod.instance.ELEMENTSTONE, "pixelutilities:tools/LeafstoneHammer", "leafstoneHammer");
 		Basemod.instance.leafstoneAxe = new PixelAxeTool(Basemod.instance.ELEMENTSTONE, "pixelutilities:tools/LeafstoneAxe", "leafstoneAxe");
-		Basemod.instance.leafstoneShovel = new PixelShovelTool(Basemod.instance.ELEMENTSTONE, "pixelutilities:tools/LeafstoneShovel", "leafstoneShovel");
+		Basemod.instance.leafstoneShovel = new PixelShovelTool(Basemod.instance.ELEMENTSTONE, "pixelutilities:tools/LeafstoneShovel", "leafstoneShovel").setUnlocalizedName("Leafstone_Shovel");
 		Basemod.instance.leafstoneHoe = new PixelHoeTool(Basemod.instance.ELEMENTSTONE, "pixelutilities:tools/LeafstoneHoe", "leafstoneHoe");
 		Basemod.instance.leafstoneSword = new PixelSwordTool(Basemod.instance.ELEMENTSTONE, "pixelutilities:tools/LeafstoneSword", "leafstoneSword");
 		
@@ -209,83 +209,83 @@ public class PixelUtilitiesTools
 	public void addNames()
 	{
 
-		GameRegistry.registerItem(Basemod.instance.rubyPickaxe, "Ruby Pickaxe");
-		GameRegistry.registerItem(Basemod.instance.rubyAxe, "Ruby Axe");
-		GameRegistry.registerItem(Basemod.instance.rubyShovel, "Ruby Shovel");
-		GameRegistry.registerItem(Basemod.instance.rubyHoe, "Ruby Hoe");
-		GameRegistry.registerItem(Basemod.instance.rubySword, "Ruby Sword");
-		GameRegistry.registerItem(Basemod.instance.rubyHammer, "Ruby Hammer");
+		GameRegistry.registerItem(Basemod.instance.rubyPickaxe, "Ruby_Pickaxe");
+		GameRegistry.registerItem(Basemod.instance.rubyAxe, "Ruby_Axe");
+		GameRegistry.registerItem(Basemod.instance.rubyShovel, "Ruby_Shovel");
+		GameRegistry.registerItem(Basemod.instance.rubyHoe, "Ruby_Hoe");
+		GameRegistry.registerItem(Basemod.instance.rubySword, "Ruby_Sword");
+		GameRegistry.registerItem(Basemod.instance.rubyHammer, "Ruby_Hammer");
 
-		GameRegistry.registerItem(Basemod.instance.saphirePickaxe, "Saphire Pickaxe");
-		GameRegistry.registerItem(Basemod.instance.saphireAxe, "Saphire Axe");
-		GameRegistry.registerItem(Basemod.instance.saphireShovel, "Saphire Shovel");
-		GameRegistry.registerItem(Basemod.instance.saphireHoe, "Saphire Hoe");
-		GameRegistry.registerItem(Basemod.instance.saphireSword, "Saphire Sword");
-		GameRegistry.registerItem(Basemod.instance.saphireHammer, "Saphire Hammer");
+		GameRegistry.registerItem(Basemod.instance.saphirePickaxe, "Saphire_Pickaxe");
+		GameRegistry.registerItem(Basemod.instance.saphireAxe, "Saphire_Axe");
+		GameRegistry.registerItem(Basemod.instance.saphireShovel, "Saphire_Shovel");
+		GameRegistry.registerItem(Basemod.instance.saphireHoe, "Saphire_Hoe");
+		GameRegistry.registerItem(Basemod.instance.saphireSword, "Saphire_Sword");
+		GameRegistry.registerItem(Basemod.instance.saphireHammer, "Saphire_Hammer");
 
-		GameRegistry.registerItem(Basemod.instance.amethystPickaxe, "Amethyst Pickaxe");
-		GameRegistry.registerItem(Basemod.instance.amethystAxe, "Amethyst Axe");
-		GameRegistry.registerItem(Basemod.instance.amethystShovel, "Amethyst Shovel");
-		GameRegistry.registerItem(Basemod.instance.amethystHoe, "Amethyst Hoe");
-		GameRegistry.registerItem(Basemod.instance.amethystSword, "Amethyst Sword");
-		GameRegistry.registerItem(Basemod.instance.amethystHammer, "Amethyst Hammer");
+		GameRegistry.registerItem(Basemod.instance.amethystPickaxe, "Amethyst_Pickaxe");
+		GameRegistry.registerItem(Basemod.instance.amethystAxe, "Amethyst_Axe");
+		GameRegistry.registerItem(Basemod.instance.amethystShovel, "Amethyst_Shovel");
+		GameRegistry.registerItem(Basemod.instance.amethystHoe, "Amethyst_Hoe");
+		GameRegistry.registerItem(Basemod.instance.amethystSword, "Amethyst_Sword");
+		GameRegistry.registerItem(Basemod.instance.amethystHammer, "Amethyst_Hammer");
 
-		GameRegistry.registerItem(Basemod.instance.firestonePickaxe, "Firestone Pickaxe");
-		GameRegistry.registerItem(Basemod.instance.firestoneAxe, "Firestone Axe");
-		GameRegistry.registerItem(Basemod.instance.firestoneHoe, "Firestone Hoe");
-		GameRegistry.registerItem(Basemod.instance.firestoneSword, "Firestone Sword");
-		GameRegistry.registerItem(Basemod.instance.firestoneShovel, "Firestone Shovel");
-		GameRegistry.registerItem(Basemod.instance.firestoneHammer, "Firestone Hammer");
+		GameRegistry.registerItem(Basemod.instance.firestonePickaxe, "Firestone_Pickaxe");
+		GameRegistry.registerItem(Basemod.instance.firestoneAxe, "Firestone_Axe");
+		GameRegistry.registerItem(Basemod.instance.firestoneHoe, "Firestone_Hoe");
+		GameRegistry.registerItem(Basemod.instance.firestoneSword, "Firestone_Sword");
+		GameRegistry.registerItem(Basemod.instance.firestoneShovel, "Firestone_Shovel");
+		GameRegistry.registerItem(Basemod.instance.firestoneHammer, "Firestone_Hammer");
 
 
-		GameRegistry.registerItem(Basemod.instance.waterstonePickaxe, "Waterstone Pickaxe");
-		GameRegistry.registerItem(Basemod.instance.waterstoneAxe, "Waterstone Axe");
-		GameRegistry.registerItem(Basemod.instance.waterstoneHoe, "Waterstone Hoe");
-		GameRegistry.registerItem(Basemod.instance.waterstoneSword, "Waterstone Sword");
-		GameRegistry.registerItem(Basemod.instance.waterstoneShovel, "Waterstone Shovel");
-		GameRegistry.registerItem(Basemod.instance.waterstoneHammer, "Waterstone Hammer");
+		GameRegistry.registerItem(Basemod.instance.waterstonePickaxe, "Waterstone_Pickaxe");
+		GameRegistry.registerItem(Basemod.instance.waterstoneAxe, "Waterstone_Axe");
+		GameRegistry.registerItem(Basemod.instance.waterstoneHoe, "Waterstone_Hoe");
+		GameRegistry.registerItem(Basemod.instance.waterstoneSword, "Waterstone_Sword");
+		GameRegistry.registerItem(Basemod.instance.waterstoneShovel, "Waterstone_Shovel");
+		GameRegistry.registerItem(Basemod.instance.waterstoneHammer, "Waterstone_Hammer");
 
-		GameRegistry.registerItem(Basemod.instance.leafstonePickaxe, "Leafstone Pickaxe");
-		GameRegistry.registerItem(Basemod.instance.leafstoneAxe, "Leafstone Axe");
-		GameRegistry.registerItem(Basemod.instance.leafstoneHoe, "Leafstone Hoe");
-		GameRegistry.registerItem(Basemod.instance.leafstoneSword, "Leafstone Sword");
-		GameRegistry.registerItem(Basemod.instance.leafstoneShovel, "Leafstone Shovel");
-		GameRegistry.registerItem(Basemod.instance.leafstoneHammer, "Leafstone Hammer");
+		GameRegistry.registerItem(Basemod.instance.leafstonePickaxe, "Leafstone_Pickaxe");
+		GameRegistry.registerItem(Basemod.instance.leafstoneAxe, "Leafstone_Axe");
+		GameRegistry.registerItem(Basemod.instance.leafstoneHoe, "Leafstone_Hoe");
+		GameRegistry.registerItem(Basemod.instance.leafstoneSword, "Leafstone_Sword");
+		GameRegistry.registerItem(Basemod.instance.leafstoneShovel, "Leafstone_Shovel");
+		GameRegistry.registerItem(Basemod.instance.leafstoneHammer, "Leafstone_Hammer");
 		
-		GameRegistry.registerItem(Basemod.instance.thunderstonePickaxe, "Thunderstone Pickaxe");
-		GameRegistry.registerItem(Basemod.instance.thunderstoneAxe, "Thunderstone Axe");
-		GameRegistry.registerItem(Basemod.instance.thunderstoneHoe, "Thunderstone Hoe");
-		GameRegistry.registerItem(Basemod.instance.thunderstoneSword, "Thunderstone Sword");
-		GameRegistry.registerItem(Basemod.instance.thunderstoneShovel, "Thunderstone Shovel");
-		GameRegistry.registerItem(Basemod.instance.thunderstoneHammer, "Thunderstone Hammer");
+		GameRegistry.registerItem(Basemod.instance.thunderstonePickaxe, "Thunderstone_Pickaxe");
+		GameRegistry.registerItem(Basemod.instance.thunderstoneAxe, "Thunderstone_Axe");
+		GameRegistry.registerItem(Basemod.instance.thunderstoneHoe, "Thunderstone_Hoe");
+		GameRegistry.registerItem(Basemod.instance.thunderstoneSword, "Thunderstone_Sword");
+		GameRegistry.registerItem(Basemod.instance.thunderstoneShovel, "Thunderstone_Shovel");
+		GameRegistry.registerItem(Basemod.instance.thunderstoneHammer, "Thunderstone_Hammer");
 		
-		GameRegistry.registerItem(Basemod.instance.sunstonePickaxe, "Sunstone Pickaxe");
-		GameRegistry.registerItem(Basemod.instance.sunstoneAxe, "Sunstone Axe");
-		GameRegistry.registerItem(Basemod.instance.sunstoneHoe, "Sunstone Hoe");
-		GameRegistry.registerItem(Basemod.instance.sunstoneSword, "Sunstone Sword");
-		GameRegistry.registerItem(Basemod.instance.sunstoneShovel, "Sunstone Shovel");
-		GameRegistry.registerItem(Basemod.instance.sunstoneHammer, "Sunstone Hammer");
+		GameRegistry.registerItem(Basemod.instance.sunstonePickaxe, "Sunstone_Pickaxe");
+		GameRegistry.registerItem(Basemod.instance.sunstoneAxe, "Sunstone_Axe");
+		GameRegistry.registerItem(Basemod.instance.sunstoneHoe, "Sunstone_Hoe");
+		GameRegistry.registerItem(Basemod.instance.sunstoneSword, "Sunstone_Sword");
+		GameRegistry.registerItem(Basemod.instance.sunstoneShovel, "Sunstone_Shovel");
+		GameRegistry.registerItem(Basemod.instance.sunstoneHammer, "Sunstone_Hammer");
 		
-		GameRegistry.registerItem(Basemod.instance.moonstonePickaxe, "Moonstone Pickaxe");
-		GameRegistry.registerItem(Basemod.instance.moonstoneAxe, "Moonstone Axe");
-		GameRegistry.registerItem(Basemod.instance.moonstoneHoe, "Moonstone Hoe");
-		GameRegistry.registerItem(Basemod.instance.moonstoneSword, "Moonstone Sword");
-		GameRegistry.registerItem(Basemod.instance.moonstoneShovel, "Moonstone Shovel");
-		GameRegistry.registerItem(Basemod.instance.moonstoneHammer, "Moonstone Hammer");
+		GameRegistry.registerItem(Basemod.instance.moonstonePickaxe, "Moonstone_Pickaxe");
+		GameRegistry.registerItem(Basemod.instance.moonstoneAxe, "Moonstone_Axe");
+		GameRegistry.registerItem(Basemod.instance.moonstoneHoe, "Moonstone_Hoe");
+		GameRegistry.registerItem(Basemod.instance.moonstoneSword, "Moonstone_Sword");
+		GameRegistry.registerItem(Basemod.instance.moonstoneShovel, "Moonstone_Shovel");
+		GameRegistry.registerItem(Basemod.instance.moonstoneHammer, "Moonstone_Hammer");
 		
-		GameRegistry.registerItem(Basemod.instance.dawnstonePickaxe, "Dawnstone Pickaxe");
-		GameRegistry.registerItem(Basemod.instance.dawnstoneAxe, "Dawnstone Axe");
-		GameRegistry.registerItem(Basemod.instance.dawnstoneHoe, "Dawnstone Hoe");
-		GameRegistry.registerItem(Basemod.instance.dawnstoneSword, "Dawnstone Sword");
-		GameRegistry.registerItem(Basemod.instance.dawnstoneShovel, "Dawnstone Shovel");
-		GameRegistry.registerItem(Basemod.instance.dawnstoneHammer, "Dawnstone Hammer");
+		GameRegistry.registerItem(Basemod.instance.dawnstonePickaxe, "Dawnstone_Pickaxe");
+		GameRegistry.registerItem(Basemod.instance.dawnstoneAxe, "Dawnstone_Axe");
+		GameRegistry.registerItem(Basemod.instance.dawnstoneHoe, "Dawnstone_Hoe");
+		GameRegistry.registerItem(Basemod.instance.dawnstoneSword, "Dawnstone_Sword");
+		GameRegistry.registerItem(Basemod.instance.dawnstoneShovel, "Dawnstone_Shovel");
+		GameRegistry.registerItem(Basemod.instance.dawnstoneHammer, "Dawnstone_Hammer");
 
-		GameRegistry.registerItem(Basemod.instance.crystalPickaxe, "Crystal Pickaxe");
-		GameRegistry.registerItem(Basemod.instance.crystalAxe, "Crystal Axe");
-		GameRegistry.registerItem(Basemod.instance.crystalHoe, "Crystal Hoe");
-		GameRegistry.registerItem(Basemod.instance.crystalSword, "Crystal Sword");
-		GameRegistry.registerItem(Basemod.instance.crystalShovel, "Crystal Shovel");
-		GameRegistry.registerItem(Basemod.instance.crystalHammer, "Crystal Hammer");
+		GameRegistry.registerItem(Basemod.instance.crystalPickaxe, "Crystal_Pickaxe");
+		GameRegistry.registerItem(Basemod.instance.crystalAxe, "Crystal_Axe");
+		GameRegistry.registerItem(Basemod.instance.crystalHoe, "Crystal_Hoe");
+		GameRegistry.registerItem(Basemod.instance.crystalSword, "Crystal_Sword");
+		GameRegistry.registerItem(Basemod.instance.crystalShovel, "Crystal_Shovel");
+		GameRegistry.registerItem(Basemod.instance.crystalHammer, "Crystal_Hammer");
 
 	}
 

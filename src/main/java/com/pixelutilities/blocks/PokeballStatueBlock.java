@@ -107,8 +107,8 @@ public class PokeballStatueBlock extends MultiBlock {
 
     @Override
     public Item getDroppedItem(World world, int x, int y, int z) {
-        // TODO Auto-generated method stub
         return null;
+    	//return getItem(world, x, y, z);
     }
 
 
@@ -122,7 +122,6 @@ public class PokeballStatueBlock extends MultiBlock {
 
             // Set Owner
             PokeballStatueTileEntity tile = ((PokeballStatueTileEntity) world.getTileEntity(x, y, z));
-            tile.setOwner(playerID);
 
             // Set Front Face
             int face = MathHelper.floor_double((double) (player.rotationYaw * 4.0F / 360.0F) + 2.5D) & 3;

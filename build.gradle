@@ -10,7 +10,6 @@ buildscript {
             url = "https://oss.sonatype.org/content/repositories/snapshots/"
         }
     }
-    //noinspection GroovyAssignabilityCheck
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
     }
@@ -18,7 +17,7 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "3.3.0"
+version = "4.0"
 group = "pixelutilities"
 archivesBaseName = "PixelUtilities"
 
@@ -26,8 +25,28 @@ sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
 minecraft {
-    version = "1.7.10-10.13.0.1187"
-    runDir = "eclipse"
+    version = "1.8-11.14.1.1308"
+    mappings = "stable_15"
+    runDir = "run"
+}
+
+processResources
+{
+
+    // replace stuff in mcmod.info, nothing else
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+                
+        // replace version and mcversion
+        expand 'version':project.version, 'mcversion':project.minecraft.version, 'fversion':"Forge 10.13.2.1230",'pixelmonVersion':"3.3.4"
+    }
+        
+    // copy everything else, thats not the mcmod.info
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+        include 'Pixelmon.info'
+	}
+    
 }
 
 task deobfJar(type: Jar) {
@@ -54,7 +73,7 @@ configurations {
 
 //noinspection GroovyAssignabilityCheck
 dependencies {
-    compile files('libs/compile/Pixelmon-1.7.10-3.2.5-universal-deob.jar')
+    compile files('libs/compile/Pixelmon-deobf.jar')
     compile files('libs/runtime/vlcj-3.0.1.jar')
     runtimeOnly files('libs/runtime/jna-3.5.2.jar')
     runtimeOnly files('libs/runtime/platform-3.5.2.jar')
@@ -64,9 +83,4 @@ dependencies {
 //noinspection GroovyAssignabilityCheck
 jar {
     from configurations.runtimeOnly.collect { it.isDirectory() ? it : zipTree(it) }
-
-    manifest {
-        attributes('FMLCorePluginContainsFMLMod': 'true')
-        attributes('FMLCorePlugin': 'coloredlightscore.src.asm.ColoredLightsCoreLoadingPlugin')
-    }
 }

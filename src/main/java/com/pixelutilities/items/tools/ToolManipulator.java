@@ -41,13 +41,13 @@ public class ToolManipulator
 		}
 		if(toolName.contains("leaf"))
 		{
-			if (ItemDye.applyBonemeal(stack, world, x, y - 1, z, player))
+			if (ItemDye.applyBonemeal(new ItemStack(stack.getItem()), world, x, y - 1, z, player))
 			{
 				if (!world.isRemote)
 				{
 					world.playAuxSFX(2005, x, y, z, 0);
 				}
-				stack.damageItem(1, player);
+				stack.damageItem(12, player);
 				return true;
 			}
 		}

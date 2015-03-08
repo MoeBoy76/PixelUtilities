@@ -11,9 +11,6 @@ public class RubyBlock extends Block {
         setStepSound(Block.soundTypeStone);
         setBlockName("RubyBlock");
 
-
-        setBlockTextureName("pixelmonblocks" + ":" + "RubyBlock");
     }
-
 
 }

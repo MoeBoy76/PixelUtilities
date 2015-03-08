@@ -1,19 +1,24 @@
 package com.pixelutilities.worldgen;
 
-import com.pixelutilities.Basemod;
 import com.pixelutilities.config.PixelUtilitiesBlocks;
 
-import cpw.mods.fml.common.IWorldGenerator;
+import net.minecraft.block.state.pattern.BlockHelper;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
+import net.minecraftforge.fml.common.IWorldGenerator;
 
 import java.util.Random;
 
-public class RubyGenerator implements IWorldGenerator {
+public class RubyGenerator implements IWorldGenerator
+{
+	WorldGenMinable rubyGen = new WorldGenMinable(PixelUtilitiesBlocks.rubyOre.getDefaultState(), 3, BlockHelper.forBlock(Blocks.stone));
+	
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
-        switch (world.provider.dimensionId) {
+        switch (world.provider.getDimensionId()) {
             case -1:
                 generateNether(world, random, chunkX * 16, chunkZ * 16);
                 break;
@@ -30,12 +35,12 @@ public class RubyGenerator implements IWorldGenerator {
     }
 
     private void generateSurface(World world, Random rand, int chunkX, int chunkZ) {
-        for (int k = 0; k < 10; k++) {
+        for (int k = 0; k < 2; k++) {
             int firstBlockXCoord = chunkX + rand.nextInt(25);
             int firstBlockYCoord = rand.nextInt(64);
             int firstBlockZCoord = chunkZ + rand.nextInt(25);
 
-            (new WorldGenMinable(PixelUtilitiesBlocks.rubyOre, 7)).generate(world, rand, firstBlockXCoord, firstBlockYCoord, firstBlockZCoord);
+            rubyGen.generate(world, rand, new BlockPos(firstBlockXCoord, firstBlockYCoord, firstBlockZCoord));
         }
     }
 

@@ -104,7 +104,8 @@ public class GrassSpawner
 			}
 		}
 
-		spawnerConfig.save();
+		if(spawnerConfig.hasChanged())
+			spawnerConfig.save();
 	}
 
 	public static GrassSpawner getInstance() {
@@ -122,38 +123,34 @@ public class GrassSpawner
 	private String[] defaultEncounterListIceMountains = {"Swinub", "Slowpoke", "Magnemite", "Jynx"};
 	private String[] defaultEncounterListOcean = {"Magikarp", "Staryu", "Goldeen", "Shellder"};
 
-	private double xCoOrd;
-	private double lastXCoOrd = 0.0;
-	private double zCoOrd;
-	private double lastZCoOrd = 0.0;
+	private int xCoOrd;
+	private int lastXCoOrd = 0;
+	private int zCoOrd;
+	private int lastZCoOrd = 0;
 	BattleControllerBase bc;
 
-	public void spawnInGrass(World world, int x, int y, int z, Entity entity)
+	public void spawnInGrass(World world, int x, int y, int z, EntityPlayerMP player)
 	{
 		if (!PixelUtilitiesConfig.getInstance().grassBattles)
 			return;
 
-		if (entity instanceof EntityPlayerMP)
+		int availablePokemon = getPlayerAvailablePokemonCount(player);
+		//Is player already in a battle
+		if (BattleRegistry.getBattle(player) != null || availablePokemon == 0)
+			return;
+		//Random random = new Random(System.currentTimeMillis()); why create a new Random when there's already one in player?
+		int isGrassBattle = player.getRNG().nextInt(100);
+
+		xCoOrd = (int) player.lastTickPosX;
+		zCoOrd = (int) player.lastTickPosZ;
+
+		if (xCoOrd == lastXCoOrd && zCoOrd == lastZCoOrd || xCoOrd - 1 == lastXCoOrd && zCoOrd == lastZCoOrd || xCoOrd + 1 == lastXCoOrd && zCoOrd == lastZCoOrd || xCoOrd == lastXCoOrd && zCoOrd - 1 == lastZCoOrd || xCoOrd == lastXCoOrd && zCoOrd + 1 == lastZCoOrd)
+			return;
+
+		if (isGrassBattle <= PixelUtilitiesConfig.getInstance().grassSpawnRate)
 		{
-			EntityPlayerMP player = (EntityPlayerMP) entity;
-			int availablePokemon = getPlayerAvailablePokemonCount(player);
-			//Is player already in a battle
-			if (BattleRegistry.getBattle(player) != null || availablePokemon == 0)
-				return;
-			Random random = new Random(System.currentTimeMillis());
-			int isGrassBattle = random.nextInt(100);
-
-			xCoOrd = player.lastTickPosX;
-			zCoOrd = player.lastTickPosZ;
-
-			if (xCoOrd == lastXCoOrd && zCoOrd == lastZCoOrd)
-				return;
-
-			if (isGrassBattle <= PixelUtilitiesConfig.getInstance().grassSpawnRate)
-			{
-				if (PixelmonGrassBlock.isActive)
-					processGrassBattle(world, x, y, z, player);
-			}
+			//if (PixelmonGrassBlock.isActive)
+			processGrassBattle(world, x, y, z, player);
 		}
 		lastXCoOrd = xCoOrd;
 		lastZCoOrd = zCoOrd;
@@ -217,11 +214,12 @@ public class GrassSpawner
 	 * @param pokemon - the pokemon to spawn
 	 * @throws Exception Bad Move should not throw generic Exception
 	 */
-	private void spawnAndInitiate(final World world, final int x, final int y, final int z, final EntityPlayerMP player, final EntityPixelmon pokemon) throws Exception
+	private void spawnAndInitiate(final World world, final int x, final int y, final int z, final EntityPlayerMP player, EntityPixelmon pokemon) throws Exception
 	{
 		pokemon.setPosition(x, y + 1, z);
 
-		setLvlBasedOnParty(world, player, pokemon);
+		if(PixelUtilitiesConfig.getInstance().scalePokes)
+			pokemon = setLvlBasedOnParty(world, player, pokemon);
 
 		if (!world.isRemote)
 			world.spawnEntityInWorld(pokemon);
@@ -230,12 +228,21 @@ public class GrassSpawner
 		bc = new BattleController2Participant(new PlayerParticipant(player, player1firstPokemon), wildPixelmon);
 	}
 
-	private void setLvlBasedOnParty(final World world, final EntityPlayerMP player, final EntityPixelmon pokemon) throws PlayerNotLoadedException
+	/**
+	 *  
+	 * 
+	 * @param world
+	 * @param player
+	 * @param pokemon
+	 * @return 
+	 * @throws PlayerNotLoadedException
+	 */
+	private EntityPixelmon setLvlBasedOnParty(final World world, final EntityPlayerMP player, final EntityPixelmon pokemon) throws PlayerNotLoadedException
 	{
 		PlayerStorage storage = PixelmonStorage.PokeballManager.getPlayerStorage(player);
 		int maxLvl = storage.getHighestLevel();
-		int minLvl = 100;
-		for(NBTTagCompound nbt : storage.partyPokemon)
+		int minLvl = getLowestLevel(storage.getList());
+		/*for(NBTTagCompound nbt : storage.partyPokemon)
 		{
 			if(nbt != null)
 			{
@@ -245,7 +252,7 @@ public class GrassSpawner
 					minLvl = p.getLvl().getLevel();
 				}
 			}
-		}
+		}*/
 		if(minLvl < maxLvl)
 		{
 			int lvl = player.getRNG().nextInt(maxLvl - minLvl) + minLvl;
@@ -255,6 +262,7 @@ public class GrassSpawner
 		{
 			pokemon.getLvl().setLevel(maxLvl);
 		}
+		return pokemon;
 	}
 
 	public void addBiomeEncounter(ICommandSender sender, String pokemonName, String biomeName)
@@ -265,10 +273,10 @@ public class GrassSpawner
 		{
 			biomeEncounters = new ArrayList<>();
 		}
-		if(EnumPokemon.get(pokemonName) != null)//check pokemon exists
+		if(EnumPokemon.getFromName(pokemonName) != null)//check pokemon exists
 		{
 			biomeEncounters.add(pokemonName);
-			spawnerConfig.get(pokeLists, biomeName, blankArray).set(biomeEncounters.toArray(new String[biomeEncounters.size()]));
+			spawnerConfig.get(pokeLists, biomeName, blankArray, "Pixelmon to spawn in grass in " + biomeName).set(biomeEncounters.toArray(new String[biomeEncounters.size()]));
 			spawnerConfig.save();
 			sender.addChatMessage(new ChatComponentText("Successfully added "+pokemonName+" to "+biomeName+" spawn list"));
 		}
@@ -276,5 +284,19 @@ public class GrassSpawner
 		{
 			sender.addChatMessage(new ChatComponentText(pokemonName+" is not a valid pokemon name"));
 		}
+	}
+	/**
+	 * 
+	 * @param partyPokemon
+	 * @return
+	 */
+	public int getLowestLevel(NBTTagCompound[] partyPokemon) {
+		int lvl = 100;
+		for (NBTTagCompound nbt : partyPokemon) {
+			if (nbt != null)
+				if (nbt.getInteger("Level") < lvl)
+					lvl = nbt.getInteger("Level");
+		}
+		return lvl;
 	}
 }

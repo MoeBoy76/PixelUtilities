@@ -21,7 +21,7 @@ public class GalacticLegs extends ItemArmor {
         if (!PixelUtilitiesArmor.getArmourList().contains(this))
 			PixelUtilitiesArmor.getArmourList().add(this);
         setTextureName("pixelutilities:armor/GalacticLegs");
-        setUnlocalizedName("Galactic Leggings");
+        setUnlocalizedName("Galactic_Leggings");
     }
 
     @Override

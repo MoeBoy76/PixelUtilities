@@ -21,7 +21,7 @@ public class GalacticHelmet extends ItemArmor {
         if (!PixelUtilitiesArmor.getArmourList().contains(this))
 			PixelUtilitiesArmor.getArmourList().add(this);
         setTextureName("pixelutilities:armor/GalacticHelmet");
-        setUnlocalizedName("Galactic Helmet");
+        setUnlocalizedName("Galactic_Helmet");
     }
 
     @Override

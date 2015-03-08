@@ -1,22 +1,22 @@
 package com.pixelutilities.items.recipes;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class RecipeHelper {
 
     public static void makeHammerRecipe(Item result, Item craftingMaterial)
     {
         GameRegistry.addRecipe(
-                new ItemStack(result, 1),
-                "XXX",
-                "XYX",
-                " Y ",
-                'X', craftingMaterial,
-                'Y', Items.stick
+		        new ItemStack(result, 1),
+		        "XXX",
+		        "XYX",
+		        " Y ",
+		        'X', craftingMaterial,
+		        'Y', Items.stick
         );
     }
 
@@ -116,7 +116,6 @@ public class RecipeHelper {
     {
         GameRegistry.addRecipe(
                 new ItemStack(result, 1),
-                "   ",
                 "X X",
                 "X X",
                 'X', craftingMaterial

@@ -1,15 +1,17 @@
 package com.pixelutilities.gui;
 
 import com.pixelutilities.radioplayer.VLCPlayer;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
+
+import java.io.IOException;
 
 public class GuiHandHeldRadio extends GuiScreen {
     ResourceLocation background = new ResourceLocation("pixelutilities:textures/guis/pokegear/Background2.png");
@@ -28,7 +30,7 @@ public class GuiHandHeldRadio extends GuiScreen {
     @Override
     public void initGui() {
         this.buttonList.add(new PokegearExit(1, this.width / 2 - 40, height / 2 - 60, 30, 30, ""));
-        streamTextBox = new GuiTextField(fontRendererObj, width / 2 - 100, height / 2 + 35, 200, 20);
+        streamTextBox = new GuiTextField(13, fontRendererObj, width / 2 - 100, height / 2 + 35, 200, 20);
         streamTextBox.setMaxStringLength(1000);
         streamTextBox.setText(" Insert URL Here");
         url = streamTextBox.getText();
@@ -68,7 +70,7 @@ public class GuiHandHeldRadio extends GuiScreen {
     }
 
     @Override
-    protected void keyTyped(char par1, int par2) {
+    protected void keyTyped(char par1, int par2) throws IOException {
         streamTextBox.textboxKeyTyped(par1, par2);
         if (par1 == 13) {//enter pressed
             //actionPerformed((GuiButton)this.buttonList.get(1));
@@ -77,7 +79,7 @@ public class GuiHandHeldRadio extends GuiScreen {
     }
 
     @Override
-    protected void mouseClicked(int par1, int par2, int par3) {
+    protected void mouseClicked(int par1, int par2, int par3) throws IOException {
         streamTextBox.mouseClicked(par1, par2, par3);
         super.mouseClicked(par1, par2, par3);
     }

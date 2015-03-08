@@ -1,0 +1,17 @@
+[
+{
+  "modid": "pixelmon",
+  "name": "Pixelmon",
+  "description": "Pokemon, in Minecraft!",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "forgeversion": "${fversion}",
+  "url": "http://www.pixelmonmod.com",
+  "updateUrl": "http://www.pixelmonmod.com",
+  "authorList": ["Pixelmon Development Team"],
+  "credits": "Pixelmon Development Team",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

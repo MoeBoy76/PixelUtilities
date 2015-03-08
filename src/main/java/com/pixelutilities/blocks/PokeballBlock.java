@@ -77,11 +77,6 @@ public class PokeballBlock extends BlockContainer {
     }
 
     @Override
-    public boolean renderAsNormalBlock() {
-        return false;
-    }
-
-    @Override
     public int getRenderType() {
         return -1;
     }
@@ -92,32 +87,26 @@ public class PokeballBlock extends BlockContainer {
     }
 
     @Override
-    public void onBlockPlacedBy(World par1World, int par2, int par3, int par4,
-                                EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack) {
-        int l = MathHelper
-                .floor_double((double) (par5EntityLivingBase.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+    public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack) {
+        int l = MathHelper.floor_double((double) (par5EntityLivingBase.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
         int i1 = par1World.getBlockMetadata(par2, par3, par4) >> 2;
         ++l;
         l %= 4;
 
         if (l == 3) {
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, 2 | i1 << 2,
-                    2);
+            par1World.setBlockMetadataWithNotify(par2, par3, par4, 2 | i1 << 2, 2);
         }
 
         if (l == 0) {
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, 3 | i1 << 2,
-                    2);
+            par1World.setBlockMetadataWithNotify(par2, par3, par4, 3 | i1 << 2, 2);
         }
 
         if (l == 1) {
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, i1 << 2,
-                    2);
+            par1World.setBlockMetadataWithNotify(par2, par3, par4, i1 << 2, 2);
         }
 
         if (l == 2) {
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, 1 | i1 << 2,
-                    2);
+            par1World.setBlockMetadataWithNotify(par2, par3, par4, 1 | i1 << 2, 2);
         }
     }
 
