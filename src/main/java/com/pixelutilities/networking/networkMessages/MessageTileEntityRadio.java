@@ -1,16 +1,18 @@
 package com.pixelutilities.networking.networkMessages;
 
-import com.pixelutilities.networking.PacketHandler;
-import com.pixelutilities.tileentitys.TileEntityRadio;
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
-import cpw.mods.fml.relauncher.Side;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockPos;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.relauncher.Side;
+
+import com.pixelutilities.networking.PacketHandler;
+import com.pixelutilities.tileentitys.TileEntityRadio;
 
 public class MessageTileEntityRadio implements IMessage {
 
@@ -30,9 +32,9 @@ public class MessageTileEntityRadio implements IMessage {
     }
 
     public MessageTileEntityRadio(TileEntityRadio radio) {
-        this.x = radio.xCoord;
-        this.y = radio.yCoord;
-        this.z = radio.zCoord;
+        this.x = radio.getPos().getX();
+        this.y = radio.getPos().getY();
+        this.z = radio.getPos().getZ();
         this.url = radio.streamURL;
     }
 
@@ -71,10 +73,10 @@ public class MessageTileEntityRadio implements IMessage {
             TileEntity te = null;
             if (context.side == Side.SERVER) {
                 EntityPlayerMP p = context.getServerHandler().playerEntity;
-                te = MinecraftServer.getServer().worldServerForDimension(p.dimension).getTileEntity(message.x, message.y, message.z);
+                te = MinecraftServer.getServer().worldServerForDimension(p.dimension).getTileEntity(new BlockPos(message.x, message.y, message.z));
             }
             if (context.side == Side.CLIENT) {
-                te = Minecraft.getMinecraft().theWorld.getTileEntity(message.x, message.y, message.z);
+                te = Minecraft.getMinecraft().theWorld.getTileEntity(new BlockPos(message.x, message.y, message.z));
             }
 
 

@@ -6,7 +6,8 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -14,73 +15,61 @@ import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IIcon;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import com.pixelutilities.config.PixelUtilitiesCreativeTabs;
 import com.pixelutilities.tileentitys.TileEntityConveyor;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 public class BlockConveyor extends BlockContainer {
-    @SideOnly(Side.CLIENT)
-    private IIcon base, overlay, overlayFast, overlayStopped;
+    
     private int renderPass;
 
     public BlockConveyor() {
         super(Material.circuits);
         setHardness(0.5F);
         setBlockBounds(0.0F, 0.0F, 0.0F, 0.1F, 0.01F, 0.1F);
-        setBlockName("conveyor");
-        setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelmonBlocks);
+        setUnlocalizedName("conveyor");
+        setCreativeTab(PixelUtilitiesCreativeTabs.tabPUCollection);
     }
 
-    @Override
-    public boolean canRenderInPass(int pass) {
-        renderPass = pass;
-        return true;
-    }
-
-    @Override
-    public int getRenderBlockPass() {
-        return 1;
-    }
-
-    @Override
+    /*@Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister ir) {
         base = ir.registerIcon("pixelutilities:" + getUnlocalizedName() + ".base");
         overlay = ir.registerIcon("pixelutilities:" + getUnlocalizedName() + ".overlay");
         overlayFast = ir.registerIcon("pixelutilities:" + getUnlocalizedName() + ".overlay.fast");
         overlayStopped = ir.registerIcon("pixelutilities:" + getUnlocalizedName() + ".overlay.stopped");
-    }
+    }*/
 
     @Override
-    public boolean recolourBlock(World world, int x, int y, int z, ForgeDirection side, int colour) {
-        TileEntity tile = world.getTileEntity(x, y, z);
+    public boolean recolorBlock(World world, BlockPos pos, EnumFacing side, EnumDyeColor color) {
+        TileEntity tile = world.getTileEntity(pos);
 
         if (tile instanceof TileEntityConveyor) {
-            int dye = ((TileEntityConveyor) tile).getDyeColor();
-            ((TileEntityConveyor) tile).setDyeColor(colour);
+            EnumDyeColor dye = ((TileEntityConveyor) tile).getDyeColor();
+            ((TileEntityConveyor) tile).setDyeColor(color);
             return dye != ((TileEntityConveyor) tile).getDyeColor();
         }
         return false;
     }
 
     @Override
-    public int getRenderColor(int meta) {
+    public int getRenderColor(IBlockState state) {
         return 0xFFFFFF;
     }
 
-    @Override
+    /*@Override
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
         if (renderPass == 1)
@@ -93,46 +82,33 @@ public class BlockConveyor extends BlockContainer {
                     return overlayFast;
             }
         return base;
-    }
+    }*/
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
-        int meta = 0;
-        if (renderPass == 1) {
-            TileEntity tile = world.getTileEntity(x, y, z);
-            if (tile instanceof TileEntityConveyor) {
-                TileEntityConveyor tec = (TileEntityConveyor) tile;
-                meta = tec.isFast() ? 2 : 1;
-            }
-        }
-        return getIcon(side, meta);
-    }
-
-    @Override
-    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack) {
-        if (entity == null) {
+    //TODO fix metadata thingy
+    /*@Override
+    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
+        if (placer == null) {
             return;
         }
-        int facing = MathHelper.floor_double((entity.rotationYaw * 4F) / 360F + 0.5D) & 3;
+        int facing = MathHelper.floor_double((placer.rotationYaw * 4F) / 360F + 0.5D) & 3;
         if (facing == 0) {
-            world.setBlockMetadataWithNotify(x, y, z, 1, 2);
+            world.setBlockMetadataWithNotify(pos, 1, 2);
         }
         if (facing == 1) {
-            world.setBlockMetadataWithNotify(x, y, z, 2, 2);
+            world.setBlockMetadataWithNotify(pos, 2, 2);
         }
         if (facing == 2) {
-            world.setBlockMetadataWithNotify(x, y, z, 3, 2);
+            world.setBlockMetadataWithNotify(pos, 3, 2);
         }
         if (facing == 3) {
-            world.setBlockMetadataWithNotify(x, y, z, 0, 2);
+            world.setBlockMetadataWithNotify(pos, 0, 2);
         }
 
-        TileEntity te = world.getTileEntity(x, y, z);
+        TileEntity te = world.getTileEntity(pos);
         if (te instanceof TileEntityConveyor) {
             ((TileEntityConveyor) te).setDyeColor(stack.getItemDamage() == 16 ? -1 : stack.getItemDamage());
         }
-    }
+    }*/
 
 
     @Override
@@ -141,24 +117,19 @@ public class BlockConveyor extends BlockContainer {
     }
 
     @Override
-    public MovingObjectPosition collisionRayTrace(World world, int i, int j, int k, Vec3 vec3d, Vec3 vec3d1) {
-        setBlockBoundsBasedOnState(world, i, j, k);
-        return super.collisionRayTrace(world, i, j, k, vec3d, vec3d1);
+    public MovingObjectPosition collisionRayTrace(World world, BlockPos pos, Vec3 vec3d, Vec3 vec3d1) {
+        setBlockBoundsBasedOnState(world, pos);
+        return super.collisionRayTrace(world, pos, vec3d, vec3d1);
     }
 
     @Override
-    public void setBlockBoundsBasedOnState(IBlockAccess iblockaccess, int i, int j, int k) {
-        int l = iblockaccess.getBlockMetadata(i, j, k);
+    public void setBlockBoundsBasedOnState(IBlockAccess world, BlockPos pos) {
+        int l = world.getBlockState(pos).getBlock().getMetaFromState(world.getBlockState(pos));
         if (l >= 4 && l <= 11) {
             setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
         } else {
             setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.125F, 1.0F);
         }
-    }
-
-    @Override
-    public boolean renderAsNormalBlock() {
-        return false;
     }
 
     @Override
@@ -172,25 +143,25 @@ public class BlockConveyor extends BlockContainer {
         return 1;
     }
 
-    @Override
-    public boolean canPlaceBlockAt(World world, int x, int y, int z) {
-        return canBlockStay(world, x, y, z);
+    /*@Override
+    public boolean canPlaceBlockAt(World world, BlockPos pos) {
+        return canBlockStay(world, pos);
     }
 
     @Override
-    public boolean canBlockStay(World world, int x, int y, int z) {
-        return world.isSideSolid(x, y - 1, z, ForgeDirection.UP);
-    }
+    public boolean canBlockStay(World world, BlockPos pos) {
+        return world.isSideSolid(pos, EnumFacing.UP, false);
+    }*/
 
     @Override
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float xOffset, float yOffset, float zOffset) {
-        ItemStack item = player.getHeldItem();
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ) {
+    	ItemStack item = player.getHeldItem();
 
         if (item != null && item.getItem().equals(Items.glowstone_dust)) {
-            TileEntity te = world.getTileEntity(x, y, z);
+            TileEntity te = world.getTileEntity(pos);
             if (te instanceof TileEntityConveyor && !((TileEntityConveyor) te).isFast()) {
                 ((TileEntityConveyor) te).setFast(true);
-                world.markBlockForUpdate(x, y, z);
+                world.markBlockForUpdate(pos);
                 if (!player.capabilities.isCreativeMode)
                     item.stackSize--;
                 return true;
@@ -200,14 +171,14 @@ public class BlockConveyor extends BlockContainer {
     }
 
     @Override
-    public void onNeighborBlockChange(World world, int x, int y, int z, Block neighborId) {
-        if (!canBlockStay(world, x, y, z)) {
-            world.setBlockToAir(x, y, z);
-            dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
+    public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block neighborId) {
+        /*if (!canBlockStay(world, pos)) {
+            world.setBlockToAir(pos);
+            dropBlockAsItem(world, pos, world.getBlockState(pos), 0);
             return;
-        }
+        }*/
 
-        TileEntity tec = world.getTileEntity(x, y, z);
+        TileEntity tec = world.getTileEntity(pos);
         if (tec instanceof TileEntityConveyor) {
             ((TileEntityConveyor) tec).updateConveyorActive();
         }
@@ -215,11 +186,11 @@ public class BlockConveyor extends BlockContainer {
 
 
     @Override
-    public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
+    public void onEntityCollidedWithBlock(World world, BlockPos pos, Entity entity) {
         double playerx = entity.posX;
         double playerz = entity.posZ;
-        if (!((playerz > z + 0.40) && (playerz < z + 0.60)))
-            if (!((playerx > x + 0.40) && (playerx < x + 0.60)))
+        if (!((playerz > pos.getZ() + 0.40) && (playerz < pos.getZ() + 0.60)))
+            if (!((playerx > pos.getX() + 0.40) && (playerx < pos.getX() + 0.60)))
                 return;
 
         boolean isItem = entity instanceof EntityItem || entity instanceof EntityXPOrb;
@@ -227,7 +198,7 @@ public class BlockConveyor extends BlockContainer {
         if (!(isItem || entity instanceof EntityLivingBase || entity instanceof EntityTNTPrimed))
             return;
 
-        TileEntity conveyor = world.getTileEntity(x, y, z);
+        TileEntity conveyor = world.getTileEntity(pos);
         if (!(conveyor instanceof TileEntityConveyor))
             return;
 
@@ -242,7 +213,7 @@ public class BlockConveyor extends BlockContainer {
         double yVelocity = 0;
         double zVelocity = 0;
 
-        int md = world.getBlockMetadata(x, y, z);
+        int md = world.getBlockState(pos).getBlock().getMetaFromState(world.getBlockState(pos));
 
         int horizDirection = md & 0x03;
         boolean isUphill = (md & 0x04) != 0;
@@ -250,8 +221,8 @@ public class BlockConveyor extends BlockContainer {
 
         if (isUphill) {
             yVelocity = 0.17D * mult;
-        } else if (entity.posY - y < 0.1 & entity.posY - y > 0) {
-            entity.posY = y + 0.1;
+        } else if (entity.posY - pos.getY() < 0.1 & entity.posY - pos.getY() > 0) {
+            entity.posY = pos.getY() + 0.1;
         } else if (isDownhill) {
             yVelocity = -0.07 * mult;
         }
@@ -278,14 +249,14 @@ public class BlockConveyor extends BlockContainer {
                 zVelocity = -0.1D * mult;
                 break;
         }
-        entity.setPosition(x + 0.5, entity.posY + 0.1, z + 0.5);
+        entity.setPosition(pos.getX() + 0.5, entity.posY + 0.1, pos.getZ() + 0.5);
 
         setEntityVelocity(entity, xVelocity, yVelocity, zVelocity);
 
         entity.fallDistance *= 0.9;
-        if (entity instanceof EntityItem) {
+        /*if (entity instanceof EntityItem) {
             ((EntityItem) entity).delayBeforeCanPickup = 40;
-        }
+        }*/
     }
 
     private void setEntityVelocity(Entity e, double x, double y, double z) {
@@ -299,58 +270,58 @@ public class BlockConveyor extends BlockContainer {
         return new TileEntityConveyor();
     }
 
-    @Override
+    /*@Override
     @SideOnly(Side.CLIENT)
-    public int colorMultiplier(IBlockAccess world, int x, int y, int z) {
-        TileEntity te = world.getTileEntity(x, y, z);
+    public int colorMultiplier(IBlockAccess world, BlockPos pos) {
+        TileEntity te = world.getTileEntity(pos);
         int dyeColor = 16;
         if (te instanceof TileEntityConveyor) {
             dyeColor = ((TileEntityConveyor) te).getDyeColor();
             if (dyeColor == -1) dyeColor = 16;
         }
         return getRenderColor(dyeColor);
-    }
+    }*/
 
     @Override
-    public int getDamageValue(World world, int x, int y, int z) {
-        TileEntity te = world.getTileEntity(x, y, z);
+    public int getDamageValue(World world, BlockPos pos) {
+        TileEntity te = world.getTileEntity(pos);
         int dyeColor = 16;
         if (te instanceof TileEntityConveyor) {
-            dyeColor = ((TileEntityConveyor) te).getDyeColor();
+            dyeColor = ((TileEntityConveyor) te).getDyeColor().getDyeDamage();
             if (dyeColor == -1) dyeColor = 16;
         }
         return dyeColor;
     }
 
     @Override
-    public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
+    public ArrayList<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
         ArrayList<ItemStack> ret = new ArrayList<>();
-        if (world.getBlock(x, y, z).equals(this)) {
-            ret.add(new ItemStack(this, 1, getDamageValue(world, x, y, z)));
-            if (((TileEntityConveyor) world.getTileEntity(x, y, z)).isFast())
+        if (world.getBlockState(pos).getBlock().equals(this)) {
+            ret.add(new ItemStack(this, 1, getDamageValue((World) world, pos)));
+            if (((TileEntityConveyor) world.getTileEntity(pos)).isFast())
                 ret.add(new ItemStack(Items.glowstone_dust, 1));
         }
         return ret;
     }
 
     @Override
-    public void harvestBlock(World world, EntityPlayer player, int x, int y, int z, int meta) {
+    public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te) {
     }
 
     @Override
-    public void onBlockHarvested(World world, int x, int y, int z, int meta, EntityPlayer player) { // HACK: called before block is destroyed by the player prior to the player getting the drops. destroy block here.
+    public void onBlockHarvested(World world, BlockPos pos, IBlockState state, EntityPlayer player) { // HACK: called before block is destroyed by the player prior to the player getting the drops. destroy block here.
         if (!player.capabilities.isCreativeMode) {
-            world.func_147480_a(x, y, z, true);
+            dropBlockAsItem(world, pos, world.getBlockState(pos), 0);
         }
     }
 
     @Override
-    public boolean canBeReplacedByLeaves(IBlockAccess world, int x, int y, int z) {
+    public boolean canBeReplacedByLeaves(IBlockAccess world, BlockPos pos) {
         return false;
     }
 
     @Override
-    public boolean canSilkHarvest(World world, EntityPlayer player, int x, int y, int z, int meta) {
+    public boolean canSilkHarvest(World world, BlockPos pos, IBlockState state, EntityPlayer player) {
         return false;
     }
 

@@ -10,10 +10,10 @@ public class PokeSandSide2Block extends Block {
         super(Material.sand);
         setHardness(4.0F); // 33% harder than diamond
         setStepSound(Block.soundTypeSand);
-        setBlockName("PokeSandSide2");
+        setUnlocalizedName("PokeSandSide2");
         setCreativeTab(CreativeTabs.tabBlock);
 
-        setBlockTextureName("pixelmonblocks" + ":" + "PokeSandSide2");
+        //setBlockTextureName("pixelmonblocks" + ":" + "PokeSandSide2");
     }
 
 

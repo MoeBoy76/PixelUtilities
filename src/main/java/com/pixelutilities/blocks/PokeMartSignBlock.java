@@ -10,10 +10,10 @@ public class PokeMartSignBlock extends Block {
         super(Material.wood);
         setHardness(4.0F); // 33% harder than diamond
         setStepSound(Block.soundTypeStone);
-        setBlockName("PokeMartSign");
+        setUnlocalizedName("PokeMartSign");
         setCreativeTab(CreativeTabs.tabBlock);
 
-        setBlockTextureName("pixelmonblocks" + ":" + "Pokemart");
+        //setBlockTextureName("pixelmonblocks" + ":" + "Pokemart");
     }
 
 

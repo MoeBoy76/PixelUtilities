@@ -10,7 +10,7 @@ public class PokeSandC1Block extends Block {
         super(Material.sand);
         setHardness(4.0F); // 33% harder than diamond
         setStepSound(Block.soundTypeSand);
-        setBlockName("PokesandCorner1");
+        setUnlocalizedName("PokesandCorner1");
         setCreativeTab(CreativeTabs.tabBlock);
     }
 

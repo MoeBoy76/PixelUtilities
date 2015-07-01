@@ -5,6 +5,7 @@ import java.util.List;
 
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
+import net.minecraft.command.PlayerNotFoundException;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentTranslation;
@@ -33,17 +34,26 @@ public class AddToDrops extends CommandBase {
 	@Override
 	public void processCommand(ICommandSender sender, String[] args)
 	{
-		if (args.length == 1)
+		
+		if (args.length == 1 || args.length == 0)
 		{
-			EntityPlayerMP player = getCommandSenderAsPlayer(sender);
-			int stackSize = Integer.parseInt(args[0]);
+			EntityPlayerMP player = null;
+			try {
+				player = getCommandSenderAsPlayer(sender);
+			} catch (PlayerNotFoundException e) {
+				e.printStackTrace();
+			}
+			int stackSize = -1;
+			if(args.length == 1)
+				stackSize = Integer.parseInt(args[0]);
+			
 			if (player.getHeldItem() != null) {
 				ItemStack itemStack = player.getHeldItem();
-				itemStack.stackSize = stackSize;
+				if(stackSize != -1)
+					itemStack.stackSize = stackSize;
+				
 				CustomDrops.getInstance().addItemDrop(sender, itemStack);
-				ChatComponentTranslation chat = new ChatComponentTranslation("Item Added, however this is currently not persisted (ie saved)");
-				chat.getChatStyle().setColor(EnumChatFormatting.GREEN);
-				sender.addChatMessage(chat);
+				notifyOperators(sender, this, "Successfully added " + itemStack.getDisplayName() + "x" + itemStack.stackSize + " to the drop list");
 			}
 			else
 			{
@@ -58,11 +68,5 @@ public class AddToDrops extends CommandBase {
 			chat.getChatStyle().setColor(EnumChatFormatting.RED);
 			sender.addChatMessage(chat);
 		}
-	}
-
-	@Override
-	public List addTabCompletionOptions(ICommandSender sender, String[] args)
-	{
-		return null;
 	}
 }

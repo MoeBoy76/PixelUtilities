@@ -10,10 +10,10 @@ public class ShinglesBlock extends Block {
         super(Material.rock);
         setHardness(4.0F); // 33% harder than diamond
         setStepSound(Block.soundTypeWood);
-        setBlockName("Shingles");
+        setUnlocalizedName("Shingles");
         setCreativeTab(CreativeTabs.tabBlock);
 
-        setBlockTextureName("pixelmonblocks" + ":" + "Shingles");
+        //setBlockTextureName("pixelmonblocks" + ":" + "Shingles");
     }
 
 

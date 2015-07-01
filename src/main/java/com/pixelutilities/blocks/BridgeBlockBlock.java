@@ -10,8 +10,8 @@ public class BridgeBlockBlock extends Block {
         super(Material.wood);
         setHardness(4.0F); // 33% harder than diamond
         setStepSound(Block.soundTypeWood);
-        setBlockName("BridgeBlock");
+        setUnlocalizedName("BridgeBlock");
         setCreativeTab(CreativeTabs.tabBlock);
-        setBlockTextureName("pixelmonblocks" + ":" + "BridgeBlock");
+        //setBlockTextureName("pixelmonblocks" + ":" + "BridgeBlock");
     }
 }

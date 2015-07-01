@@ -1,12 +1,15 @@
 package com.pixelutilities.models.renderers;
 
 import com.pixelmonmod.pixelmon.client.models.pokeballs.ModelPokeball;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+
 import org.lwjgl.opengl.GL11;
 
 public class PokeballRenderer extends TileEntitySpecialRenderer {
@@ -20,7 +23,7 @@ public class PokeballRenderer extends TileEntitySpecialRenderer {
     }
 
     private void adjustRotatePivotViaMeta(World world, int x, int y, int z) {
-        int meta = world.getBlockMetadata(x, y, z);
+        int meta = world.getBlockState(new BlockPos(x, y, z)).getBlock().getMetaFromState(world.getBlockState(new BlockPos(x, y, z)));
         GL11.glPushMatrix();
         GL11.glRotatef(meta * (-90), 0.0F, 0.0F, 1.0F);
         GL11.glPopMatrix();
@@ -28,7 +31,7 @@ public class PokeballRenderer extends TileEntitySpecialRenderer {
 
 
     @Override
-    public void renderTileEntityAt(TileEntity te, double x, double y, double z, float scale) {
+    public void renderTileEntityAt(TileEntity te, double x, double y, double z, float scale, int i) {
         //The PushMatrix tells the renderer to "start" doing something.
         GL11.glPushMatrix();
         //This is setting the initial location.
@@ -72,7 +75,7 @@ public class PokeballRenderer extends TileEntitySpecialRenderer {
     //Set the lighting stuff, so it changes it's brightness properly.       
     private void adjustLightFixture(World world, int i, int j, int k, Block block) {
         //float brightness = block.getBlockBrightness(world, i, j, k);
-        int skyLight = world.getLightBrightnessForSkyBlocks(i, j, k, 0);
+        int skyLight = world.getLight(new BlockPos(i, j, k), false);
         int modulousModifier = skyLight % 65536;
         int divModifier = skyLight / 65536;
         // tess.setColorOpaque_F(brightness, brightness, brightness);

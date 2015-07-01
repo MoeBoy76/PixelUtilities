@@ -1,11 +1,13 @@
 package com.pixelutilities.models.renderers;
 
-import com.pixelutilities.models.ModelRadio;
-import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.client.FMLClientHandler;
+
 import org.lwjgl.opengl.GL11;
+
+import com.pixelutilities.models.ModelRadio;
 
 public class RadioBlockRenderer extends TileEntitySpecialRenderer {
 
@@ -15,7 +17,7 @@ public class RadioBlockRenderer extends TileEntitySpecialRenderer {
 
 
     @Override
-    public void renderTileEntityAt(TileEntity tileentity, double d0, double d1, double d2, float f) {
+    public void renderTileEntityAt(TileEntity tileentity, double d0, double d1, double d2, float f, int i) {
         GL11.glDisable(GL11.GL_CULL_FACE);
         GL11.glPushMatrix();
         switch (tileentity.getBlockMetadata()) {

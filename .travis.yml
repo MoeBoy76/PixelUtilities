@@ -1,7 +1,0 @@
-language: java
-
-before-install:
-  - sudo apt-get update
-  
-install:
-  - sudo apt-get install -qq gradle

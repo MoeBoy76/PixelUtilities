@@ -4,17 +4,21 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.IChatComponent;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 
-public class TileEntityConveyor extends TileEntity implements ISidedInventory {
-    private int _dye = -1;
+public class TileEntityConveyor extends TileEntity implements ISidedInventory, IUpdatePlayerListBox {
+    private EnumDyeColor _dye = EnumDyeColor.WHITE;
 
     private boolean _rednetReversed = false;
     private boolean _isReversed = false;
@@ -26,47 +30,50 @@ public class TileEntityConveyor extends TileEntity implements ISidedInventory {
 
     private boolean _isFast = false;
 
-    public int getDyeColor() {
+    public EnumDyeColor getDyeColor() {
         return _dye;
     }
 
-    public void setDyeColor(int dye) {
+    public void setDyeColor(EnumDyeColor dye) {
         if (worldObj != null && !worldObj.isRemote && _dye != dye) {
-            worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+            worldObj.markBlockForUpdate(getPos());
         }
         _dye = dye;
+    }
+    
+    public void setDyeColor(int dye) {
+    	EnumDyeColor newDyeColour = EnumDyeColor.values()[dye];
+    	if (worldObj != null && !worldObj.isRemote && _dye != newDyeColour) {
+            worldObj.markBlockForUpdate(getPos());
+        }
+        _dye = newDyeColour;
     }
 
     @Override
     public Packet getDescriptionPacket() {
         NBTTagCompound data = new NBTTagCompound();
-        data.setInteger("dye", _dye);
+        data.setInteger("dye", _dye.getMetadata());
         data.setBoolean("conveyorActive", _conveyorActive);
         data.setBoolean("isFast", _isFast);
-        return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 0, data);
+        return new S35PacketUpdateTileEntity(getPos(), 0, data);
     }
 
     @Override
     public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
-        NBTTagCompound data = pkt.func_148857_g();
-        _dye = data.getInteger("dye");
+        NBTTagCompound data = pkt.getNbtCompound();
+        _dye = EnumDyeColor.byMetadata(data.getInteger("dye"));
         _conveyorActive = data.getBoolean("conveyorActive");
         _isFast = data.getBoolean("isFast");
     }
 
-    @Override
+    /*@Override
     public boolean shouldRefresh(Block oldID, Block newID, int oldMeta, int newMeta, World world, int x, int y, int z) {
         return oldID != newID;
     }
 
     private void rotateTo(World world, int xCoord, int yCoord, int zCoord, int newmd) {
-        world.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, newmd, 2);
-    }
-
-    @Override
-    public boolean canUpdate() {
-        return false;
-    }
+        world.setBlockMetadataWithNotify(new BlockPos(xCoord, yCoord, zCoord), newmd, 2);
+    }*/
 
     public boolean isFast() {
         return _isFast;
@@ -80,7 +87,7 @@ public class TileEntityConveyor extends TileEntity implements ISidedInventory {
     public void writeToNBT(NBTTagCompound tag) {
         super.writeToNBT(tag);
 
-        tag.setInteger("dyeColor", _dye);
+        tag.setInteger("dyeColor", _dye.getMetadata());
         tag.setBoolean("isReversed", _isReversed);
         tag.setBoolean("redNetActive", _conveyorActive);
         tag.setBoolean("gateActive", _gateAllowsActive);
@@ -94,7 +101,7 @@ public class TileEntityConveyor extends TileEntity implements ISidedInventory {
         super.readFromNBT(tag);
 
         if (tag.hasKey("dyeColor")) {
-            _dye = tag.getInteger("dyeColor");
+            _dye = EnumDyeColor.byMetadata(tag.getInteger("dyeColor"));
         }
         if (tag.hasKey("redNetActive")) {
             _conveyorActive = tag.getBoolean("redNetActive");
@@ -131,7 +138,7 @@ public class TileEntityConveyor extends TileEntity implements ISidedInventory {
 
     @Override
     public void setInventorySlotContents(int slot, ItemStack stack) {
-        int horizDirection = worldObj.getBlockMetadata(xCoord, yCoord, zCoord) & 0x03;
+        //int horizDirection = worldObj.getBlockState(getPos()) & 0x03;
 
         float dropOffsetX = 0.5F;
         float dropOffsetY = 0.4F;
@@ -167,7 +174,7 @@ public class TileEntityConveyor extends TileEntity implements ISidedInventory {
                 motionX = -0.15D;
                 break;
             case 6: //UNKNOWN
-        }
+        }/*
 
         if (horizDirection == 0) {
             motionX = 0.05D;
@@ -177,24 +184,14 @@ public class TileEntityConveyor extends TileEntity implements ISidedInventory {
             motionX = -0.05D;
         } else if (horizDirection == 3) {
             motionZ = -0.05D;
-        }
+        }*/
 
-        EntityItem entityitem = new EntityItem(worldObj, xCoord + dropOffsetX, yCoord + dropOffsetY, zCoord + dropOffsetZ, stack.copy());
+        EntityItem entityitem = new EntityItem(worldObj, getPos().getX() + dropOffsetX, getPos().getY() + dropOffsetY, getPos().getZ() + dropOffsetZ, stack.copy());
         entityitem.motionX = motionX;
         entityitem.motionY = motionY;
         entityitem.motionZ = motionZ;
-        entityitem.delayBeforeCanPickup = 20;
+        //entityitem.delayBeforeCanPickup = 20;
         worldObj.spawnEntityInWorld(entityitem);
-    }
-
-    @Override
-    public String getInventoryName() {
-        return "Conveyor Belt";
-    }
-
-    @Override
-    public boolean hasCustomInventoryName() {
-        return false;
     }
 
     @Override
@@ -212,22 +209,14 @@ public class TileEntityConveyor extends TileEntity implements ISidedInventory {
     }
 
     @Override
-    public void openInventory() {
-    }
-
-    @Override
-    public void closeInventory() {
-    }
-
-    @Override
     public boolean isItemValidForSlot(int slot, ItemStack stack) {
         return true;
     }
 
     //ISidedInventory
     @Override
-    public int[] getAccessibleSlotsFromSide(int sideOrdinal) {
-        int[] accessibleSlot = {sideOrdinal};
+    public int[] getSlotsForFace(EnumFacing side) {
+        int[] accessibleSlot = {side.getIndex()};
         return accessibleSlot;
     }
 
@@ -237,22 +226,22 @@ public class TileEntityConveyor extends TileEntity implements ISidedInventory {
      * From below/unknown: returns true
      */
     @Override
-    public boolean canInsertItem(int slot, ItemStack stack, int side) {
+    public boolean canInsertItem(int index, ItemStack stack, EnumFacing direction) {
         int blockmeta;
-        switch (ForgeDirection.getOrientation(side)) {
+        switch (direction) {
             case UP:
-                return (worldObj.getBlockMetadata(xCoord, yCoord, zCoord) & 0x04) == 0;
+                return (worldObj.getBlockState(getPos()).getBlock().getMetaFromState(worldObj.getBlockState(getPos())) & 0x04) == 0;
             case EAST:
-                blockmeta = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
+                blockmeta = worldObj.getBlockState(getPos()).getBlock().getMetaFromState(worldObj.getBlockState(getPos()));
                 return (blockmeta & 0x04) != 0 | (blockmeta & 0x03) != 0;
             case SOUTH:
-                blockmeta = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
+                blockmeta = worldObj.getBlockState(getPos()).getBlock().getMetaFromState(worldObj.getBlockState(getPos()));
                 return (blockmeta & 0x04) != 0 | (blockmeta & 0x03) != 1;
             case WEST:
-                blockmeta = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
+                blockmeta = worldObj.getBlockState(getPos()).getBlock().getMetaFromState(worldObj.getBlockState(getPos()));
                 return (blockmeta & 0x04) != 0 | (blockmeta & 0x03) != 2;
             case NORTH:
-                blockmeta = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
+                blockmeta = worldObj.getBlockState(getPos()).getBlock().getMetaFromState(worldObj.getBlockState(getPos()));
                 return (blockmeta & 0x04) != 0 | (blockmeta & 0x03) != 3;
             default:
                 return true;
@@ -260,7 +249,7 @@ public class TileEntityConveyor extends TileEntity implements ISidedInventory {
     }
 
     @Override
-    public boolean canExtractItem(int slot, ItemStack stack, int side) {
+    public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction) {
         return false;
     }
 
@@ -282,7 +271,7 @@ public class TileEntityConveyor extends TileEntity implements ISidedInventory {
         _conveyorActive = conveyorActive;
 
         if (wasActive ^ _conveyorActive) {
-            worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+            worldObj.markBlockForUpdate(getPos());
         }
     }
 
@@ -304,7 +293,7 @@ public class TileEntityConveyor extends TileEntity implements ISidedInventory {
         _isReversed = isReversed;
 
         if (wasReversed ^ _isReversed) {
-            worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, getReversedMeta(worldObj.getBlockMetadata(xCoord, yCoord, zCoord)), 3);
+            //worldObj.setBlockMetadataWithNotify(getPos(), getReversedMeta(worldObj.getBlockState(getPos()).getBlock().getMetaFromState(worldObj.getBlockState(getPos()))), 3);
         }
     }
 
@@ -326,4 +315,51 @@ public class TileEntityConveyor extends TileEntity implements ISidedInventory {
 
         return slopeComponent * 4 + directionComponent;
     }
+
+	@Override
+	public void openInventory(EntityPlayer player) {		
+	}
+
+	@Override
+	public void closeInventory(EntityPlayer player) {		
+	}
+
+	@Override
+	public int getField(int id) {
+		return 0;
+	}
+
+	@Override
+	public void setField(int id, int value) {		
+	}
+
+	@Override
+	public int getFieldCount() {
+		return 0;
+	}
+
+	@Override
+	public void clear() {		
+	}
+
+	@Override
+	public String getCommandSenderName() {
+		return null;
+	}
+
+	@Override
+	public boolean hasCustomName() {
+		return false;
+	}
+
+	@Override
+	public IChatComponent getDisplayName() {
+		return null;
+	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
 }

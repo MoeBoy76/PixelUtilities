@@ -9,8 +9,8 @@ public class CaveRockBlock extends Block {
         super(Material.rock);
         setHardness(4.0F); // 33% harder than diamond
         setStepSound(Block.soundTypeStone);
-        setBlockName("CaveRock");
+        setUnlocalizedName("CaveRock");
         setCreativeTab(CreativeTabs.tabBlock);
-        setBlockTextureName("pixelmonblocks" + ":" + "CaveRock");
+        //setBlockTextureName("pixelmonblocks" + ":" + "CaveRock");
     }
 }

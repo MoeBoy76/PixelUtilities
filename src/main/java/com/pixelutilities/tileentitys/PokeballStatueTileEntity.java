@@ -7,9 +7,4 @@ public class PokeballStatueTileEntity extends TileEntity
 	public PokeballStatueTileEntity() {
 	}
 
-	@Override
-	public boolean canUpdate() {
-		return false;
-	}
-
 }

@@ -3,18 +3,15 @@ package com.pixelutilities;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.pixelutilities.config.PixelUtilitiesConfig;
-
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraftforge.client.gui.ForgeGuiFactory.ForgeConfigGui.ChunkLoaderEntry;
-import net.minecraftforge.client.gui.ForgeGuiFactory.ForgeConfigGui.GeneralEntry;
 import net.minecraftforge.common.config.ConfigElement;
-import net.minecraftforge.common.config.Configuration;
-import cpw.mods.fml.client.config.GuiConfig;
-import cpw.mods.fml.client.config.GuiConfigEntries;
-import cpw.mods.fml.client.config.GuiConfigEntries.CategoryEntry;
-import cpw.mods.fml.client.config.IConfigElement;
-import cpw.mods.fml.client.config.DummyConfigElement.DummyCategoryElement;
+import net.minecraftforge.fml.client.config.DummyConfigElement.DummyCategoryElement;
+import net.minecraftforge.fml.client.config.GuiConfig;
+import net.minecraftforge.fml.client.config.GuiConfigEntries;
+import net.minecraftforge.fml.client.config.GuiConfigEntries.CategoryEntry;
+import net.minecraftforge.fml.client.config.IConfigElement;
+
+import com.pixelutilities.config.PixelUtilitiesConfig;
 
 public class PixelUtilitiesConfigGui extends GuiConfig
 {
@@ -27,8 +24,7 @@ public class PixelUtilitiesConfigGui extends GuiConfig
 	{
 		List<IConfigElement> list = new ArrayList<IConfigElement>();
 		list.add(new DummyCategoryElement("General", "pixelutilities.gui.config.general", GeneralEntry.class));
-		list.add(new DummyCategoryElement("PokeGifts", "pixelutilities.gui.config.pokegifts", PokeGiftEntry.class));
-		list.add(new DummyCategoryElement("PokeGrass", "pixelutilities.gui.config.pokegrass", PokeGrassEntry.class));
+		list.add(new DummyCategoryElement("Starters", "pixelutilities.gui.config.starters", StarterEntry.class));
 		return list;
 	}
 
@@ -51,10 +47,10 @@ public class PixelUtilitiesConfigGui extends GuiConfig
 		}
 	}
 	
-	public static class PokeGiftEntry extends CategoryEntry
+	public static class StarterEntry extends CategoryEntry
 	{
 
-		public PokeGiftEntry(GuiConfig owningScreen, GuiConfigEntries owningEntryList, IConfigElement configElement)
+		public StarterEntry(GuiConfig owningScreen, GuiConfigEntries owningEntryList, IConfigElement configElement)
 		{
 			super(owningScreen, owningEntryList, configElement);
 		}
@@ -63,29 +59,10 @@ public class PixelUtilitiesConfigGui extends GuiConfig
 		protected GuiScreen buildChildScreen()
 		{
 			return new GuiConfig(this.owningScreen,
-					(new ConfigElement(PixelUtilitiesConfig.getInstance().pokegifts)).getChildElements(),
+					(new ConfigElement(PixelUtilitiesConfig.getInstance().starters)).getChildElements(),
 					this.owningScreen.modID, PixelUtilitiesConfig.getInstance().configPath(), this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart,
 					this.configElement.requiresMcRestart() || this.owningScreen.allRequireMcRestart,
-					"PokeGifts");
-		}
-	}
-	
-	public static class PokeGrassEntry extends CategoryEntry
-	{
-
-		public PokeGrassEntry(GuiConfig owningScreen, GuiConfigEntries owningEntryList, IConfigElement configElement)
-		{
-			super(owningScreen, owningEntryList, configElement);
-		}
-
-		@Override
-		protected GuiScreen buildChildScreen()
-		{
-			return new GuiConfig(this.owningScreen,
-					(new ConfigElement(PixelUtilitiesConfig.getInstance().pokegrass)).getChildElements(),
-					this.owningScreen.modID, PixelUtilitiesConfig.getInstance().configPath(), this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart,
-					this.configElement.requiresMcRestart() || this.owningScreen.allRequireMcRestart,
-					"PokeGrass");
+					"Starters");
 		}
 	}
 }

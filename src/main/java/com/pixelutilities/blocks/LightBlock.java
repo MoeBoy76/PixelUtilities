@@ -1,15 +1,13 @@
 package com.pixelutilities.blocks;
 
-import coloredlightscore.src.api.CLApi;
-
-import com.pixelutilities.config.PixelUtilitiesBlocks;
-import com.pixelutilities.config.PixelUtilitiesCreativeTabs;
+import java.awt.Color;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 
-import java.awt.*;
+import com.pixelutilities.config.PixelUtilitiesBlocks;
+import com.pixelutilities.config.PixelUtilitiesCreativeTabs;
 
 public class LightBlock extends Block {
 
@@ -23,9 +21,9 @@ public class LightBlock extends Block {
         this.green = (rgb.getGreen() / 255) * 15;
         this.blue = (rgb.getBlue() / 255) * 15;
 
-        CLApi.setBlockColorRGB(this, red, green, blue, 65535);
-        setBlockName(name + "Light");
-        setBlockTextureName("pixelutilities:" + name + "Light");
+        //CLApi.setBlockColorRGB(this, red, green, blue, 65535);
+        setUnlocalizedName(name + "Light");
+        //setBlockTextureName("pixelutilities:" + name + "Light");
 
         //make sure this is last
         setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelUtilitiesLights);

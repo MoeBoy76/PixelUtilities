@@ -1,20 +1,22 @@
 package com.pixelutilities.gui;
 
-import com.pixelutilities.networking.PacketHandler;
-import com.pixelutilities.networking.networkMessages.MessageTileEntityRadio;
-import com.pixelutilities.tileentitys.TileEntityRadio;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.gui.GuiTextField;
-import org.lwjgl.input.Keyboard;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.GuiTextField;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import org.lwjgl.input.Keyboard;
+
+import com.pixelutilities.networking.PacketHandler;
+import com.pixelutilities.networking.networkMessages.MessageTileEntityRadio;
+import com.pixelutilities.tileentitys.TileEntityRadio;
 
 public class GuiRadio extends GuiScreen {
     public String status;
@@ -31,7 +33,7 @@ public class GuiRadio extends GuiScreen {
         this.buttonList.add(new GuiButton(1, this.width / 2 - 100, height / 2 + 10, 200, 20, "Play/Pause"));
         this.buttonList.add(new GuiButton(2, this.width / 2 + 17, height / 2 + 60, 50, 20, "Loop On"));
         this.buttonList.add(new GuiButton(3, this.width / 2 - 60, height / 2 + 60, 50, 20, "Loop Off"));
-        streamTextBox = new GuiTextField(fontRendererObj, width / 2 - 100, height / 2 + 35, 200, 20);
+        streamTextBox = new GuiTextField(101, fontRendererObj, width / 2 - 100, height / 2 + 35, 200, 20);
         streamTextBox.setMaxStringLength(1000);
         streamTextBox.setText(radio.streamURL);
 
@@ -82,13 +84,23 @@ public class GuiRadio extends GuiScreen {
         if (par1 == 13) {//enter pressed
             //actionPerformed((GuiButton)this.buttonList.get(1));
         }
-        super.keyTyped(par1, par2);
+        try {
+			super.keyTyped(par1, par2);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
     @Override
     protected void mouseClicked(int par1, int par2, int par3) {
         streamTextBox.mouseClicked(par1, par2, par3);
-        super.mouseClicked(par1, par2, par3);
+        try {
+			super.mouseClicked(par1, par2, par3);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
     @SideOnly(Side.CLIENT)
@@ -107,9 +119,9 @@ public class GuiRadio extends GuiScreen {
                     radio.streamURL = streamTextBox.getText();
                 }
 
-                PacketHandler.INSTANCE.sendToServer(new MessageTileEntityRadio(radio.xCoord, radio.yCoord, radio.zCoord, radio.isPlaying(), radio.streamURL));
+                PacketHandler.INSTANCE.sendToServer(new MessageTileEntityRadio(radio.getPos().getX(), radio.getPos().getY(), radio.getPos().getZ(), radio.isPlaying(), radio.streamURL));
 
-                PacketHandler.INSTANCE.sendToServer(new MessageTileEntityRadio(radio.xCoord, radio.yCoord, radio.zCoord, !radio.isPlaying(), radio.streamURL));
+                PacketHandler.INSTANCE.sendToServer(new MessageTileEntityRadio(radio.getPos().getX(), radio.getPos().getY(), radio.getPos().getZ(), !radio.isPlaying(), radio.streamURL));
 
             }
 

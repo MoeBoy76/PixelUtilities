@@ -1,15 +1,15 @@
 [
 {
-  "modid": "pixelmon",
-  "name": "Pixelmon",
-  "description": "Pokemon, in Minecraft!",
+  "modid": "pixelutilities",
+  "name": "PixelUtilities",
+  "description": "",
   "version": "${version}",
   "mcversion": "${mcversion}",
-  "forgeversion": "${fversion}",
-  "url": "http://www.pixelmonmod.com",
-  "updateUrl": "http://www.pixelmonmod.com",
-  "authorList": ["Pixelmon Development Team"],
-  "credits": "Pixelmon Development Team",
+  "pixelmonVersion": "${pixelmonVersion}",
+  "url": "http://www.pixelmonmod.com/downloads.php",
+  "updateUrl": "http://www.pixelmonmod.com/downloads.php",
+  "authorList": [],
+  "credits": "PixelUtilities Dev Team",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []

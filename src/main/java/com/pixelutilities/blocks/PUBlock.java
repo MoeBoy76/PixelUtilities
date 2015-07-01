@@ -11,9 +11,9 @@ public class PUBlock extends Block {
 
         setHardness(hardness); // 33% harder than diamond
         setStepSound(soundType);
-        setBlockName(blockName);
+        setUnlocalizedName(blockName);
         setCreativeTab(tab);
-        setBlockTextureName("pixelutilities" + ":" + blockName);
+        //setBlockTextureName("pixelutilities" + ":" + blockName);
     }
 
 }

@@ -12,7 +12,7 @@ public class BugBadgeItem extends Item {
         // Constructor Configuration
         maxStackSize = 64;
         setCreativeTab(PixelUtilitiesCreativeTabs.tabPixelmonBadges);
-        setTextureName("pixelutilities:badges/BugBadge");
+        //setTextureName("pixelutilities:badges/BugBadge");
         setUnlocalizedName("bugbadge");
     }
 }

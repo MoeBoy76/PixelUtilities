@@ -10,10 +10,10 @@ public class AquaFloorBlock extends Block {
         super(material);
         setHardness(4.0F); // 33% harder than diamond
         setStepSound(Block.soundTypeMetal);
-        setBlockName("AquaFloor");
+        setUnlocalizedName("AquaFloor");
         setCreativeTab(CreativeTabs.tabBlock);
 
-        setBlockTextureName("pixelmonblocks" + ":" + "AquaFloor");
+        //setBlockTextureName("pixelmonblocks" + ":" + "AquaFloor");
     }
 
 

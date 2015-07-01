@@ -10,10 +10,10 @@ public class SandyGrassBlock extends Block {
         super(Material.grass);
         setHardness(4.0F); // 33% harder than diamond
         setStepSound(Block.soundTypeSand);
-        setBlockName("SandyGrass");
+        setUnlocalizedName("SandyGrass");
         setCreativeTab(CreativeTabs.tabBlock);
 
-        setBlockTextureName("pixelmonblocks" + ":" + "SandyGrass");
+        //setBlockTextureName("pixelmonblocks" + ":" + "SandyGrass");
     }
 
 

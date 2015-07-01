@@ -1,13 +1,14 @@
 package com.pixelutilities.gui;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
@@ -33,7 +34,7 @@ public class PokegearExit extends GuiButton {
     @Override
     public void drawButton(Minecraft p_146112_1_, int p_146112_2_, int p_146112_3_) {
         if (this.visible) {
-            FontRenderer var4 = Minecraft.getMinecraft().fontRenderer;
+            FontRenderer var4 = Minecraft.getMinecraft().fontRendererObj;
             Minecraft.getMinecraft().renderEngine.bindTexture(buttonTextures);
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
             this.drawTexturedModalRect(width / 2, height / 2, 0, 64, 64, this.height);
@@ -49,14 +50,14 @@ public class PokegearExit extends GuiButton {
     }
 
     public boolean func_146115_a() {
-        return this.field_146123_n;
+        return this.hovered;
     }
 
     public void func_146111_b(int p_146111_1_, int p_146111_2_) {
     }
 
     public void func_146113_a(SoundHandler p_146113_1_) {
-        p_146113_1_.playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0F));
+        p_146113_1_.playSound(PositionedSoundRecord.create(new ResourceLocation("gui.button.press"), 1.0F));
     }
 
     public int getButtonWidth() {
